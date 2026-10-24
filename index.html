@@ -194,4 +194,38 @@ function shareRoast(){const text=`UNFILTERED 🔥\n${selectedCategory}\n${curren
 function voteRoast(){if(!currentRoast)return toast("Generate a roast first.");const key=currentTarget+"|"+currentRoast;if(votes[key])return toast("This roast has already been voted for.");votes[key]=true;scores[currentTarget]=(scores[currentTarget]||0)+1;save();renderLeaderboard();toast("Vote counted! 🏆");}
 function renderLeaderboard(){const entries=Object.entries(scores).sort((a,b)=>b[1]-a[1]);$("leaderboard").innerHTML=entries.length?entries.map(([name,score],i)=>`<div class="list-item"><strong>${["🥇","🥈","🥉"][i]||"🔥"} ${escapeHtml(name)}</strong><span style="float:right">${score} vote${score===1?"":"s"}</span></div>`).join(""):'<p class="small">No votes yet. Make history.</p>';}
 function resetScores(){if(!confirm("Reset all local scores and votes?"))return;scores={};votes={};save();renderLeaderboard();toast("Leaderboard reset.");}
+
+function dailyChallenge(){
+  const day=Math.floor(Date.now()/86400000);
+  const challenge=challenges[day%challenges.length];
+  $("dailyText").textContent=challenge;
+  const done=localStorage.getItem("ufDailyDone")===String(day);
+  $("dailyStatus").textContent=done?"✅ Today's challenge completed!":"Your daily mission awaits.";
+}
+function completeDaily(){
+  const day=Math.floor(Date.now()/86400000);
+  if(!$("dailyText").textContent.trim())dailyChallenge();
+  if(localStorage.getItem("ufDailyDone")===String(day)){
+    return toast("Today's challenge is already complete!");
+  }
+  localStorage.setItem("ufDailyDone",String(day));
+  $("dailyStatus").textContent="✅ Today's challenge completed!";
+  toast("Challenge completed! 🔥");
+}
+async function inviteFriends(){
+  const message="🔥 You're invited to UNFILTERED!\nNo filter. No mercy. All fun.\nPlay here: "+location.href;
+  if(navigator.share){
+    try{await navigator.share({title:"UNFILTERED",text:message,url:location.href});}
+    catch(e){}
+  }else{
+    fallbackCopy(message);
+  }
+}
+$("year").textContent=new Date().getFullYear();
+renderPlayers();
+renderLeaderboard();
+renderscores();
+dailyChallenge();
 </script>
+</body>
+</html>
