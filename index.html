@@ -3,226 +3,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0710">
-<meta name="description" content="UNFILTERED: the savage party roast game. No filter. No mercy. All fun.">
-<title>UNFILTERED | The Roast Game</title>
+<title>UNFILTERED | No Filter. No Mercy.</title>
 <style>
-:root {
-  --bg:#0a0710;
-  --panel:#15101e;
-  --panel2:#20152b;
-  --pink:#ff2e93;
-  --purple:#a855f7;
-  --gold:#ffd166;
-  --white:#fff9ff;
-  --muted:#b8a9c5;
-  --line:#382642;
-  --green:#71f5b5;
-}
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  margin:0;
-  min-height:100vh;
-  color:var(--white);
-  background:
-    radial-gradient(ellipse at 50% -10%,#43104e 0,transparent 48%),
-    radial-gradient(ellipse at 100% 45%,#20103a 0,transparent 42%),
-    var(--bg);
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-button,input,select { font:inherit; }
-button { cursor:pointer; }
-button:focus-visible,input:focus-visible,select:focus-visible {
-  outline:3px solid var(--gold); outline-offset:3px;
-}
-button:disabled { opacity:.45; cursor:not-allowed; }
-.shell { width:min(100% - 28px,760px); margin:auto; padding:18px 0 40px; }
-.topbar { display:flex; justify-content:space-between; align-items:center; gap:10px; }
-.pill {
-  border:1px solid var(--line); border-radius:999px; padding:8px 12px;
-  color:var(--muted); font-size:12px; background:#120d19;
-}
-.pill strong { color:var(--green); }
-.hero { text-align:center; padding:24px 0 20px; }
-.crown {
-  display:block; font-size:52px; line-height:1.1;
-  filter:drop-shadow(0 0 12px #ffd16688);
-}
-.brand {
-  margin:4px 0 0; font-size:clamp(43px,12vw,76px); font-weight:1000;
-  line-height:.98; letter-spacing:-3px; font-style:italic;
-  color:var(--white);
-  background:linear-gradient(100deg,#fff 8%,#ff70bb 38%,#b66bff 68%,#fff 95%);
-  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 0 20px #ff2e9330);
-}
-.brand span { display:block; }
-.tagline {
-  margin:15px 0 0; color:var(--gold); font-size:11px; font-weight:900;
-  letter-spacing:3px;
-}
-.intro { color:var(--muted); margin:10px auto 0; max-width:420px; font-size:14px; line-height:1.6; }
-.section { margin-top:17px; padding:18px; background:linear-gradient(145deg,#191220ee,#100c17f5); border:1px solid var(--line); border-radius:20px; box-shadow:0 12px 40px #0002; }
-.section-title { margin:0 0 5px; font-size:18px; font-weight:900; }
-.sub { margin:0 0 15px; color:var(--muted); font-size:13px; line-height:1.5; }
-.field-label { display:block; margin:12px 0 7px; font-size:12px; color:var(--muted); font-weight:800; text-transform:uppercase; letter-spacing:1px; }
-.input-row { display:flex; gap:8px; }
-input,select {
-  width:100%; min-width:0; padding:13px 12px; border-radius:12px;
-  color:var(--white); background:#0b0810; border:1px solid #44304f;
-}
-input::placeholder { color:#75677f; }
-.btn {
-  border:0; border-radius:12px; padding:13px 16px; font-weight:900;
-  transition:transform .15s,filter .15s;
-}
-.btn:active { transform:scale(.98); }
-.btn-primary { color:#fff; background:linear-gradient(100deg,var(--pink),#a33eff); box-shadow:0 6px 22px #ff2e9330; }
-.btn-gold { color:#201405; background:linear-gradient(100deg,#ffe29a,var(--gold)); }
-.btn-secondary { color:var(--white); background:#251830; border:1px solid #51375f; }
-.btn-small { padding:9px 12px; font-size:12px; }
-.btn-full { width:100%; margin-top:14px; padding:17px; font-size:17px; letter-spacing:1px; }
-.player-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-.player-chip {
-  display:flex; align-items:center; gap:8px; padding:8px 10px;
-  background:#281a33; border:1px solid #493354; border-radius:999px; font-size:13px;
-}
-.remove-player { border:0; color:#ff9acb; background:none; padding:0 2px; font-size:17px; }
-.categories { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
-.category {
-  min-height:76px; padding:12px 10px; text-align:left; color:var(--white);
-  background:#100c17; border:1px solid #382642; border-radius:14px;
-}
-.category .emoji { display:block; font-size:22px; margin-bottom:5px; }
-.category strong { font-size:13px; }
-.category.active { border-color:var(--pink); background:linear-gradient(145deg,#3a1435,#211431); box-shadow:inset 0 0 0 1px #ff2e9340; }
-.category.active strong { color:#ff8dc8; }
-.hidden { display:none !important; }
-.play-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.roast-card {
-  position:relative; overflow:hidden; text-align:center; margin:16px 0;
-  padding:27px 18px; border:1px solid #63345d; border-radius:19px;
-  background:radial-gradient(ellipse at top,#42163d,#1b1025 65%);
-}
-.roast-card:before {
-  content:"✦"; position:absolute; top:10px; right:15px; color:var(--gold); font-size:22px;
-}
-.roast-label { color:var(--gold); font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase; }
-.roast-target { color:#ff8bc6; font-size:13px; margin-top:13px; font-weight:800; }
-.roast-text { font-size:clamp(22px,6vw,34px); font-weight:950; line-height:1.25; margin:12px 0; overflow-wrap:anywhere; }
-.roast-actions { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
-.vote-list { display:grid; gap:8px; margin-top:12px; }
-.vote-option {
-  display:flex; justify-content:space-between; align-items:center; gap:10px;
-  width:100%; text-align:left; color:var(--white); background:#100c17;
-  border:1px solid #42304e; border-radius:12px; padding:13px;
-}
-.vote-option.selected { border-color:var(--gold); background:#302319; }
-.vote-count { color:var(--gold); font-weight:900; }
-.notice { color:var(--muted); font-size:12px; line-height:1.5; margin-top:10px; }
-.score-row { display:flex; align-items:center; gap:10px; padding:11px 0; border-bottom:1px solid #30223a; }
-.score-row:last-child { border-bottom:0; }
-.rank { color:var(--gold); width:25px; font-weight:900; }
-.score-name { flex:1; overflow-wrap:anywhere; }
-.score-points { color:#ff8bc6; font-weight:900; }
-.daily-card { background:linear-gradient(120deg,#251b31,#15101e); border-color:#69502d; }
-.daily-card .section-title { color:var(--gold); }
-.footer { text-align:center; padding:26px 8px 0; color:#85758e; font-size:11px; line-height:1.7; }
-.footer strong { color:#d9c9e4; letter-spacing:2px; }
-.toast {
-  position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px);
-  padding:12px 18px; max-width:calc(100% - 30px); border-radius:12px;
-  color:#fff; background:#2b1a36; border:1px solid #7e4892;
-  opacity:0; pointer-events:none; transition:.2s; z-index:10; text-align:center;
-}
-.toast.show { opacity:1; transform:translate(-50%,0); }
-@media(min-width:600px) {
-  .shell { padding-top:24px; }
-  .hero { padding-top:35px; }
-  .categories { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .section { padding:22px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after { scroll-behavior:auto !important; transition:none !important; }
-}
+:root{--bg:#0a0710;--panel:#15101d;--pink:#ff2e93;--purple:#a855f7;--gold:#ffd166;--text:#fff7ff;--muted:#b7a9c4;--border:#382440}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#281035 0%,var(--bg) 55%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+.container{width:min(900px,92%);margin:auto}
+header{text-align:center;padding:30px 0 20px}
+.crown{font-size:45px;color:var(--gold);text-shadow:0 0 22px #ffd16688;line-height:1.1}
+.logo{font-size:clamp(42px,10vw,76px);font-weight:1000;font-style:italic;letter-spacing:-3px;line-height:1.1;margin:8px 0;background:linear-gradient(100deg,#fff 10%,#ff4ca5 48%,#b56aff 85%);background-clip:text;-webkit-background-clip:text;color:transparent}
+.tagline{color:var(--muted);font-size:12px;letter-spacing:3px;font-weight:800}
+button,.button{border:0;border-radius:12px;padding:12px 16px;font-weight:850;transition:transform .15s,filter .15s}
+button:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.primary{background:linear-gradient(100deg,var(--pink),var(--purple));color:white;box-shadow:0 5px 22px #ff2e9330}
+.secondary{background:#261a32;border:1px solid var(--border);color:white}
+.gold-button{background:var(--gold);color:#201027}
+.invite-top{margin-top:18px}
+.panel{background:linear-gradient(145deg,#1a1223,#100c16);border:1px solid var(--border);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 12px 36px #0003}
+h2{font-size:20px;margin:0 0 14px}
+h3{margin:0 0 10px}
+.muted,.notice{color:var(--muted);font-size:13px;line-height:1.5}
+.field-row{display:flex;gap:8px}
+input,select{width:100%;min-width:0;background:#0c0911;color:white;border:1px solid #4a3157;border-radius:10px;padding:12px;outline:none}
+input:focus,select:focus{border-color:var(--pink)}
+.player-list{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.player-chip{display:flex;align-items:center;gap:9px;background:#291932;border:1px solid #573064;border-radius:99px;padding:7px 9px 7px 13px;font-size:14px}
+.remove-player{padding:0 5px;background:transparent;color:#ff9dc9;font-size:22px}
+.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.category{min-height:76px;background:#1b1324;border:1px solid var(--border);color:white;text-align:left;padding:12px;font-size:13px}
+.category.active{border-color:var(--pink);background:#3a1738;box-shadow:inset 0 0 0 1px var(--pink)}
+.category span{display:block;font-size:21px;margin-bottom:5px}
+.settings{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
+.settings select{max-width:120px}
+.full{width:100%;margin-top:14px}
+.hidden{display:none!important}
+.challenge{border-color:#6a4a27;background:linear-gradient(135deg,#211522,#21180d)}
+.challenge-title{color:var(--gold)}
+.challenge-text{font-size:16px;font-weight:750;line-height:1.5;margin:10px 0 14px}
+.pill{display:inline-block;background:#3a2148;color:#f2caff;padding:5px 10px;border-radius:99px;font-size:11px;font-weight:900;letter-spacing:1px}
+.roast-card{text-align:center;padding:28px 20px;background:radial-gradient(ellipse at top,#42204b,#160f20 68%);border-color:#75417f}
+.roast-card .pill{margin-bottom:18px}
+.roast-target{font-size:12px;color:var(--gold);letter-spacing:2px;font-weight:900;margin-bottom:18px}
+.roast-text{font-size:clamp(22px,5vw,34px);line-height:1.25;font-weight:950;margin:12px 0 24px;overflow-wrap:anywhere}
+.action-row{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.action-row button{flex:1;min-width:125px}
+.vote-option{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;margin:8px 0;background:#21172c;border:1px solid var(--border);color:white}
+.vote-count{color:var(--gold);font-size:12px}
+.score-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.rank{width:32px;font-weight:900;color:var(--gold)}
+.score-name{flex:1;overflow-wrap:anywhere}
+.score-points{font-weight:900;color:#ff8bc5}
+footer{text-align:center;color:#8c7c99;font-size:11px;padding:25px 0 35px;letter-spacing:1px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#fff0fb;color:#260e2c;border-radius:12px;padding:12px 18px;font-weight:800;font-size:13px;max-width:90%;text-align:center;z-index:10;transition:.2s;box-shadow:0 5px 25px #0007}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:540px){.panel{padding:16px}.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.field-row{flex-direction:column}.field-row button{width:100%}.settings{align-items:flex-start}.logo{letter-spacing:-2px}}
 </style>
 </head>
 <body>
-<main class="shell">
-  <div class="topbar">
-    <span class="pill">🔥 THE ROAST ARENA</span>
-    <button class="btn btn-secondary btn-small" id="inviteTop">↗ Invite Friends</button>
-  </div>
+<div class="container">
+<header>
+<div class="crown">♛</div>
+<div class="logo">UNFILTERED</div>
+<div class="tagline">NO FILTER. NO MERCY. ALL FUN.</div>
+<button id="inviteTop" class="gold-button invite-top" type="button">↗ INVITE FRIENDS</button>
+</header>
 
-  <header class="hero">
-    <span class="crown" aria-hidden="true">♛</span>
-    <h1 class="brand"><span>UNFILTERED</span></h1>
-    <p class="tagline">NO FILTER. NO MERCY. ALL FUN.</p>
-    <p class="intro">The group chat has entered the arena. Bring your friends. Leave your dignity at the door.</p>
-  </header>
+<section class="panel" id="setupSection">
+<h2>🔥 Assemble Your Arena</h2>
+<p class="muted">Add 2 to 12 players. Choose a category. Prepare for friendly fire.</p>
+<form id="playerForm">
+<div class="field-row">
+<input id="playerInput" type="text" maxlength="30" placeholder="Enter a player's name" autocomplete="off" aria-label="Player name">
+<button class="primary" type="submit">+ ADD PLAYER</button>
+</div>
+</form>
+<div id="playerList" class="player-list"></div>
+<div id="playerCount" class="muted">0 / 12 players added</div>
 
-  <section class="section">
-    <h2 class="section-title">01 / Assemble your victims</h2>
-    <p class="sub">Add 2 to 12 players. Friends, family, rivals. Choose chaos responsibly.</p>
-    <form id="playerForm" class="input-row">
-      <input id="playerInput" maxlength="24" placeholder="Enter a player name..." aria-label="Player name" autocomplete="off">
-      <button class="btn btn-secondary" type="submit">+ Add</button>
-    </form>
-    <div class="player-list" id="playerList" aria-live="polite"></div>
-    <p class="notice" id="playerCount">0 / 12 players added</p>
-  </section>
+<h2 style="margin-top:24px">🎯 Choose Your Chaos</h2>
+<div id="categories" class="category-grid">
+<button type="button" class="category active" data-category="Main Character"><span>🎬</span>Main Character</button>
+<button type="button" class="category" data-category="Red Flag"><span>🚩</span>Red Flag</button>
+<button type="button" class="category" data-category="Drama"><span>🎭</span>Drama</button>
+<button type="button" class="category" data-category="Tiny Evil Genius"><span>😈</span>Tiny Evil Genius</button>
+<button type="button" class="category" data-category="Most Likely Arrested"><span>🚔</span>Most Likely Arrested</button>
+<button type="button" class="category" data-category="Would Vanish First"><span>👻</span>Would Vanish First</button>
+</div>
 
-  <section class="section">
-    <h2 class="section-title">02 / Pick your poison</h2>
-    <p class="sub">Choose a category. Every round delivers a fresh roast.</p>
-    <div class="categories" id="categories">
-      <button class="category active" data-category="Main Character"><span class="emoji">👑</span><strong>Main Character</strong></button>
-      <button class="category" data-category="Red Flag"><span class="emoji">🚩</span><strong>Red Flag</strong></button>
-      <button class="category" data-category="Drama"><span class="emoji">🎭</span><strong>Drama</strong></button>
-      <button class="category" data-category="Tiny Evil Genius"><span class="emoji">😈</span><strong>Tiny Evil Genius</strong></button>
-      <button class="category" data-category="Most Likely Arrested"><span class="emoji">🚔</span><strong>Most Likely Arrested</strong></button>
-      <button class="category" data-category="Would Vanish First"><span class="emoji">🫥</span><strong>Would Vanish First</strong></button>
-    </dq      <h2 class="section-title">03 / The Roast Arena</h2>
-        <p class="sub" id="roundLabel">Round 1</p>
-      </div>
-      <span class="pill" id="categoryPill">👑 Main Character</span>
-    </div>
-    <div class="roast-card" id="roastCard">
-      <div class="roast-label">⚡ INCOMING ROAST ⚡</div>
-      <div class="roast-target" id="roastTarget"></div>
-      <p class="roast-text" id="roastText">Your roast awaits.</p>
-    </div>
-    <div class="roast-actions">
-      <button class="btn btn-secondary" id="rerollButton">🎲 Reroll</button>
-      <button class="btn btn-primary" id="shareRoastButton">↗ Share Roast</button>
-    </div>
-    <button class="btn btn-gold btn-full" id="nextRoundButton">NEXT ROUND →</button>
-    <p class="notice">Reroll swaps the joke, not the player. Next Round moves the game forward.</p>
-  </section>
+<div class="settings">
+<div>
+<strong>Number of rounds</strong>
+<div class="muted">Choose the length of the roast battle.</div>
+</div>
+<select id="roundCount" aria-label="Number of rounds">
+<option value="3">3 rounds</option>
+<option value="5" selected>5 rounds</option>
+<option value="7">7 rounds</option>
+<option value="10">10 rounds</option>
+</select>
+</div>
+<button id="playNow" class="primary full" type="button" disabled>👑 PLAY NOW</button>
+</section>
 
-  <section class="section hidden" id="voteSection">
-    <h2 class="section-title">🗳️ Crown the funniest</h2>
-    <p class="sub">Vote for the player who deserves the roast crown this round. No voting for yourself.</p>
-    <div class="vote-list" id="voteList"></div>
-    <p class="notice" id="voteNotice">One vote per round, per browser session.</p>
-  </section>
+<section class="panel challenge" id="dailySection">
+<h2 class="challenge-title">⚡ DAILY CHALLENGE</h2>
+<p class="muted">A fresh mission for today's group chat.</p>
+<div id="dailyText" class="challenge-text">Loading today's challenge...</div>
+<button id="dailyButton" class="gold-button" type="button">ACCEPT CHALLENGE</button>
+</section>
 
-  <section class="section" id="leaderboardSection">
-    <h2 class="section-title">🏆 Hall of Roasted Fame</h2>
-    <p class="sub">The scoreboard for this browser. Your friends' devices have their own scores.</p>
-    <div id="leaderboard"><p class="notice">Play a round to start building your leaderboard.</p></div>
-    <button class="btn btn-secondary btn-small" id="resetScores">Reset local scores</button>
-  </section>
+<section id="gameSection" class="panel roast-card hidden">
+<span id="categoryPill" class="pill">MAIN CHARACTER</span>
+<div id="roundLabel" class="muted" style="margin:14px 0">Round 1 of 5</div>
+<div id="roastTarget" class="roast-target">THE TARGET</div>
+<div id="roastText" class="roast-text">Your roast is loading...</div>
+<div class="action-row">
+<button id="rerollButton" class="secondary" type="button">🎲 REROLL</button>
+<button id="shareRoastButton" class="primary" type="button">↗ SHARE ROAST</button>
+<button id="nextRoundButton" class="gold-button" type="button">NEXT ROUND →</button>
+</div>
+</section>
 
-  <footer class="footer">
-    <strong>UNFILTERED</strong><br>
-    NO FILTER. NO MERCY. ALL FUN.<br>
-    A party game for laughs, not grudges.
-  </footer>
-</main>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<section id="voteSection" class="panel hidden">
+<h2>🗳️ Who Deserves the Crown?</h2>
+<p id="voteNotice" class="muted">Choose the funniest player. One vote per round on this device.</p>
+<div id="voteList"></div>
+</section>
+
+<section class="panel">
+<h2>🏆 Hall of Roasted Fame</h2>
+<p class="muted">Scores are saved locally on this device, not shared online.</p>
+<div id="leaderboard"></div>
+<button id="resetScores" class="secondary full" type="button">RESET LOCAL LEADERBOARD</button>
+</section>
+
+<footer>UNFILTERED · NO FILTER. NO MERCY. ALL FUN.</footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 const $ = id => document.getElementById(id);
 
@@ -303,45 +226,44 @@ let players = [];
 let category = "Main Character";
 let round = 0;
 let totalRounds = 5;
-let targetIndex = 0;
-let currentRoast = "";
 let currentTarget = "";
+let currentRoast = "";
 let scores = {};
 let votes = {};
 let votedThisRound = false;
 let gameActive = false;
 let dailyAccepted = false;
 
-function loadSavedData() {
+function safeLoad(key, fallback) {
   try {
-    const savedPlayers = JSON.parse(localStorage.getItem("unfiltered_players") || "[]");
-    players = Array.isArray(savedPlayers)
-      ? savedPlayers.filter(p => typeof p === "string").slice(0, 12)
-      : [];
-  } catch (e) {
-    players = [];
+    const value = JSON.parse(localStorage.getItem(key) || "null");
+    return value === null ? fallback : value;
+  } catch (error) {
+    return fallback;
   }
+}
 
-  try {
-    const savedScores = JSON.parse(localStorage.getItem("unfiltered_scores") || "{}");
-    scores = savedScores && typeof savedScores === "object" && !Array.isArray(savedScores)
-      ? savedScores
-      : {};
-  } catch (e) {
-    scores = {};
-  }
+function loadSavedData() {
+  const savedPlayers = safeLoad("unfiltered_players", []);
+  players = Array.isArray(savedPlayers)
+    ? savedPlayers.filter(p => typeof p === "string").slice(0, 12)
+    : [];
+
+  const savedScores = safeLoad("unfiltered_scores", {});
+  scores = savedScores && typeof savedScores === "object" &&
+    !Array.isArray(savedScores) ? savedScores : {};
 }
 
 function savePlayers() {
   try {
     localStorage.setItem("unfiltered_players", JSON.stringify(players));
-  } catch (e) {}
+  } catch (error) {}
 }
 
 function saveScores() {
   try {
     localStorage.setItem("unfiltered_scores", JSON.stringify(scores));
-  } catch (e) {}
+  } catch (error) {}
 }
 
 function showToast(message) {
@@ -349,17 +271,9 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2400);
-}
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
+  showToast.timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2400);
 }
 
 function renderPlayers() {
@@ -378,9 +292,10 @@ function renderPlayers() {
     remove.className = "remove-player";
     remove.textContent = "×";
     remove.setAttribute("aria-label", "Remove " + name);
+
     remove.addEventListener("click", () => {
       if (gameActive) {
-        showToast("Finish the current game before changing players.");
+        showToast("Finish the game before changing players.");
         return;
       }
       players.splice(index, 1);
@@ -411,10 +326,12 @@ $("playerForm").addEventListener("submit", event => {
     showToast("Enter a player name first.");
     return;
   }
+
   if (players.length >= 12) {
     showToast("The arena holds 12 players maximum.");
     return;
   }
+
   if (players.some(p => p.toLowerCase() === name.toLowerCase())) {
     showToast("That player is already in the arena.");
     return;
@@ -430,15 +347,18 @@ $("playerForm").addEventListener("submit", event => {
 $("categories").addEventListener("click", event => {
   const button = event.target.closest("[data-category]");
   if (!button) return;
+
   if (gameActive) {
     showToast("Finish this game before changing categories.");
     return;
   }
 
   category = button.dataset.category;
+
   document.querySelectorAll(".category").forEach(el => {
     el.classList.toggle("active", el === button);
   });
+
   $("categoryPill").textContent = category;
 });
 
@@ -447,8 +367,7 @@ function randomItem(items) {
 }
 
 function pickTarget() {
-  targetIndex = Math.floor(Math.random() * players.length);
-  currentTarget = players[targetIndex];
+  currentTarget = randomItem(players);
 }
 
 function generateRoast() {
@@ -480,7 +399,10 @@ function startGame() {
   generateRoast();
   renderVotes();
 
-  $("gameSection").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("gameSection").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
 function renderVotes() {
@@ -491,15 +413,15 @@ function renderVotes() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "vote-option";
+    button.disabled = votedThisRound || name === currentTarget;
 
     const label = document.createElement("span");
     label.textContent = name;
 
     const count = document.createElement("span");
     count.className = "vote-count";
-    count.textContent = (votes[name] || 0) + " vote" + ((votes[name] || 0) === 1 ? "" : "s");
-
-    if (votedThisRound) button.disabled = true;
+    count.textContent = (votes[name] || 0) + " vote" +
+      ((votes[name] || 0) === 1 ? "" : "s");
 
     button.append(label, count);
     button.addEventListener("click", () => castVote(name));
@@ -507,7 +429,7 @@ function renderVotes() {
   });
 
   $("voteNotice").textContent = votedThisRound
-    ? "Vote recorded! Move to the next round when you're ready."
+    ? "Vote recorded! Move to the next round when ready."
     : "Choose the funniest player. One vote per round on this device.";
 }
 
@@ -518,14 +440,14 @@ function castVote(name) {
   }
 
   if (name === currentTarget) {
-    showToast("Vote for someone other than the roast target!");
+    showToast("You cannot vote for the roast target!");
     return;
   }
 
   votes[name] = (votes[name] || 0) + 1;
   scores[name] = (Number(scores[name]) || 0) + 1;
-  votedThisRound = true;
 
+  votedThisRound = true;
   saveScores();
   renderVotes();
   renderLeaderboard();
@@ -537,7 +459,8 @@ function finishGame() {
   $("nextRoundButton").textContent = "PLAY AGAIN ↻";
   $("roundLabel").textContent = "Game complete!";
   $("roastTarget").textContent = "THE ARENA HAS SPOKEN";
-  $("roastText").textContent = "The roast is over. The screenshots are forever.";
+  $("roastText").textContent =
+    "The roast is over. The screenshots are forever.";
   $("voteSection").classList.add("hidden");
   renderLeaderboard();
   showToast("Game over! Check the Hall of Roasted Fame.");
@@ -555,8 +478,8 @@ function nextRound() {
   }
 
   round++;
-  votedThisRound = false;
   votes = {};
+  votedThisRound = false;
   pickTarget();
   generateRoast();
   renderVotes();
@@ -568,7 +491,7 @@ $("nextRoundButton").addEventListener("click", nextRound);
 $("rerollButton").addEventListener("click", () => {
   if (!gameActive) return;
   generateRoast();
-  showToast("Fresh roast served. 🔥");
+  showToast("Fresh roast served! 🔥");
 });
 
 function renderLeaderboard() {
@@ -576,14 +499,15 @@ function renderLeaderboard() {
   board.replaceChildren();
 
   const entries = Object.entries(scores)
-    .filter(([name, score]) => typeof name === "string" && Number.isFinite(Number(score)))
+    .filter(([name, score]) =>
+      typeof name === "string" && Number.isFinite(Number(score)))
     .sort((a, b) => Number(b[1]) - Number(a[1]))
     .slice(0, 10);
 
   if (!entries.length) {
     const empty = document.createElement("p");
     empty.className = "notice";
-    empty.textContent = "Play a round to start building your leaderboard.";
+    empty.textContent = "Play a round to start your leaderboard.";
     board.appendChild(empty);
     return;
   }
@@ -611,6 +535,7 @@ function renderLeaderboard() {
 
 $("resetScores").addEventListener("click", () => {
   if (!confirm("Reset the leaderboard saved on this device?")) return;
+
   scores = {};
   saveScores();
   renderLeaderboard();
@@ -618,64 +543,55 @@ $("resetScores").addEventListener("click", () => {
 });
 
 function getDailyChallenge() {
-  const today = new Date();
-  const dateKey = today.getFullYear() + "-" +
-    String(today.getMonth() + 1).padStart(2, "0") + "-" +
-    String(today.getDate()).padStart(2, "0");
+  const now = new Date();
+  const dateKey = now.getFullYear() + "-" +
+    String(now.getMonth() + 1).padStart(2, "0") + "-" +
+    String(now.getDate()).padStart(2, "0");
 
-  let dayNumber = 0;
-  for (const char of dateKey) dayNumber = (dayNumber * 31 + char.charCodeAt(0)) >>> 0;
-  return dailyChallenges[dayNumber % dailyChallenges.length];
+  let hash = 0;
+  for (const char of dateKey) {
+    hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  }
+
+  return dailyChallenges[hash % dailyChallenges.length];
 }
 
 function setupDailyChallenge() {
-$("dailyText").textContent = getDailyChallenge();
-
-$("dailyButton").addEventListener("click", () => {
-  dailyAccepted = true;
-  showToast("Challenge accepted! Bring your best roast.");
-
-  if (players.length >= 2) {
-    startGame();
-  } else {
-    $("playerInput").focus();
-    $("playerForm").scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-    showToast("Add at least two players to begin the challenge.");
-  }
-});
-  <button onclick="loadDailyChallenge()">
-  Daily Challenge
-</button>
+  $("dailyText").textContent = getDailyChallenge();
 
   $("dailyButton").addEventListener("click", () => {
     dailyAccepted = true;
-    showToast("Challenge accepted! Bring your best roast.");
+
     if (players.length >= 2) {
+      showToast("Challenge accepted! Bring your best roast.");
       startGame();
     } else {
-      $("playerInput").focus();
-      $("playerForm").scrollIntoView({ behavior: "smooth", block: "center" });
       showToast("Add at least two players to begin the challenge.");
+      $("playerInput").focus();
+      $("playerForm").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
     }
   });
 }
 
-async function shareContent(title, text) {
-  const data = { title, text, url: window.location.href };
+async function shareContent(title, message) {
+  const copyText = message + "\n\nPlay UNFILTERED: " +
+    window.location.href;
 
   if (navigator.share) {
     try {
-      await navigator.share(data);
+      await navigator.share({
+        title,
+        text: message,
+        url: window.location.href
+      });
       return;
     } catch (error) {
       if (error.name === "AbortError") return;
     }
   }
-
-  const copyText = text + "\n\nPlay UNFILTERED: " + window.location.href;
 
   try {
     await navigator.clipboard.writeText(copyText);
@@ -688,60 +604,24 @@ async function shareContent(title, text) {
 $("shareRoastButton").addEventListener("click", () => {
   shareContent(
     "UNFILTERED Roast",
-    "🔥 UNFILTERED ROAST 🔥\n" + currentTarget + ": " + currentRoast +
+    "🔥 UNFILTERED ROAST 🔥\n" +
+    currentTarget + ": " + currentRoast +
     "\n\nNO FILTER. NO MERCY. ALL FUN."
   );
 });
 
-async function inviteFriends() {
-  await shareContent(
+$("inviteTop").addEventListener("click", () => {
+  shareContent(
     "Join UNFILTERED",
-    "👑 Your group chat needs this. Join me on UNFILTERED, the savage party roast game. NO FILTER. NO MERCY. ALL FUN."
+    "👑 Your group chat needs this! Join me on UNFILTERED, " +
+    "the savage party roast game. NO FILTER. NO MERCY. ALL FUN."
   );
-}
-
-$("inviteTop").addEventListener("click", inviteFriends);
+});
 
 loadSavedData();
 renderPlayers();
 renderLeaderboard();
 setupDailyChallenge();
-function loadDailyChallenge() {
-  const today = new Date().toISOString().slice(0, 10);
-  const saved = localStorage.getItem("unfilteredDailyChallenge");
-
-  let challenge;
-
-  if (saved) {
-    const data = JSON.parse(saved);
-    challenge = data.date === today ? data.challenge : null;
-  }
-
-  if (!challenge) {
-    const index = Math.floor(Math.random() * dailyChallenges.length);
-    challenge = dailyChallenges[index];
-
-    localStorage.setItem(
-      "unfilteredDailyChallenge",
-      JSON.stringify({ date: today, challenge })
-    );
-  }
-
-  const display =
-    document.getElementById("dailyChallengeText") ||
-    document.getElementById("dailyChallenge");
-
-  if (display) {
-    display.textContent = challenge;
-  } else {
-    alert("Today's UNFILTERED Challenge:\n\n" + challenge);
-  }
-}
 </script>
 </body>
 </html>
-
-<script>
-
-
-
