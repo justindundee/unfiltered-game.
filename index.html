@@ -433,6 +433,14 @@ function play(forceNew = false) {
 
   const roasts = shuffle(available).slice(0, players.length);
 recentRoasts[key].push(...roasts);
+try {
+  localStorage.setItem(
+    "unfilteredRecentRoasts",
+    JSON.stringify(recentRoasts)
+  );
+} catch (error) {
+  console.warn("Could not save roast history.", error);
+}
 
   const list = document.getElementById("list");
   list.replaceChildren();
