@@ -6,107 +6,43 @@
 <meta name="theme-color" content="#100d19">
 <title>UNFILTERED 🔥 | The Roast Game</title>
 <style>
-:root {
-  --bg: #100d19;
-  --panel: #1b1528;
-  --gold: #ffd166;
-  --pink: #ff4f91;
-  --text: #f8f5ff;
-  --muted: #b8afc9;
-  --line: #3b2c50;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: radial-gradient(ellipse at top, #302044 0%, var(--bg) 55%);
-  color: var(--text);
-  font-family: system-ui, -apple-system, sans-serif;
-  min-height: 100vh;
-}
-main { width: min(760px, 100%); margin: auto; padding: 24px 16px 48px; }
-header { text-align: center; padding: 14px 0 20px; }
-.logo {
-  font-size: clamp(2.8rem, 12vw, 5.2rem);
-  font-weight: 1000;
-  letter-spacing: .07em;
-  line-height: 1;
-  color: var(--gold);
-  text-shadow: 3px 3px 0 #8c376d, 0 0 30px #ff4f9140;
-}
-.tag { color: var(--muted); margin-top: 12px; }
-.panel {
-  background: #1b1528ed;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 20px;
-  margin: 14px 0;
-  box-shadow: 0 12px 40px #0003;
-}
-h2 { font-size: 1.08rem; margin: 0 0 14px; color: var(--gold); }
-label { display: block; font-weight: 750; margin: 14px 0 8px; }
-textarea, input {
-  font: inherit;
-  color: var(--text);
-  background: var(--bg);
-  border: 1px solid #514064;
-  border-radius: 12px;
-  padding: 13px;
-}
-textarea { width: 100%; min-height: 130px; resize: vertical; }
-.small { color: var(--muted); font-size: .88rem; margin-top: 7px; }
-.categories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
-.category {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: #241b34;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px;
-  cursor: pointer;
-}
-.category input { width: auto; accent-color: var(--pink); }
-button {
-  border: 0;
-  border-radius: 13px;
-  padding: 14px 16px;
-  font: inherit;
-  font-weight: 850;
-  cursor: pointer;
-}
-button:active { transform: scale(.98); }
-.primary {
-  width: 100%;
-  background: linear-gradient(100deg, var(--gold), #ffad73);
-  color: #211328;
-  font-size: 1.05rem;
-  margin-top: 16px;
-}
-.secondary { background: #30233f; color: var(--text); border: 1px solid #514064; }
-.actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
-#error { color: #ff8db4; font-weight: 700; margin-top: 10px; }
-#results { display: none; }
-.result { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.result:last-child { border-bottom: 0; }
-.rank {
-  flex: 0 0 42px;
-  height: 42px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: #38233e;
-  color: var(--gold);
-  font-weight: 950;
-}
-.name { font-weight: 900; color: white; }
-.roast { color: #e6dff1; margin-top: 3px; line-height: 1.45; }
-#resultTitle { font-size: 1.5rem; font-weight: 950; color: var(--gold); margin-bottom: 5px; }
-#roundInfo { color: var(--muted); font-size: .9rem; }
-footer { text-align: center; color: #827790; font-size: .8rem; padding-top: 16px; }
-@media(max-width: 420px) {
-  .panel { padding: 16px; }
-  .categories, .actions { grid-template-columns: 1fr; }
-}
+:root{--bg:#100d19;--panel:#1b1528;--panel2:#241b34;--gold:#ffd166;--pink:#ff4f91;--text:#f8f5ff;--muted:#b8afc9;--line:#3b2c50}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#302044 0%,var(--bg) 55%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+main{width:min(760px,100%);margin:0 auto;padding:24px 16px 48px}
+header{text-align:center;padding:14px 0 20px}
+.logo{font-size:clamp(2.8rem,12vw,5.2rem);font-weight:1000;letter-spacing:.07em;line-height:1;color:var(--gold);text-shadow:3px 3px 0 #8c376d,0 0 30px #ff4f9140}
+.tag{color:var(--muted);font-size:.95rem;margin-top:12px}
+.panel{background:#1b1528ed;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 12px 40px #0003}
+h2{font-size:1.08rem;margin:0 0 14px;color:var(--gold)}
+label{display:block;font-weight:750;margin:14px 0 8px}
+textarea,input{width:100%;font:inherit;color:var(--text);background:#100d19;border:1px solid #514064;border-radius:12px;padding:13px;outline:none}
+textarea:focus,input:focus{border-color:var(--gold)}
+textarea{min-height:130px;resize:vertical}
+.small{color:var(--muted);font-size:.88rem;margin-top:7px}
+.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.category{display:flex;align-items:center;gap:9px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}
+.category input{width:auto;accent-color:var(--pink)}
+button{border:0;border-radius:13px;padding:14px 16px;font:inherit;font-weight:850;cursor:pointer;transition:transform .12s,filter .12s}
+button:active{transform:scale(.98)}
+.primary{width:100%;background:linear-gradient(100deg,var(--gold),#ffad73);color:#211328;font-size:1.05rem;margin-top:16px}
+.secondary{background:#30233f;color:var(--text);border:1px solid #514064}
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+#error{color:#ff8db4;font-weight:700;margin-top:10px}
+#results{display:none}
+.result{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.result:last-child{border-bottom:0}
+.rank{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#38233e;color:var(--gold);font-weight:950}
+.name{font-weight:900;color:#fff}
+.roast{color:#e6dff1;margin-top:3px;line-height:1.45}
+#resultTitle{font-size:1.5rem;font-weight:950;color:var(--gold);margin:0 0 5px}
+#roundInfo{color:var(--muted);font-size:.9rem}
+#cardMaker{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+#cardPlayer{width:100%;font:inherit;color:var(--text);background:#100d19;border:1px solid #514064;border-radius:12px;padding:13px;margin:8px 0 10px}
+#cardPreview{display:none;width:100%;max-width:520px;height:auto;margin:14px auto 0;border-radius:14px;border:1px solid #514064;background:#100d19}
+.card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+footer{text-align:center;color:#827790;font-size:.8rem;padding-top:16px}
+@media(max-width:420px){.panel{padding:16px}.categories{grid-template-columns:1fr}.actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -120,10 +56,9 @@ footer { text-align: center; color: #827790; font-size: .8rem; padding-top: 16px
   <h2>01 / BUILD YOUR CHAOS</h2>
   <label for="names">Player names</label>
   <textarea id="names" placeholder="Juu&#10;Alex&#10;Sam"></textarea>
-  <div class="small">Enter 2–12 players, one name per line.</div>
-
+  <div class="small">Enter 2–12 players, one name per line. Keep it friendly enough to keep the group chat alive.</div>
   <label>Choose your flavor</label>
-  <div class="categories">
+  <div class="categories" id="categories">
     <label class="category"><input type="radio" name="game" value="famous" checked> 🌟 Main Character</label>
     <label class="category"><input type="radio" name="game" value="redflag"> 🚩 Red Flag Energy</label>
     <label class="category"><input type="radio" name="game" value="drama"> 🎭 Certified Drama</label>
@@ -131,7 +66,6 @@ footer { text-align: center; color: #827790; font-size: .8rem; padding-top: 16px
     <label class="category"><input type="radio" name="game" value="arrested"> 🚔 Most Likely Arrested</label>
     <label class="category"><input type="radio" name="game" value="disappear"> 🕵️ Would Vanish First</label>
   </div>
-
   <button class="primary" id="playButton" type="button">REVEAL THE DAMAGE 🔥</button>
   <div id="error" role="alert" aria-live="polite"></div>
 </section>
@@ -140,6 +74,18 @@ footer { text-align: center; color: #827790; font-size: .8rem; padding-top: 16px
   <div id="resultTitle">THE DAMAGE</div>
   <div id="roundInfo"></div>
   <div id="list"></div>
+  <div id="cardMaker">
+    <h2>MAKE IT SHAREABLE</h2>
+    <label for="cardPlayer">Choose whose roast goes on the card</label>
+    <select id="cardPlayer"><option value="">Reveal the damage first</option></select>
+    <button class="primary" id="makeCard" type="button">🎨 CREATE ROAST CARD</button>
+    <canvas id="cardPreview" width="1080" height="1350" aria-label="Preview of your UNFILTERED roast card"></canvas>
+    <div class="card-actions" id="cardActions" style="display:none">
+      <button class="secondary" id="saveCard" type="button">⬇️ Save Image</button>
+      <button class="secondary" id="shareCard" type="button">📲 Share Card</button>
+    </div>
+    <div class="small" id="cardStatus" aria-live="polite">Choose a player after revealing a round to make a branded roast card.</div>
+  </div>
   <div class="actions">
     <button class="secondary" id="newRound" type="button">🎲 New Round</button>
     <button class="secondary" id="shareText" type="button">📲 Share Results</button>
@@ -148,7 +94,6 @@ footer { text-align: center; color: #827790; font-size: .8rem; padding-top: 16px
   </div>
   <div class="small" id="shareStatus" aria-live="polite"></div>
 </section>
-
 <footer>UNFILTERED • Play hard, roast responsibly.</footer>
 </main>
 
@@ -181,7 +126,6 @@ const games = {
       "Could turn a sneeze into a press conference."
     ]
   },
-
   redflag: {
     title: "🚩 RED FLAG ENERGY",
     roasts: [
@@ -207,7 +151,6 @@ const games = {
       "Calls it being mysterious; everyone else calls it bad communication."
     ]
   },
-
   drama: {
     title: "🎭 CERTIFIED DRAMA",
     roasts: [
@@ -233,7 +176,6 @@ const games = {
       "Would turn a missed call into a conspiracy board."
     ]
   },
-
   mastermind: {
     title: "🧠 TINY EVIL GENIUS",
     roasts: [
@@ -259,7 +201,6 @@ const games = {
       "Is somehow both the mastermind and the reason it failed."
     ]
   },
-
   arrested: {
     title: "🚔 MOST LIKELY ARRESTED",
     roasts: [
@@ -285,7 +226,6 @@ const games = {
       "Would say 'for the record' and make the record much worse."
     ]
   },
-
   disappear: {
     title: "🕵️ WOULD VANISH FIRST",
     roasts: [
@@ -316,22 +256,21 @@ const games = {
 let recentRoasts = {};
 let lastGameKey = "";
 let output = "";
+let currentResults = [];
+let cardBlob = null;
 
 function shuffle(items) {
   const result = [...items];
-
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
   }
-
   return result;
 }
 
 function play(forceNew = false) {
   const error = document.getElementById("error");
   const status = document.getElementById("shareStatus");
-
   error.textContent = "";
   status.textContent = "";
 
@@ -346,65 +285,62 @@ function play(forceNew = false) {
   }
 
   const normalized = names.map(name => name.toLowerCase());
-
   if (new Set(normalized).size !== normalized.length) {
     error.textContent = "Each player needs a unique name or nickname.";
     return;
   }
 
   const selected = document.querySelector('input[name="game"]:checked');
-
   if (!selected || !games[selected.value]) {
     error.textContent = "Choose a game category.";
     return;
   }
 
   let key = selected.value;
-
   if (forceNew && key === lastGameKey) {
-    const otherKeys = Object.keys(games).filter(k => k !== lastGameKey);
-    key = otherKeys[Math.floor(Math.random() * otherKeys.length)];
-
-    const radio = document.querySelector(
-      'input[name="game"][value="' + key + '"]'
-    );
-
-    if (radio) radio.checked = true;
+    const keys = Object.keys(games).filter(item => item !== lastGameKey);
+    key = keys[Math.floor(Math.random() * keys.length)];
+    const alternate = document.querySelector('input[name="game"][value="' + key + '"]');
+    if (alternate) alternate.checked = true;
   }
 
   const game = games[key];
   const players = shuffle(names);
-
   if (!recentRoasts[key]) recentRoasts[key] = [];
 
-  let available = game.roasts.filter(
-    roast => !recentRoasts[key].includes(roast)
-  );
-
+  let available = game.roasts.filter(roast => !recentRoasts[key].includes(roast));
   if (available.length < players.length) {
     recentRoasts[key] = [];
     available = [...game.roasts];
   }
 
   const roasts = shuffle(available).slice(0, players.length);
-
   recentRoasts[key].push(...roasts);
   recentRoasts[key] = recentRoasts[key].slice(-16);
 
+  currentResults = players.map((name, index) => ({ name, roast: roasts[index] }));
+  const picker = document.getElementById("cardPlayer");
+  picker.replaceChildren();
+  currentResults.forEach((entry, index) => {
+    const option = document.createElement("option");
+    option.value = String(index);
+    option.textContent = entry.name;
+    picker.append(option);
+  });
+  document.getElementById("cardPreview").style.display = "none";
+  document.getElementById("cardActions").style.display = "none";
+  document.getElementById("cardStatus").textContent = "Choose a player and create their roast card.";
+  cardBlob = null;
+
   const list = document.getElementById("list");
   list.replaceChildren();
-
   document.getElementById("resultTitle").textContent = game.title;
   document.getElementById("roundInfo").textContent =
-    players.length + " players • " +
-    players.length + " different roasts";
+    players.length + " players • " + players.length + " different roasts";
 
   output = "UNFILTERED 🔥\n" + game.title + "\n\n";
-
   players.forEach((name, index) => {
-    output += (index + 1) + ". " + name + ": " +
-      roasts[index] + "\n";
-
+    output += (index + 1) + ". " + name + ": " + roasts[index] + "\n";
     const item = document.createElement("div");
     item.className = "result";
 
@@ -413,80 +349,198 @@ function play(forceNew = false) {
     rank.textContent = "#" + (index + 1);
 
     const body = document.createElement("div");
-
     const player = document.createElement("div");
     player.className = "name";
     player.textContent = name;
-
     const roast = document.createElement("div");
     roast.className = "roast";
     roast.textContent = roasts[index];
-
     body.append(player, roast);
     item.append(rank, body);
     list.append(item);
   });
 
   lastGameKey = key;
-
   document.getElementById("results").style.display = "block";
-  document.getElementById("results").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+  document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 async function copyOutput() {
   const status = document.getElementById("shareStatus");
-
   if (!output) {
     status.textContent = "Reveal the damage first.";
     return;
   }
-
   try {
     await navigator.clipboard.writeText(output);
-    status.textContent = "Copied! Drop it in the group chat. 🔥";
-  } catch (error) {
+    status.textContent = "Copied. Drop it in the group chat. 🔥";
+  } catch (e) {
     const field = document.createElement("textarea");
     field.value = output;
     field.style.position = "fixed";
     field.style.opacity = "0";
-
     document.body.append(field);
     field.select();
-
-    const copied = document.execCommand("copy");
+    const ok = document.execCommand("copy");
     field.remove();
-
-    status.textContent = copied
-      ? "Copied! Drop it in the group chat. 🔥"
-      : "Copy didn't work here. Select the results text and copy it.";
+    status.textContent = ok ? "Copied. Drop it in the group chat. 🔥" : "Copy didn't work here. Select the results text and copy it.";
   }
 }
 
 async function shareOutput() {
   const status = document.getElementById("shareStatus");
-
   if (!output) {
     status.textContent = "Reveal the damage first.";
     return;
   }
-
   if (navigator.share) {
     try {
-      await navigator.share({
-        title: "UNFILTERED 🔥",
-        text: output,
-        url: location.href
-      });
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        status.textContent = "Sharing isn't available here. Try Copy Results.";
-      }
+      await navigator.share({ title: "UNFILTERED 🔥", text: output, url: location.href });
+      status.textContent = "Ready to share. 🔥";
+    } catch (e) {
+      if (e && e.name !== "AbortError") status.textContent = "Sharing isn't available here. Try Copy Results.";
     }
   } else {
     await copyOutput();
+  }
+}
+
+function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 7) {
+  const words = text.split(/\s+/);
+  let line = "";
+  let lines = [];
+  for (const word of words) {
+    const test = line ? line + " " + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else line = test;
+  }
+  if (line) lines.push(line);
+  if (lines.length > maxLines) {
+    lines = lines.slice(0, maxLines);
+    lines[maxLines - 1] = lines[maxLines - 1].replace(/[.,;:]?$/, "…");
+  }
+  lines.forEach((item, i) => ctx.fillText(item, x, y + i * lineHeight));
+  return lines.length * lineHeight;
+}
+
+async function createRoastCard() {
+  const status = document.getElementById("cardStatus");
+  const index = Number(document.getElementById("cardPlayer").value);
+  const entry = currentResults[index];
+  if (!entry) {
+    status.textContent = "Reveal a round and choose a player first.";
+    return;
+  }
+
+  const canvas = document.getElementById("cardPreview");
+  const ctx = canvas.getContext("2d");
+  const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
+  gradient.addColorStop(0, "#171022");
+  gradient.addColorStop(.55, "#2d1c42");
+  gradient.addColorStop(1, "#100d19");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 1080, 1350);
+  ctx.strokeStyle = "#ffd166";
+  ctx.lineWidth = 8;
+  ctx.strokeRect(34, 34, 1012, 1282);
+  ctx.strokeStyle = "#ff4f91";
+  ctx.lineWidth = 3;
+  ctx.strokeRect(54, 54, 972, 1242);
+
+  ctx.textAlign = "center";
+  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = "#ffd166";
+  ctx.font = "900 84px system-ui, sans-serif";
+  ctx.fillText("UNFILTERED", 540, 190);
+
+  ctx.fillStyle = "#ff4f91";
+  ctx.font = "800 30px system-ui, sans-serif";
+  ctx.fillText("🔥 NO FILTERS. NO MERCY. 🔥", 540, 250);
+
+  ctx.fillStyle = "#b8afc9";
+  ctx.font = "700 28px system-ui, sans-serif";
+  ctx.fillText("THE ROAST GOES TO", 540, 390);
+
+  let nameSize = 76;
+  while (nameSize > 42) {
+    ctx.font = `950 ${nameSize}px system-ui, sans-serif`;
+    if (ctx.measureText(entry.name).width <= 880) break;
+    nameSize -= 4;
+  }
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = `950 ${nameSize}px system-ui, sans-serif`;
+  ctx.fillText(entry.name, 540, 500);
+
+  ctx.fillStyle = "#ffd166";
+  ctx.font = "900 40px system-ui, sans-serif";
+  ctx.fillText("YOUR OFFICIAL ROAST:", 540, 640);
+
+  ctx.fillStyle = "#f8f5ff";
+  ctx.font = "700 48px system-ui, sans-serif";
+  const textHeight = drawWrappedText(ctx, entry.roast, 540, 740, 820, 68, 7);
+
+  ctx.fillStyle = "#ff4f91";
+  ctx.font = "800 30px system-ui, sans-serif";
+  ctx.fillText("TAG YOUR FRIENDS. ACCEPT YOUR FATE.", 540, Math.min(1160, 800 + textHeight + 80));
+
+  ctx.fillStyle = "#ffd166";
+  ctx.font = "900 32px system-ui, sans-serif";
+  ctx.fillText("UNFILTERED GAME", 540, 1240);
+
+  canvas.style.display = "block";
+  document.getElementById("cardActions").style.display = "grid";
+  cardBlob = await new Promise(resolve => canvas.toBlob(resolve, "image/png"));
+  status.textContent = cardBlob
+    ? "Your roast card is ready. Save it or share it. 🔥"
+    : "Card preview made, but image export failed in this browser.";
+}
+
+async function saveRoastCard() {
+  const status = document.getElementById("cardStatus");
+  if (!cardBlob) {
+    status.textContent = "Create the card first.";
+    return;
+  }
+
+  const url = URL.createObjectURL(cardBlob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "unfiltered-roast-card.png";
+  document.body.append(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+  status.textContent = "If your phone opens a preview instead, use its Share button to save the image.";
+}
+
+async function shareRoastCard() {
+  const status = document.getElementById("cardStatus");
+  if (!cardBlob) {
+    status.textContent = "Create the card first.";
+    return;
+  }
+
+  const file = new File([cardBlob], "unfiltered-roast-card.png", { type: "image/png" });
+
+  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({
+        title: "UNFILTERED Roast Card 🔥",
+        text: "My UNFILTERED roast. Your turn.",
+        files: [file]
+      });
+      status.textContent = "Shared. Let the group chat recover. 🔥";
+    } catch (e) {
+      if (e && e.name !== "AbortError") {
+        status.textContent = "Sharing failed here. Try Save Image instead.";
+      }
+    }
+  } else {
+    await saveRoastCard();
   }
 }
 
@@ -498,20 +552,14 @@ function resetGame() {
   document.getElementById("names").focus();
 }
 
-document.getElementById("playButton")
-  .addEventListener("click", () => play(false));
-
-document.getElementById("newRound")
-  .addEventListener("click", () => play(true));
-
-document.getElementById("shareText")
-  .addEventListener("click", shareOutput);
-
-document.getElementById("copyText")
-  .addEventListener("click", copyOutput);
-
-document.getElementById("resetGame")
-  .addEventListener("click", resetGame);
+document.getElementById("playButton").addEventListener("click", () => play(false));
+document.getElementById("newRound").addEventListener("click", () => play(true));
+document.getElementById("shareText").addEventListener("click", shareOutput);
+document.getElementById("copyText").addEventListener("click", copyOutput);
+document.getElementById("resetGame").addEventListener("click", resetGame);
+document.getElementById("makeCard").addEventListener("click", createRoastCard);
+document.getElementById("saveCard").addEventListener("click", saveRoastCard);
+document.getElementById("shareCard").addEventListener("click", shareRoastCard);
 </script>
 </body>
 </html>
