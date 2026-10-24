@@ -311,8 +311,34 @@ $("categories").addEventListener("click", event => {
   });
 });
 
+
+let usedRoasts = new Set();
+
 function chooseRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
+}
+
+function generateRoast() {
+  let availableRoasts = roastBank[category].filter(
+    roast => !usedRoasts.has(roast)
+  );
+
+  // Reuse insults only after every insult in this category has been used.
+  if (availableRoasts.length === 0) {
+    usedRoasts.clear();
+    availableRoasts = [...roastBank[category]];
+  }
+
+  currentTarget = chooseRandom(players);
+  currentRoast = chooseRandom(availableRoasts);
+  usedRoasts.add(currentRoast);
+
+  $("categoryPill").textContent = category;
+  $("roundLabel").textContent = "Round " + round + " of " + totalRounds;
+  $("target").textContent = "THE TARGET: " + currentTarget;
+  $("roast").textContent = currentRoast;
+}
+
 }
 
 function generateRoast() {
