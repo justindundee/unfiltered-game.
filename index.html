@@ -1,393 +1,343 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#100b18">
-<title>UNFILTERED | The Roast Game</title>
+<meta name="theme-color" content="#100d19">
+<title>UNFILTERED 🔥 | The Roast Game</title>
 <style>
 :root {
-  --bg:#100b18;
-  --card:#21182b;
-  --border:#594168;
-  --pink:#e6a3ff;
-  --gold:#f6d87b;
-  --muted:#d2c4dc;
+  --bg: #100d19;
+  --panel: #1b1528;
+  --gold: #ffd166;
+  --pink: #ff4f91;
+  --text: #f8f5ff;
+  --muted: #b8afc9;
+  --line: #3b2c50;
 }
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 body {
-  margin:0;
-  padding:18px;
-  min-height:100vh;
-  color:white;
-  font-family:Arial,sans-serif;
-  background:radial-gradient(ellipse at top,#382044,var(--bg) 65%);
+  margin: 0;
+  background: radial-gradient(ellipse at top, #302044 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
 }
-main { max-width:680px; margin:auto; }
-header { text-align:center; padding:24px 0; }
-h1 {
-  font-size:clamp(42px,10vw,64px);
-  letter-spacing:3px;
-  color:var(--pink);
-  margin:0;
-  text-shadow:0 0 25px #e6a3ff55;
+main { width: min(760px, 100%); margin: auto; padding: 24px 16px 48px; }
+header { text-align: center; padding: 14px 0 20px; }
+.logo {
+  font-size: clamp(2.8rem, 12vw, 5.2rem);
+  font-weight: 1000;
+  letter-spacing: .07em;
+  line-height: 1;
+  color: var(--gold);
+  text-shadow: 3px 3px 0 #8c376d, 0 0 30px #ff4f9140;
 }
-.tagline { color:var(--gold); font-weight:bold; letter-spacing:1.5px; }
-p { color:var(--muted); line-height:1.6; }
-.card {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-  margin:18px 0;
-  box-shadow:0 10px 30px #0003;
+.tag { color: var(--muted); margin-top: 12px; }
+.panel {
+  background: #1b1528ed;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 14px 0;
+  box-shadow: 0 12px 40px #0003;
 }
-h2 { margin-top:0; }
-textarea,button {
-  width:100%;
-  font:inherit;
-  border-radius:11px;
-  padding:14px;
-  margin:7px 0;
+h2 { font-size: 1.08rem; margin: 0 0 14px; color: var(--gold); }
+label { display: block; font-weight: 750; margin: 14px 0 8px; }
+textarea, input {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid #514064;
+  border-radius: 12px;
+  padding: 13px;
 }
-textarea {
-  min-height:125px;
-  background:#120d19;
-  color:white;
-  border:1px solid var(--border);
-  line-height:1.7;
-  resize:vertical;
+textarea { width: 100%; min-height: 130px; resize: vertical; }
+.small { color: var(--muted); font-size: .88rem; margin-top: 7px; }
+.categories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+.category {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #241b34;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
 }
+.category input { width: auto; accent-color: var(--pink); }
 button {
-  border:0;
-  background:linear-gradient(110deg,var(--pink),var(--gold));
-  color:#211629;
-  font-weight:bold;
-  cursor:pointer;
+  border: 0;
+  border-radius: 13px;
+  padding: 14px 16px;
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
 }
-button:active { transform:scale(.99); }
-.secondary {
-  background:#392744;
-  color:white;
-  border:1px solid var(--border);
+button:active { transform: scale(.98); }
+.primary {
+  width: 100%;
+  background: linear-gradient(100deg, var(--gold), #ffad73);
+  color: #211328;
+  font-size: 1.05rem;
+  margin-top: 16px;
 }
-label {
-  display:block;
-  padding:12px;
-  margin:7px 0;
-  border-radius:10px;
-  background:#ffffff08;
-  cursor:pointer;
-  line-height:1.4;
+.secondary { background: #30233f; color: var(--text); border: 1px solid #514064; }
+.actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 14px; }
+#error { color: #ff8db4; font-weight: 700; margin-top: 10px; }
+#results { display: none; }
+.result { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.result:last-child { border-bottom: 0; }
+.rank {
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #38233e;
+  color: var(--gold);
+  font-weight: 950;
 }
-label:has(input:checked) {
-  outline:1px solid var(--pink);
-  background:#e6a3ff18;
+.name { font-weight: 900; color: white; }
+.roast { color: #e6dff1; margin-top: 3px; line-height: 1.45; }
+#resultTitle { font-size: 1.5rem; font-weight: 950; color: var(--gold); margin-bottom: 5px; }
+#roundInfo { color: var(--muted); font-size: .9rem; }
+footer { text-align: center; color: #827790; font-size: .8rem; padding-top: 16px; }
+@media(max-width: 420px) {
+  .panel { padding: 16px; }
+  .categories, .actions { grid-template-columns: 1fr; }
 }
-input[type=radio] { accent-color:var(--pink); margin-right:8px; }
-small { color:#bdaac9; line-height:1.6; }
-#error { color:#ffaaaa; font-weight:bold; }
-.result {
-  background:#392744;
-  border:1px solid var(--border);
-  padding:15px;
-  margin:12px 0;
-  border-radius:12px;
-  overflow-wrap:anywhere;
-}
-.result:first-child { border-color:var(--gold); }
-.rank { color:var(--gold); font-weight:bold; }
-.roast { margin-top:7px; line-height:1.5; }
-.pill {
-  display:inline-block;
-  color:var(--pink);
-  border:1px solid var(--border);
-  padding:5px 10px;
-  border-radius:99px;
-  font-size:12px;
-  margin-bottom:12px;
-}
-footer { text-align:center; padding:18px 0 30px; }
-[hidden] { display:none!important; }
 </style>
 </head>
 <body>
 <main>
 <header>
-  <h1>UNFILTERED.</h1>
-  <p class="tagline">🔥 THE GROUP CHAT HAS ENTERED THE GAME.</p>
-  <p>Friendship is optional. Honesty is brutal.</p>
+  <div class="logo">UNFILTERED</div>
+  <div class="tag">🔥 No filters. No mercy. Just friends.</div>
 </header>
 
-<section class="card">
-  <h2>Who's getting exposed? 👀</h2>
-  <p>Add your crew. Enter one name per line.</p>
-  <textarea id="names" maxlength="3000"
-    placeholder="Alex&#10;Jordan&#10;Taylor"></textarea>
-  <small>2 to 12 players. Use a unique name for each person.</small>
-</section>
+<section class="panel">
+  <h2>01 / BUILD YOUR CHAOS</h2>
+  <label for="names">Player names</label>
+  <textarea id="names" placeholder="Juu&#10;Alex&#10;Sam"></textarea>
+  <div class="small">Enter 2–12 players, one name per line.</div>
 
-<section class="card">
-  <h2>Choose your challenge 💀</h2>
-  <div id="challenges">
-    <label><input type="radio" name="game" value="famous" checked>Most likely to become famous</label>
-    <label><input type="radio" name="game" value="redflag">Biggest walking red flag</label>
-    <label><input type="radio" name="game" value="drama">Most likely to start drama</label>
-    <label><input type="radio" name="game" value="mastermind">Secretly the mastermind</label>
-    <label><input type="radio" name="game" value="arrested">First arrested in a comedy movie</label>
-    <label><input type="radio" name="game" value="disappear">Most likely to disappear and start a new life</label>
+  <label>Choose your flavor</label>
+  <div class="categories">
+    <label class="category"><input type="radio" name="game" value="famous" checked> 🌟 Main Character</label>
+    <label class="category"><input type="radio" name="game" value="redflag"> 🚩 Red Flag Energy</label>
+    <label class="category"><input type="radio" name="game" value="drama"> 🎭 Certified Drama</label>
+    <label class="category"><input type="radio" name="game" value="mastermind"> 🧠 Tiny Evil Genius</label>
+    <label class="category"><input type="radio" name="game" value="arrested"> 🚔 Most Likely Arrested</label>
+    <label class="category"><input type="radio" name="game" value="disappear"> 🕵️ Would Vanish First</label>
   </div>
-  <button id="playButton" type="button">🔥 REVEAL THE DAMAGE</button>
-  <p id="error" role="alert"></p>
+
+  <button class="primary" id="playButton" type="button">REVEAL THE DAMAGE 🔥</button>
+  <div id="error" role="alert" aria-live="polite"></div>
 </section>
 
-<section class="card" id="results" hidden>
-  <span class="pill">THE VERDICT IS IN</span>
-  <h2 id="title"></h2>
-  <p id="roundInfo"></p>
+<section class="panel" id="results" aria-live="polite">
+  <div id="resultTitle">THE DAMAGE</div>
+  <div id="roundInfo"></div>
   <div id="list"></div>
-  <button id="shareText" type="button">↗ SHARE TEXT RESULTS</button>
-  <button id="makeImage" type="button">🎨 CREATE SHARE IMAGE</button>
-  <button class="secondary" id="newRound" type="button">🎲 NEW ROUND</button>
-  <p id="status" role="status"></p>
+  <div class="actions">
+    <button class="secondary" id="newRound" type="button">🎲 New Round</button>
+    <button class="secondary" id="shareText" type="button">📲 Share Results</button>
+    <button class="secondary" id="copyText" type="button">📋 Copy Results</button>
+    <button class="secondary" id="resetGame" type="button">↻ Start Over</button>
+  </div>
+  <div class="small" id="shareStatus" aria-live="polite"></div>
 </section>
 
-<footer><small>UNFILTERED. Fresh burns. No duplicate roasts in a round.</small></footer>
+<footer>UNFILTERED • Play hard, roast responsibly.</footer>
 </main>
 
 <script>
 "use strict";
 
 const games = {
-famous: {
-title:"Most likely to become famous",
-roasts:[
-"Would get recognized by people they owe money.",
-"Has a publicist in their head and no actual talent.",
-"Would turn a breakup into a sponsored series.",
-"Famous enough to be annoying, not famous enough to get paid.",
-"Would start a podcast to explain a failed podcast.",
-"Could make a red carpet look like a fire drill.",
-"Would thank themselves in their own award speech.",
-"Has celebrity confidence on a clearance-rack budget.",
-"Would leak their own news for attention.",
-"One selfie away from a documentary nobody requested."
-"Famous for all the wrong reasons.",
-"Practicing an acceptance speech in the mirror.",
-"One viral clip away from needing a PR team.",
-"Would get canceled before the opening credits.",
-"Main-character energy, background-character planning.",
-"Would sell a documentary about a scandal they started.",
-"Could turn a minor inconvenience into a press conference.",
-"Their autobiography needs a fact-checker.",
-"Would become famous and immediately forget everyone.",
-"Decisions made for memes.",
-"Would go viral arguing with a self-checkout machine.",
-"Could become an internet villain by Tuesday.",
-"Would hire a manager before finding a talent.",
-"Their apology video would make everything worse.",
-"Would become a celebrity just to start celebrity drama.",
-"Would announce a world tour with no songs recorded.",
-"Could turn a five-minute story into a three-part podcast.",
-"Would have fans and haters in equal numbers.",
-"Would become famous for exposing their own secrets.",
-"Trending for all the wrong reasons."
-]},
-redflag: {
-title:"Biggest walking red flag",
-roasts:[
-"Uses therapy words to win arguments.",
-"Could make a green flag file a restraining order.",
-"Thinks being mysterious means replying three days late.",
-"Apologizes like they're negotiating a hostage release.",
-"Calls every ex crazy. The math is suspicious.",
-"Treats boundaries like optional side quests.",
-"Needs a relationship counselor and a software update.",
-"Flirts like a scam email.",
-"Emotionally available only during business hours.",
-"Would fumble a soulmate over a typing indicator."
-"The warning label needs its own warning label.",
-"Their dating history needs a documentary.",
-"Both the problem and the plot twist.",
-"Says 'I'm brutally honest' before being unbearable.",
-"Their love language is making everything complicated.",
-"More red flags than a parade.",
-"Could turn a healthy relationship into a detective show.",
-"Emotional availability currently out of stock.",
-"Treats accountability like an optional update.",
-"Says 'trust me' like it's a threat.",
-"Their exes probably have a support group.",
-"Would fail a background check by their own conscience.",
-"Commitment issues with plans made 20 minutes ago.",
-"Can detect everyone else's flaws from space.",
-"Their apology comes with terms and conditions.",
-"Thinks self-awareness means announcing their flaws proudly.",
-"Relationship status: under investigation.",
-"Turns mixed signals into a full-time career.",
-"Would argue with a mirror about who started it.",
-"Their type is apparently consequences."
-]},
-drama: {
-title:"Most likely to start drama",
-roasts:[
-"Could turn 'okay' into a 12-part investigation.",
-"Has never met a rumor they couldn't upgrade.",
-"Would start a fight and ask for a group hug.",
-"Turns private conversations into public entertainment.",
-"Could make a silent retreat loud.",
-"Thinks being the messenger means being innocent.",
-"Would bring a PowerPoint to a personal feud.",
-"Can smell tension and immediately add seasoning.",
-"Treats a misunderstanding like a season finale.",
-"Would start beef with a vending machine."
-"Could turn a grocery run into a season finale.",
-"Would start a group chat just to leak it.",
-"Brings popcorn to a problem they created.",
-"Says 'I'm staying out of it' while typing an essay.",
-"Knows everyone's business and somehow has none of their own.",
-"Could start a feud in an empty room.",
-"Connects dots that don't exist.",
-"Would turn a typo into a federal investigation.",
-"Never met a peaceful situation they couldn't complicate.",
-"Treats gossip like an Olympic sport.",
-"Would leak the secret and ask who leaked it.",
-"Can turn one awkward look into a six-month conflict.",
-"Their screenshots folder needs its own server.",
-"Says 'don't tell anyone' to the entire neighborhood.",
-"Could turn family dinner into reality TV.",
-"Would schedule a meeting about who's being shady.",
-"Starts with 'I'm not trying to cause drama, but...'",
-"Their life has mystery-novel plot twists.",
-"Would subtweet someone sitting beside them.",
-"Could make two strangers take sides in an argument."
-]},
-mastermind: {
-title:"Secretly the mastermind",
-roasts:[
-"Has a suspiciously detailed plan for your life.",
-"Could manipulate a room using nothing but snacks.",
-"Already knows who will blame whom.",
-"Plays innocent like it's an Olympic event.",
-"Would run a secret society with excellent spreadsheets.",
-"Can make a terrible idea sound board-approved.",
-"Has backup excuses organized by occasion.",
-"Could orchestrate chaos and still look productive.",
-"Never asks questions without knowing the answer.",
-"Would make a conspiracy look like a calendar invite."
-"Has everyone's secrets in a spreadsheet.",
-"Three steps ahead and somehow still late.",
-"Quietly runs this group like a corporation.",
-"Says 'interesting' after planning your downfall.",
-"Could organize a coup with a calendar invite.",
-"Knows the story before anyone finishes talking.",
-"Has a backup plan for the backup plan.",
-"Could control a room without raising their voice.",
-"Pretends to be confused while running the situation.",
-"Their poker face deserves an award.",
-"Could make a suspicious plan look like scheduling.",
-"Never forgets an embarrassing detail.",
-"Would win an argument they haven't started.",
-"Already predicted the next group-chat argument.",
-"Makes suspiciously perfect suggestions.",
-"Would run a secret organization from a coffee shop.",
-"Their silence is probably a strategy.",
-"Could convince everyone the idea was theirs.",
-"Actually reads the terms and conditions.",
-"Might be why everything somehow worked out."
-]},
-arrested: {
-title:"First arrested in a comedy movie",
-roasts:[
-"Would ask for a lawyer, then explain everything anyway.",
-"Could get arrested while trying to help someone escape.",
-"Would mistake a warning for a loyalty challenge.",
-"Has the confidence of a criminal mastermind and the planning of a goldfish.",
-"Would turn evidence into a social media post.",
-"Would ask whether the handcuffs come in different sizes.",
-"Could talk their way into charges nobody mentioned.",
-"Would make their mugshot a profile picture.",
-"Would accidentally become the police station's group-chat admin.",
-"Would ask if the arrest can be rescheduled."
-"Would say 'I can explain' while holding the evidence.",
-"The plot starts with 'watch this.'",
-"Would livestream the escape plan.",
-"Would confess while trying to sound innocent.",
-"Could get caught doing something they haven't done yet.",
-"Would bring snacks to their own interrogation.",
-"Would ask if this counts as a first offense.",
-"Never considered the consequences before the consequences.",
-"Would leave their ID at the scene and blame autocorrect.",
-"Would talk their way into a worse situation.",
-"Would explain how not to get arrested while being arrested.",
-"Would treat a serious warning as a negotiation.",
-"Would tell the whole story before being asked.",
-"Getaway plan: three wrong turns and a sandwich.",
-"Would accidentally tag their location.",
-"Would ask for a five-star arrest review.",
-"Would argue with the security camera.",
-"Could turn a traffic stop into a podcast.",
-"Would forget the plan halfway through explaining it.",
-"Would befriend the officer and still get arrested."
-]},
-disappear: {
-title:"Most likely to disappear and start a new life",
-roasts:[
-"Would move abroad to avoid an awkward conversation.",
-"Could vanish and somehow still owe everyone money.",
-"Would leave a farewell note with no forwarding address.",
-"Has a new identity picked out for every Monday.",
-"Would delete their number and text you from a new one.",
-"Could ghost a family reunion they organized.",
-"Would move to the mountains over one embarrassing typo.",
-"Has a secret escape plan for every social event.",
-"Would start a new life before their laundry is done.",
-"Could disappear for a year and return asking for Wi-Fi."
-"New name, haircut, and country by Thursday.",
-"Could vanish for six months and return with a llama.",
-"One inconvenience away from moving to a cabin.",
-"Would leave a group chat and deny it existed.",
-"Phone at 100%, still somehow unreachable.",
-"Would start over because someone said 'we need to talk.'",
-"Has a moving plan for every minor inconvenience.",
-"Would return with a completely different accent.",
-"Could ghost an entire city.",
-"Would change careers before replying to one email.",
-"Dream vacation: somewhere nobody knows their name.",
-"Would move away and say they were just visiting.",
-"Could reinvent their personality over a weekend.",
-"Would leave town because the waiter remembered their order.",
-"Has researched cabins they cannot afford.",
-"Would start fresh before finishing the current chapter.",
-"Could vanish without a forwarding address.",
-"Would become a mysterious local legend in another state.",
-"Would delete social media and become a mushroom farmer.",
-"The emergency plan is to stop answering."
-]}
+  famous: {
+    title: "🌟 MAIN CHARACTER ENERGY",
+    roasts: [
+      "Would wave to a crowd that was waving at someone else.",
+      "Has a personal soundtrack and expects everyone to hear it.",
+      "Turns a quick story into a three-part documentary.",
+      "Practices arguments in the shower and still loses.",
+      "Would autograph their own forehead if a pen was handy.",
+      "Treats every group photo like a campaign poster.",
+      "Could make a minor inconvenience about their personal journey.",
+      "Says 'long story short' then starts at childhood.",
+      "Has the confidence of someone who has never read the comments.",
+      "Would thank the Academy for surviving Monday.",
+      "Enters a room like the Wi-Fi just got stronger.",
+      "Thinks the group chat is their personal podcast.",
+      "Could turn ordering lunch into a season finale.",
+      "Has a dramatic pause professionally installed.",
+      "Would put 'iconic' in their own biography.",
+      "Thinks being five minutes late is a grand entrance.",
+      "Their camera roll is 80% pictures of themselves.",
+      "Would make a documentary about finding their keys.",
+      "Has main-character confidence and side-quest planning.",
+      "Could turn a sneeze into a press conference."
+    ]
+  },
+
+  redflag: {
+    title: "🚩 RED FLAG ENERGY",
+    roasts: [
+      "Says 'I'm brutally honest' right before being rude.",
+      "Texts 'we need to talk' then disappears for six hours.",
+      "Their apology comes with terms and conditions.",
+      "Calls every ex 'crazy' like they weren't in the relationship.",
+      "Says they're chill, then audits your punctuation.",
+      "Treats a read receipt like a federal investigation.",
+      "Would flirt with a traffic cone if it gave attention.",
+      "Has more mixed signals than a broken airport sign.",
+      "Says 'no drama' while carrying a full drama subscription.",
+      "Thinks jealousy is a love language.",
+      "Leaves people on read, then asks why they got distant.",
+      "Has a type, and apparently it's poor decisions.",
+      "Says 'trust me' with the energy of a suspicious email.",
+      "Would start an argument and ask for a calm conversation.",
+      "Their standards are high; their own behavior is buffering.",
+      "Uses 'I'm just like that' as a software update refusal.",
+      "Can spot everyone else's red flags through rose-colored glasses.",
+      "Sends 'k' and expects a peaceful evening.",
+      "Has commitment issues with plans made yesterday.",
+      "Calls it being mysterious; everyone else calls it bad communication."
+    ]
+  },
+
+  drama: {
+    title: "🎭 CERTIFIED DRAMA",
+    roasts: [
+      "Could start a feud in an empty room.",
+      "Says 'I'm not making a scene' while selecting the soundtrack.",
+      "Has never met a small problem they couldn't give a trilogy.",
+      "Their story has more plot twists than a crime series.",
+      "Would subtweet someone sitting directly beside them.",
+      "Can turn 'okay' into a five-alarm emotional event.",
+      "Brings receipts to conversations that haven't happened yet.",
+      "Their favorite hobby is saying 'interesting...' ominously.",
+      "Could make a delayed pizza delivery a betrayal arc.",
+      "Says 'I'm done' with enough sequels for a franchise.",
+      "Treats gossip like breaking international news.",
+      "Can detect a vibe shift from three zip codes away.",
+      "Their group chat has a writers' room.",
+      "Would call an emergency meeting over a weird emoji.",
+      "Says 'not to be dramatic' like a warning label.",
+      "Has a season finale every Thursday.",
+      "Can make a silent treatment louder than a concert.",
+      "Knows everyone's business and calls it community service.",
+      "Their life needs a recap before every episode.",
+      "Would turn a missed call into a conspiracy board."
+    ]
+  },
+
+  mastermind: {
+    title: "🧠 TINY EVIL GENIUS",
+    roasts: [
+      "Has a five-year plan and forgot what day it is.",
+      "Could outsmart a smart fridge, then lose to a jar lid.",
+      "Says 'I have a system' while everything is on fire.",
+      "Would scheme for three weeks to avoid one awkward text.",
+      "Has the confidence of a chess grandmaster and the strategy of a pigeon.",
+      "Can plan everyone else's life except their own.",
+      "Thinks three steps ahead, directly into a wall.",
+      "Would make a spreadsheet for a spontaneous decision.",
+      "Has backup plans for plans that never existed.",
+      "Could manipulate a vending machine into keeping the change.",
+      "Says 'watch this' before a preventable disaster.",
+      "Their master plan depends on everyone forgetting yesterday.",
+      "Can read a room but not the instructions.",
+      "Has suspiciously detailed answers to questions nobody asked.",
+      "Would schedule an unplanned accident.",
+      "Could run a heist but forget the getaway snacks.",
+      "Has genius ideas at 2 a.m. and zero evidence by breakfast.",
+      "Thinks they're playing 4D chess; it's a board game café.",
+      "Could turn a simple task into a six-stage operation.",
+      "Is somehow both the mastermind and the reason it failed."
+    ]
+  },
+
+  arrested: {
+    title: "🚔 MOST LIKELY ARRESTED",
+    roasts: [
+      "Would ask the officer if this can go on their record as a funny story.",
+      "Looks guilty while doing absolutely nothing.",
+      "Would try to talk their way out of a parking ticket and confess to three other things.",
+      "Would say 'technically...' at the worst possible moment.",
+      "Has the energy of someone who knows a guy who knows a guy.",
+      "Would ask for a lawyer, then immediately overshare.",
+      "Could get questioned for a crime they learned about five minutes ago.",
+      "Would bring snacks to their own interrogation.",
+      "Would mistake a serious warning for a customer-service survey.",
+      "Their alibi begins with 'okay, so, funny story.'",
+      "Would ask if the handcuffs come in different sizes.",
+      "Could get caught in a lie while telling the truth.",
+      "Would try to make the security camera laugh.",
+      "Has a face that says 'I can explain' before anyone asks.",
+      "Would ask the judge if they can appeal the vibe.",
+      "Would narrate the whole situation like a reality show.",
+      "Would accidentally incriminate themselves in a group text.",
+      "Would bring a loyalty card to the courthouse.",
+      "Would ask if community service includes a lunch break.",
+      "Would say 'for the record' and make the record much worse."
+    ]
+  },
+
+  disappear: {
+    title: "🕵️ WOULD VANISH FIRST",
+    roasts: [
+      "Leaves the party without saying goodbye and becomes a local legend.",
+      "Could disappear from a group chat while actively typing.",
+      "Has three social accounts and nobody knows which one is real.",
+      "Would move cities because someone waved at them twice.",
+      "Treats replying to a text like a long-term project.",
+      "Could go off-grid and still forget to cancel a subscription.",
+      "Says 'I'm on my way' from a location they won't disclose.",
+      "Would vanish for six months and return asking what's for dinner.",
+      "Their phone is always on 2% and somehow still unreachable.",
+      "Could hide in plain sight behind a vague Instagram story.",
+      "Has mastered the art of leaving before the bill arrives.",
+      "Would ghost a party they personally organized.",
+      "Can be online all day and unreachable by everyone.",
+      "Would change their name to avoid an awkward conversation.",
+      "Leaves messages on delivered like it's a lifestyle choice.",
+      "Could vanish from a photo while standing in the middle.",
+      "Their location is either 'five minutes away' or classified.",
+      "Would start a new life because their coffee order got remembered.",
+      "Says 'brb' and enters another timeline.",
+      "Could disappear during a headcount and still be holding the clipboard."
+    ]
+  }
 };
 
+let recentRoasts = {};
 let lastGameKey = "";
 let output = "";
-let recentRoasts = {};
 
-try {
-  recentRoasts = JSON.parse(
-    localStorage.setItem("unfilteredRecentRoasts") || "{}"
-  );
-} catch (error) {
-  recentRoasts = {};
+function shuffle(items) {
+  const result = [...items];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
 }
 
 function play(forceNew = false) {
   const error = document.getElementById("error");
-  const status = document.getElementById("status");
+  const status = document.getElementById("shareStatus");
 
   error.textContent = "";
   status.textContent = "";
 
   const names = document.getElementById("names").value
     .split(/\n/)
-    .map(n => n.trim())
+    .map(name => name.trim())
     .filter(Boolean);
 
   if (names.length < 2 || names.length > 12) {
@@ -395,18 +345,31 @@ function play(forceNew = false) {
     return;
   }
 
-  const normalized = names.map(n => n.toLowerCase());
+  const normalized = names.map(name => name.toLowerCase());
+
   if (new Set(normalized).size !== normalized.length) {
     error.textContent = "Each player needs a unique name or nickname.";
     return;
   }
 
-  let key = document.querySelector('input[name="game"]:checked').value;
+  const selected = document.querySelector('input[name="game"]:checked');
+
+  if (!selected || !games[selected.value]) {
+    error.textContent = "Choose a game category.";
+    return;
+  }
+
+  let key = selected.value;
 
   if (forceNew && key === lastGameKey) {
     const otherKeys = Object.keys(games).filter(k => k !== lastGameKey);
     key = otherKeys[Math.floor(Math.random() * otherKeys.length)];
-    document.querySelector('input[name="game"][value="' + key + '"]').checked = true;
+
+    const radio = document.querySelector(
+      'input[name="game"][value="' + key + '"]'
+    );
+
+    if (radio) radio.checked = true;
   }
 
   const game = games[key];
@@ -414,7 +377,9 @@ function play(forceNew = false) {
 
   if (!recentRoasts[key]) recentRoasts[key] = [];
 
-  let available = game.roasts.filter(r => !recentRoasts[key].includes(r));
+  let available = game.roasts.filter(
+    roast => !recentRoasts[key].includes(roast)
+  );
 
   if (available.length < players.length) {
     recentRoasts[key] = [];
@@ -422,205 +387,131 @@ function play(forceNew = false) {
   }
 
   const roasts = shuffle(available).slice(0, players.length);
-recentRoasts[key].push(...roasts);
-}
+
+  recentRoasts[key].push(...roasts);
+  recentRoasts[key] = recentRoasts[key].slice(-16);
 
   const list = document.getElementById("list");
   list.replaceChildren();
 
-  document.getElementById("title").textContent = game.title;
+  document.getElementById("resultTitle").textContent = game.title;
   document.getElementById("roundInfo").textContent =
-    players.length + " players • " + players.length + " different roasts";
+    players.length + " players • " +
+    players.length + " different roasts";
 
   output = "UNFILTERED 🔥\n" + game.title + "\n\n";
 
-  players.forEach((name, i) => {
-    output += (i + 1) + ". " + name + ": " + roasts[i] + "\n";
+  players.forEach((name, index) => {
+    output += (index + 1) + ". " + name + ": " +
+      roasts[index] + "\n";
 
     const item = document.createElement("div");
     item.className = "result";
 
     const rank = document.createElement("div");
     rank.className = "rank";
-    rank.textContent = "#" + (i + 1) +
-      (i === 0 ? " 👑 THE MAIN CHARACTER" : "");
+    rank.textContent = "#" + (index + 1);
+
+    const body = document.createElement("div");
+
+    const player = document.createElement("div");
+    player.className = "name";
+    player.textContent = name;
 
     const roast = document.createElement("div");
     roast.className = "roast";
-    roast.textContent = name + ": " + roasts[i];
+    roast.textContent = roasts[index];
 
-    item.append(rank, roast);
-    list.appendChild(item);
+    body.append(player, roast);
+    item.append(rank, body);
+    list.append(item);
   });
 
   lastGameKey = key;
-  document.getElementById("results").hidden = false;
+
+  document.getElementById("results").style.display = "block";
   document.getElementById("results").scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
 }
 
-async function shareText() {
-  const status = document.getElementById("status");
+async function copyOutput() {
+  const status = document.getElementById("shareStatus");
+
   if (!output) {
-    status.textContent = "Play a round first.";
+    status.textContent = "Reveal the damage first.";
     return;
   }
 
   try {
-    if (navigator.share) {
-      await navigator.share({ title: "UNFILTERED 🔥", text: output });
-    } else if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(output);
-      status.textContent = "Results copied. Paste them into your group chat!";
-    } else {
-      window.prompt("Copy your results:", output);
-    }
-  } catch (e) {
-    if (e.name !== "AbortError") {
-      status.textContent = "Sharing was cancelled or unavailable. Try copying the results.";
-    }
+    await navigator.clipboard.writeText(output);
+    status.textContent = "Copied! Drop it in the group chat. 🔥";
+  } catch (error) {
+    const field = document.createElement("textarea");
+    field.value = output;
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+
+    document.body.append(field);
+    field.select();
+
+    const copied = document.execCommand("copy");
+    field.remove();
+
+    status.textContent = copied
+      ? "Copied! Drop it in the group chat. 🔥"
+      : "Copy didn't work here. Select the results text and copy it.";
   }
 }
 
-async function createShareImage() {
-  const status = document.getElementById("status");
+async function shareOutput() {
+  const status = document.getElementById("shareStatus");
 
   if (!output) {
-    status.textContent = "Play a round before creating an image.";
+    status.textContent = "Reveal the damage first.";
     return;
   }
 
-  try {
-    const canvas = document.createElement("canvas");
-    canvas.width = 1080;
-    canvas.height = 1350;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) throw new Error("Canvas is unavailable.");
-
-    ctx.fillStyle = "#100b18";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
-    gradient.addColorStop(0, "#382044");
-    gradient.addColorStop(1, "#100b18");
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 1080, 1350);
-
-    ctx.strokeStyle = "#e6a3ff";
-    ctx.lineWidth = 5;
-    ctx.strokeRect(35, 35, 1010, 1280);
-
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#e6a3ff";
-    ctx.font = "bold 72px Arial";
-    ctx.fillText("UNFILTERED.", 540, 120);
-
-    ctx.fillStyle = "#f6d87b";
-    ctx.font = "bold 26px Arial";
-    ctx.fillText("THE VERDICT IS IN", 540, 172);
-
-    const title = document.getElementById("title").textContent;
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 32px Arial";
-
-    const titleWords = title.split(/\s+/);
-    let titleLine = "";
-    let y = 235;
-
-    for (const word of titleWords) {
-      const test = titleLine ? titleLine + " " + word : word;
-      if (ctx.measureText(test).width > 900) {
-        ctx.fillText(titleLine, 540, y);
-        titleLine = word;
-        y += 42;
-      } else {
-        titleLine = test;
-      }
-    }
-    if (titleLine) ctx.fillText(titleLine, 540, y);
-
-    const entries = [...document.querySelectorAll("#list .result")];
-    if (!entries.length) throw new Error("No results found.");
-
-    let resultY = y + 65;
-    ctx.textAlign = "left";
-
-    const bottomLimit = 1190;
-    const usableHeight = bottomLimit - resultY;
-    const rowHeight = Math.min(100, usableHeight / entries.length);
-
-    entries.forEach((entry, index) => {
-      const text = entry.querySelector(".roast").textContent;
-      ctx.fillStyle = index === 0 ? "#f6d87b" : "#ffffff";
-      ctx.font = "bold 22px Arial";
-
-      const words = text.split(/\s+/);
-      let current = "";
-      const lines = [];
-
-      for (const word of words) {
-        const test = current ? current + " " + word : word;
-        if (ctx.measureText(test).width > 900) {
-          lines.push(current);
-          current = word;
-        } else {
-          current = test;
-        }
-      }
-      if (current) lines.push(current);
-
-      const maxLines = Math.max(1, Math.floor((rowHeight - 8) / 26));
-      lines.slice(0, maxLines).forEach((txt, lineIndex) => {
-        ctx.fillText(txt, 85, resultY + lineIndex * 26);
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "UNFILTERED 🔥",
+        text: output,
+        url: location.href
       });
-
-      resultY += rowHeight;
-    });
-
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#e6a3ff";
-    ctx.font = "bold 23px Arial";
-    ctx.fillText("PLAY UNFILTERED", 540, 1265);
-
-    const blob = await new Promise((resolve, reject) => {
-      canvas.toBlob(result => {
-        if (result) resolve(result);
-        else reject(new Error("PNG creation failed."));
-      }, "image/png");
-    });
-
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "unfiltered-results.png";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    status.textContent = "Image created! Check your downloads or Files app.";
-
-    setTimeout(() => URL.revokeObjectURL(url), 10000);
-  } catch (e) {
-    console.error(e);
-    status.textContent = "Image error: " + e.message;
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        status.textContent = "Sharing isn't available here. Try Copy Results.";
+      }
+    }
+  } else {
+    await copyOutput();
   }
 }
-document.getElementById("playButton").addEventListener("click", () => {
-  const error = document.getElementById("error");
-  try {
-    play(false);
-  } catch (e) {
-    console.error(e);
-    error.textContent = "Game error: " + e.message;
-  }
-});
-document.getElementById("playButton").addEventListener("click", () => play(false));
-document.getElementById("newRound").addEventListener("click", () => play(true));
-document.getElementById("shareText").addEventListener("click", shareText);
-document.getElementById("makeImage").addEventListener("click", createShareImage);
+
+function resetGame() {
+  document.getElementById("names").value = "";
+  document.getElementById("error").textContent = "";
+  document.getElementById("shareStatus").textContent = "";
+  document.getElementById("results").style.display = "none";
+  document.getElementById("names").focus();
+}
+
+document.getElementById("playButton")
+  .addEventListener("click", () => play(false));
+
+document.getElementById("newRound")
+  .addEventListener("click", () => play(true));
+
+document.getElementById("shareText")
+  .addEventListener("click", shareOutput);
+
+document.getElementById("copyText")
+  .addEventListener("click", copyOutput);
+
+document.getElementById("resetGame")
+  .addEventListener("click", resetGame);
 </script>
 </body>
 </html>
