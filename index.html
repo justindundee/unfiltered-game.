@@ -242,7 +242,26 @@ function safeLoad(key, fallback) {
     return fallback;
   }
 }
+const dailyButton = document.getElementById("dailyButton");
 
+if (dailyButton) {
+  dailyButton.onclick = function () {
+    if (players.length < 2) {
+      alert("Add at least two players before starting the Daily Challenge!");
+      document.getElementById("playerInput").focus();
+      return;
+    }
+
+    dailyAccepted = true;
+    startGame();
+  };
+}
+
+const dailyText = document.getElementById("dailyText");
+
+if (dailyText) {
+  dailyText.textContent = getDailyChallenge();
+}
 function loadSavedData() {
   const savedPlayers = safeLoad("unfiltered_players", []);
   players = Array.isArray(savedPlayers)
