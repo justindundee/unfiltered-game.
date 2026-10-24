@@ -687,6 +687,37 @@ loadSavedData();
 renderPlayers();
 renderLeaderboard();
 setupDailyChallenge();
+function loadDailyChallenge() {
+  const today = new Date().toISOString().slice(0, 10);
+  const saved = localStorage.getItem("unfilteredDailyChallenge");
+
+  let challenge;
+
+  if (saved) {
+    const data = JSON.parse(saved);
+    challenge = data.date === today ? data.challenge : null;
+  }
+
+  if (!challenge) {
+    const index = Math.floor(Math.random() * dailyChallenges.length);
+    challenge = dailyChallenges[index];
+
+    localStorage.setItem(
+      "unfilteredDailyChallenge",
+      JSON.stringify({ date: today, challenge })
+    );
+  }
+
+  const display =
+    document.getElementById("dailyChallengeText") ||
+    document.getElementById("dailyChallenge");
+
+  if (display) {
+    display.textContent = challenge;
+  } else {
+    alert("Today's UNFILTERED Challenge:\n\n" + challenge);
+  }
+}
 </script>
 </body>
 </html>
