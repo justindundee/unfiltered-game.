@@ -629,7 +629,23 @@ function getDailyChallenge() {
 }
 
 function setupDailyChallenge() {
-  $("dailyText").textContent = getDailyChallenge();
+$("dailyText").textContent = getDailyChallenge();
+
+$("dailyButton").addEventListener("click", () => {
+  dailyAccepted = true;
+  showToast("Challenge accepted! Bring your best roast.");
+
+  if (players.length >= 2) {
+    startGame();
+  } else {
+    $("playerInput").focus();
+    $("playerForm").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+    showToast("Add at least two players to begin the challenge.");
+  }
+});
   <button onclick="loadDailyChallenge()">
   Daily Challenge
 </button>
