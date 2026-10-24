@@ -549,7 +549,15 @@ async function createShareImage() {
     status.textContent = "Image error: " + e.message;
   }
 }
-
+document.getElementById("playButton").addEventListener("click", () => {
+  const error = document.getElementById("error");
+  try {
+    play(false);
+  } catch (e) {
+    console.error(e);
+    error.textContent = "Game error: " + e.message;
+  }
+});
 document.getElementById("playButton").addEventListener("click", () => play(false));
 document.getElementById("newRound").addEventListener("click", () => play(true));
 document.getElementById("shareText").addEventListener("click", shareText);
