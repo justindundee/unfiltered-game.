@@ -363,7 +363,7 @@ function play(forceNew = false) {
   }
 
   const roasts = shuffle(available).slice(0, players.length);
-  recentRoasts[key].push(...roasts);
+recentRoasts[key].push(...roasts);
 
   const list = document.getElementById("list");
   list.replaceChildren();
