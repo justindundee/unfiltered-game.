@@ -4,114 +4,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#09090d">
-<title>UNFILTERED | No Mercy</title>
+<meta name="theme-color" content="#0b0712">
+<title>UNFILTERED | No Filter. No Mercy.</title>
 <style>
-:root{--bg:#09090d;--panel:#15151e;--pink:#ff386b;--purple:#a855f7;--white:#f6f4fa;--muted:#a3a0b2}
+:root{--bg:#0b0712;--card:#17111f;--pink:#ff347f;--purple:#b44aff;--gold:#ffd34f;--white:#fffaff;--muted:#aaa0b8}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#29102e 0%,var(--bg) 58%);color:var(--white);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
-header{text-align:center;padding:30px 16px 16px}
-.logo{font-size:clamp(38px,10vw,66px);font-weight:1000;letter-spacing:-3px;font-style:italic;line-height:1}
-.logo span{color:var(--pink)}
-.tagline{color:var(--muted);font-size:12px;letter-spacing:3px;margin-top:10px}
-main{max-width:720px;margin:auto;padding:12px 16px 48px}
-.panel{background:rgba(21,21,30,.94);border:1px solid #343040;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 12px 35px #0003}
-h2{font-size:19px;margin:0 0 14px}
-p{line-height:1.5}
-label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}
-input,select,textarea{width:100%;padding:13px;background:#0b0b12;color:white;border:1px solid #40384c;border-radius:10px;font-size:16px}
-button{border:0;border-radius:11px;padding:13px 16px;font-size:15px;font-weight:800;cursor:pointer;color:white;background:#30273d}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#35113f 0%,var(--bg) 52%);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+header{text-align:center;padding:34px 16px 22px}
+.crown{font-size:36px;filter:drop-shadow(0 0 12px #ffd34f80);margin-bottom:7px}
+.logo{font-size:clamp(38px,10vw,66px);font-weight:1000;font-style:italic;letter-spacing:-3px;line-height:1;text-shadow:0 0 28px #ff347f30}
+.logo span{background:linear-gradient(100deg,#ff347f,#d63cff,#b44aff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{margin-top:13px;font-size:10px;font-weight:800;letter-spacing:3px;color:#e9cfff}
+main{width:min(100% - 28px,640px);margin:auto;padding-bottom:42px}
+.hero{text-align:center;padding:24px 10px 30px}
+.hero h1{font-size:clamp(27px,7vw,42px);line-height:1.08;letter-spacing:-1.5px;margin:0 0 12px}
+.hero h1 span{color:var(--pink)}
+.hero p{color:var(--muted);font-size:14px;line-height:1.6;margin:0 auto 20px;max-width:360px}
+.panel{margin:14px 0;padding:20px;border:1px solid #ffffff12;border-radius:20px;background:linear-gradient(145deg,#1c1527,#120e19);box-shadow:0 14px 35px #0003}
+h2{font-size:17px;margin:0 0 14px;letter-spacing:-.3px}
+label{display:block;margin:13px 0 7px;color:var(--muted);font-size:12px;font-weight:700}
+input{width:100%;min-width:0;padding:14px;background:#0d0913;border:1px solid #403047;border-radius:12px;color:white;font:inherit;font-size:16px}
+input:focus{outline:2px solid var(--purple);border-color:transparent}
+button{padding:13px 15px;border:1px solid #ffffff12;border-radius:12px;background:#2a2035;color:white;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
 button:active{transform:scale(.98)}
-.primary{background:linear-gradient(110deg,var(--pink),#a33bdf)}
-.secondary{border:1px solid #4b3a58;background:#201a29}
-button:disabled{opacity:.4}
-.row{display:flex;gap:9px;flex-wrap:wrap}
-.row button{flex:1}
+.primary{background:linear-gradient(105deg,var(--pink),#a73cff);border:0;box-shadow:0 7px 24px #ff347f30}
+.playbtn{width:100%;padding:17px;font-size:16px;letter-spacing:.5px}
+.secondary{background:#241a30}
 .full{width:100%;margin-top:10px}
-.small{font-size:12px;color:var(--muted)}
-.pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{border:1px solid #494054;padding:10px 12px;border-radius:30px;font-size:13px;cursor:pointer;background:#100e17}
-.pill.active{background:#4a1839;border-color:var(--pink);color:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row input{flex:1 1 150px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{border:1px solid #44344f;border-radius:30px;padding:10px 12px;background:#100c17;color:#ddd0e9;font-size:12px;cursor:pointer}
+.pill.active{background:#4a1938;border-color:var(--pink);color:white}
+.small{font-size:12px;color:var(--muted);line-height:1.5}
 .hidden{display:none!important}
-.roast{font-size:clamp(23px,6vw,35px);font-weight:900;line-height:1.2;margin:22px 0;text-align:center;overflow-wrap:anywhere}
+.player-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;margin:4px 4px 4px 0;border-radius:30px;background:#2b1d37;border:1px solid #473352;font-size:12px}
+.remove{padding:2px 5px;border:0;background:transparent;color:#ff92bd}
+#resultPanel{border-color:#ff347f65;background:radial-gradient(ellipse at top,#40152f,#17111f 70%)}
 .center{text-align:center}
-.big-number{font-size:38px;font-weight:900;color:var(--pink)}
-.player-chip{display:inline-block;background:#292133;border-radius:20px;padding:7px 10px;margin:4px;font-size:13px}
-.list-item{padding:12px 0;border-bottom:1px solid #302b3a}
+.eyebrow{color:#ff8fbd;font-size:11px;letter-spacing:2px;font-weight:900}
+.roast{font-size:clamp(26px,7vw,40px);font-weight:950;letter-spacing:-1px;line-height:1.15;text-align:center;overflow-wrap:anywhere;margin:23px 0}
+.target{color:#e5d7ef;font-size:13px}
+.divider{height:1px;background:#ffffff10;margin:16px 0}
+.list-item{padding:12px 0;border-bottom:1px solid #ffffff12;display:flex;justify-content:space-between;gap:12px}
 .list-item:last-child{border-bottom:0}
-.vote-btn{font-size:13px;padding:9px}
-footer{text-align:center;color:#777184;font-size:11px;padding:20px}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#f6f4fa;color:#15121b;padding:12px 18px;border-radius:30px;font-weight:700;display:none;z-index:5;max-width:90%;text-align:center}
+footer{text-align:center;padding:22px 10px;color:#786d83;font-size:10px;letter-spacing:1.5px}
+#toast{display:none;position:fixed;z-index:9;bottom:20px;left:50%;transform:translateX(-50%);width:max-content;max-width:90%;padding:13px 18px;border-radius:30px;background:white;color:#17101d;text-align:center;font-weight:800;font-size:13px;box-shadow:0 8px 30px #0008}
+@media(max-width:390px){.panel{padding:16px}.logo{letter-spacing:-2px}.tagline{letter-spacing:2px}}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">UN<span>FILTERED</span></div>
-<div class="tagline">NO FILTER. NO MERCY. ALL FUN.</div>
+  <div class="crown">♛</div>
+  <div class="logo">UN<span>FILTERED</span></div>
+  <div class="tagline">NO FILTER. NO MERCY. ALL FUN.</div>
 </header>
 <main>
-<section class="panel">
-<h2>🎤 Build Your Roast Crew</h2>
-<label for="playerName">Add a player</label>
-<div class="row">
-<input id="playerName" placeholder="Enter a name..." maxlength="30">
-<button class="primary" onclick="addPlayer()">ADD +</button>
-</div>
-<div id="players" style="margin-top:12px"></div>
-<p class="small">Bring 2 to 12 players into the roast arena.</p>
-<label>Choose your category</label>
-<div class="pills" id="categories">
-<div class="pill active" data-cat="Main Character">👑 Main Character</div>
-<div class="pill" data-cat="Red Flag">🚩 Red Flag</div>
-<div class="pill" data-cat="Drama">🎭 Drama</div>
-<div class="pill" data-cat="Tiny Evil Genius">😈 Tiny Evil Genius</div>
-<div class="pill" data-cat="Most Likely Arrested">🚔 Most Likely Arrested</div>
-<div class="pill" data-cat="Would Vanish First">👻 Would Vanish First</div>
-</div>
-<button class="primary full" onclick="play()">🔥 GENERATE A ROAST</button>
+<section class="hero">
+  <h1>YOUR FRIENDS.<br><span>YOUR PROBLEM.</span></h1>
+  <p>The party game that says what the group chat is thinking.</p>
+  <button class="primary playbtn" onclick="startGame()">🔥 LET'S PLAY</button>
+</section>
+
+<section class="panel" id="setup">
+  <h2>🎤 Build Your Crew</h2>
+  <label for="playerName">Who's getting roasted?</label>
+  <div class="row">
+    <input id="playerName" maxlength="30" placeholder="Enter a player's name">
+    <button class="primary" onclick="addPlayer()">ADD +</button>
+  </div>
+  <div id="players" style="margin-top:10px"></div>
+  <p class="small">Add 2 to 12 players to start.</p>
+  <div class="divider"></div>
+  <h2>🎯 Pick Your Poison</h2>
+  <div class="pills" id="categories">
+    <button class="pill active" data-cat="Main Character">👑 Main Character</button>
+    <button class="pill" data-cat="Red Flag">🚩 Red Flag</button>
+    <button class="pill" data-cat="Drama">🎭 Drama</button>
+    <button class="pill" data-cat="Tiny Evil Genius">😈 Tiny Evil Genius</button>
+    <button class="pill" data-cat="Most Likely Arrested">🚔 Most Likely Arrested</button>
+    <button class="pill" data-cat="Would Vanish First">👻 Would Vanish First</button>
+  </div>
+  <button class="primary playbtn full" onclick="startGame()">GENERATE A ROAST →</button>
 </section>
 
 <section class="panel hidden" id="resultPanel">
-<div class="center small" id="resultCategory">THE ROAST</div>
-<div class="roast" id="roastText"></div>
-<div class="center" id="roastTarget"></div>
-<div class="row">
-<button class="secondary" onclick="play()">🎲 Another Roast</button>
-<button class="secondary" onclick="copyRoast()">📋 Copy</button>
-</div>
-<button class="primary full" onclick="shareRoast()">📲 Share This Roast</button>
-<button class="secondary full" onclick="voteRoast()">🏆 Vote for Funniest</button>
+  <div class="center eyebrow" id="resultCategory">THE ROAST</div>
+  <div class="roast" id="roastText"></div>
+  <div class="center target" id="roastTarget"></div>
+  <div class="divider"></div>
+  <div class="row">
+    <button class="secondary" style="flex:1" onclick="startGame()">🎲 Again</button>
+    <button class="secondary" style="flex:1" onclick="copyRoast()">📋 Copy</button>
+  </div>
+  <button class="primary full" onclick="shareRoast()">📲 Share Roast</button>
+  <button class="secondary full" onclick="voteRoast()">🏆 Vote Funniest</button>
 </section>
 
 <section class="panel">
-<h2>⚡ Daily Challenge</h2>
-<div id="dailyText"></div>
-<p class="small" id="dailyStatus"></p>
-<button class="secondary full" onclick="dailyChallenge()">🎯 Reveal Today's Challenge</button>
-<button class="secondary full" onclick="completeDaily()">✅ Mark Challenge Complete</button>
+  <h2>⚡ Daily Challenge</h2>
+  <p id="dailyText">Today's challenge is waiting for you.</p>
+  <div id="dailyStatus" class="small"></div>
+  <button class="secondary full" onclick="revealDaily()">🎯 Reveal Challenge</button>
+  <button class="secondary full" onclick="completeDaily()">✅ Mark Complete</button>
 </section>
 
 <section class="panel">
-<h2>🏆 Roast Leaderboard</h2>
-<p class="small">Scores are saved on this device and browser.</p>
-<div id="leaderboard"></div>
-<button class="secondary full" onclick="resetScores()">Reset Scores</button>
+  <h2>🏆 Roast Hall of Fame</h2>
+  <p class="small">Scores are saved on this device and browser, not shared across all players.</p>
+  <div id="leaderboard"></div>
+  <button class="secondary full" onclick="resetScores()">Reset Scores</button>
 </section>
 
 <section class="panel">
-<h2>📣 Bring Your Friends</h2>
-<p>Every friend is another potential victim. Invite your crew and let the group chat descend into chaos.</p>
-<button class="primary full" onclick="inviteFriends()">📨 INVITE FRIENDS</button>
+  <h2>📣 Your Crew Needs You</h2>
+  <p class="small">Send the invite. Start the chaos. Blame the game.</p>
+  <button class="primary full" onclick="inviteFriends()">INVITE YOUR FRIENDS ↗</button>
 </section>
 
-<section class="panel">
-<h2>📜 How to Play</h2>
-<p>1. Add at least two players.</p>
-<p>2. Choose a category and generate a roast.</p>
-<p>3. Share it, then vote for the funniest roast.</p>
-<p>4. Keep it playful. The goal is laughter, not actual harm.</p>
-</section>
-<footer>UNFILTERED © <span id="year"></span> · ROAST RESPONSIBLY.</footer>
+<footer>UNFILTERED · NO FILTER. NO MERCY. ALL FUN.</footer>
 </main>
 <div id="toast"></div>
 <script>
@@ -120,112 +132,264 @@ let playerList=[];
 let selectedCategory="Main Character";
 let currentRoast="";
 let currentTarget="";
-let scores=JSON.parse(localStorage.getItem("ufScores")||"{}");
-let votes=JSON.parse(localStorage.getItem("ufVotes")||"{}");
+let scores={};
+let votes={};
+try{scores=JSON.parse(localStorage.getItem("ufScores")||"{}");}catch(e){}
+try{votes=JSON.parse(localStorage.getItem("ufVotes")||"{}");}catch(e){}
+
 const roasts={
 "Main Character":[
+"Has main-character energy with background-character decisions.",
 "Treats every minor inconvenience like a season finale.",
-"Has the confidence of a billionaire and the bank account of a confused raccoon.",
-"Would give a TED Talk about themselves and still run over time.",
-"Thinks the world is their movie. Unfortunately, it's a low-budget reboot.",
-"Walks into a room like the Wi-Fi should automatically connect.",
-"Has main-character energy with background-character decision-making."
+"Walks in like the Wi-Fi should automatically connect.",
+"Could turn a selfie into a three-part documentary.",
+"Thinks the world revolves around them. The world has requested a refund.",
+"Has a personal soundtrack and absolutely no character development."
 ],
 "Red Flag":[
-"Has more red flags than a parade in a wind tunnel.",
-"Says 'I'm brutally honest' when they really mean 'I have no filter or tact.'",
-"Would ghost you and then ask why you stopped texting.",
+"Has more red flags than a parade in a hurricane.",
+"Says 'I'm brutally honest' when they mean 'I'm rude for free.'",
+"Could ghost someone and still ask why they stopped texting.",
 "Their love language is mixed signals and emotional paperwork.",
-"Calls every ex crazy. At some point, the common denominator needs a meeting.",
-"Needs a warning label, a user manual, and a software update."
+"Calls every ex crazy. The math is starting to look suspicious.",
+"Needs a warning label and a software update."
 ],
 "Drama":[
 "Could turn a missed call into a six-part documentary.",
-"Doesn't enter drama. Drama gets a forwarding address to their house.",
-"Turns a tiny misunderstanding into a courtroom season finale.",
-"If overthinking burned calories, they'd be a fitness influencer.",
-"Brings enough drama to make reality TV ask for a quieter neighbor.",
-"Has never met a peaceful situation they couldn't complicate."
+"Doesn't enter drama. Drama has their home address.",
+"Turns a tiny misunderstanding into a courtroom finale.",
+"If overthinking burned calories, they'd be an athlete.",
+"Brings enough drama to make reality TV look peaceful.",
+"Has never met a calm situation they couldn't complicate."
 ],
 "Tiny Evil Genius":[
-"Would sell you your own belongings and call it entrepreneurship.",
-"Has the face of an angel and the search history of a supervillain.",
-"Could organize a coup using nothing but snacks and group-chat polls.",
+"Would sell you your own stuff and call it entrepreneurship.",
+"Has the face of an angel and the plans of a cartoon villain.",
+"Could organize a coup with snacks and a group chat.",
 "Would press the forbidden button just to see what happens.",
-"Has a five-year plan. Step one is apparently everyone else's problem.",
-"Would put a whoopee cushion in a board meeting and call it disruption."
+"Has a five-year plan. Everyone else is apparently a resource.",
+"Would put a whoopee cushion in a board meeting and call it innovation."
 ],
 "Most Likely Arrested":[
-"Would ask the officer if this arrest comes with loyalty points.",
-"Has the energy of someone who says 'watch this' before a terrible idea.",
+"Would ask the officer if the arrest comes with loyalty points.",
+"Has the energy of someone who says 'watch this' before disaster.",
 "Would accidentally join a criminal operation because the snacks looked good.",
-"Looks like they'd argue with a parking meter and somehow lose.",
-"Would try to talk their way out of trouble and create three new charges.",
-"Would read the rules, ignore them, then challenge the rules to a debate."
+"Would argue with a parking meter and somehow lose.",
+"Would talk their way into three new problems.",
+"Reads the rules, ignores them, then challenges them to a debate."
 ],
 "Would Vanish First":[
-"Would disappear from the group chat and return six months later with 'hey.'",
+"Would leave the group chat and return six months later with 'hey.'",
 "Could go off-grid and still somehow owe everyone money.",
-"Would leave a party without saying goodbye, then watch the goodbye texts arrive.",
-"Has the survival instincts of a houseplant left in a basement.",
-"Would vanish during an emergency and reappear when the pizza arrives.",
-"Could be missing for a week and still be marked active online."
+"Would vanish from a party and watch the goodbye texts roll in.",
+"Has the survival instincts of a houseplant in a basement.",
+"Would disappear during an emergency and reappear for pizza.",
+"Could be missing for a week and still show as active online."
 ]};
 const challenges=[
 "Roast your own worst habit in one sentence.",
-"Give someone a compliment that sounds suspiciously like a roast.",
+"Give someone a compliment that sounds like a roast.",
 "Describe your group chat as a failed business.",
-"Invent a fake award for the most chaotic person here.",
+"Invent an award for the most chaotic person here.",
 "Deliver a roast using only ten words.",
-"Roast your own fashion choices without blaming the lighting.",
+"Roast your fashion choices without blaming the lighting.",
 "Describe your most embarrassing moment like a movie trailer."
 ];
-function save(){localStorage.setItem("ufScores",JSON.stringify(scores));localStorage.setItem("ufVotes",JSON.stringify(votes));}
-function toast(msg){const t=$("toast");t.textContent=msg;t.style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display="none",2200);}
-function addPlayer(){const input=$("playerName");const name=input.value.trim();if(!name)return toast("Enter a name first.");if(playerList.length>=12)return toast("Maximum 12 players.");if(playerList.some(p=>p.toLowerCase()===name.toLowerCase()))return toast("That player is already in.");playerList.push(name);input.value="";renderPlayers();}
-function removePlayer(name){playerList=playerList.filter(p=>p!==name);renderPlayers();}
-function renderPlayers(){$("players").innerHTML=playerList.length?playerList.map(p=>`<span class="player-chip">${escapeHtml(p)} <button class="vote-btn" onclick="removePlayer(${JSON.stringify(p).replace(/</g,"\\u003c")})" aria-label="Remove ${escapeHtml(p)}">×</button></span>`).join(""):'<span class="small">No players added yet.</span>';}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-document.querySelectorAll(".pill").forEach(el=>el.addEventListener("click",()=>{document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));el.classList.add("active");selectedCategory=el.dataset.cat;}));
-function play(){if(playerList.length<2)return toast("Add at least two players first.");currentTarget=playerList[Math.floor(Math.random()*playerList.length)];const list=roasts[selectedCategory];currentRoast=list[Math.floor(Math.random()*list.length)];$("resultCategory").textContent="🔥 "+selectedCategory.toUpperCase();$("roastText").textContent=currentRoast;$("roastTarget").textContent="🎯 The target: "+currentTarget;$("resultPanel").classList.remove("hidden");$("resultPanel").scrollIntoView({behavior:"smooth",block:"start"});}
-function copyRoast(){const text=`UNFILTERED 🔥\n${selectedCategory}\n${currentTarget}: ${currentRoast}\n${location.href}`;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>toast("Roast copied!")).catch(()=>fallbackCopy(text));}else fallbackCopy(text);}
-function fallbackCopy(text){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Copied!");}catch(e){toast("Copy unavailable. Use Share instead.");}ta.remove();}
-function shareRoast(){const text=`UNFILTERED 🔥\n${selectedCategory}\n${currentTarget}: ${currentRoast}\nPlay here: ${location.href}`;if(navigator.share){navigator.share({title:"UNFILTERED Roast",text}).catch(()=>{});}else{copyRoast();}}
-function voteRoast(){if(!currentRoast)return toast("Generate a roast first.");const key=currentTarget+"|"+currentRoast;if(votes[key])return toast("This roast has already been voted for.");votes[key]=true;scores[currentTarget]=(scores[currentTarget]||0)+1;save();renderLeaderboard();toast("Vote counted! 🏆");}
-function renderLeaderboard(){const entries=Object.entries(scores).sort((a,b)=>b[1]-a[1]);$("leaderboard").innerHTML=entries.length?entries.map(([name,score],i)=>`<div class="list-item"><strong>${["🥇","🥈","🥉"][i]||"🔥"} ${escapeHtml(name)}</strong><span style="float:right">${score} vote${score===1?"":"s"}</span></div>`).join(""):'<p class="small">No votes yet. Make history.</p>';}
-function resetScores(){if(!confirm("Reset all local scores and votes?"))return;scores={};votes={};save();renderLeaderboard();toast("Leaderboard reset.");}
 
-function dailyChallenge(){
-  const day=Math.floor(Date.now()/86400000);
-  const challenge=challenges[day%challenges.length];
-  $("dailyText").textContent=challenge;
-  const done=localStorage.getItem("ufDailyDone")===String(day);
-  $("dailyStatus").textContent=done?"✅ Today's challenge completed!":"Your daily mission awaits.";
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
 }
-function completeDaily(){
-  const day=Math.floor(Date.now()/86400000);
-  if(!$("dailyText").textContent.trim())dailyChallenge();
-  if(localStorage.getItem("ufDailyDone")===String(day)){
-    return toast("Today's challenge is already complete!");
+
+function saveScores(){
+  try{
+    localStorage.setItem("ufScores",JSON.stringify(scores));
+    localStorage.setItem("ufVotes",JSON.stringify(votes));
+  }catch(e){}
+}
+
+function toast(message){
+  const el=$("toast");
+  el.textContent=message;
+  el.style.display="block";
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>el.style.display="none",2400);
+}
+
+function renderPlayers(){
+  $("players").innerHTML=playerList.length
+    ? playerList.map((name,i)=>
+      '<span class="player-chip">'+escapeHtml(name)+
+      ' <button class="remove" onclick="removePlayer('+i+')" aria-label="Remove player">×</button></span>'
+    ).join("")
+    : '<span class="small">Your crew will appear here.</span>';
+}
+
+function addPlayer(){
+  const input=$("playerName");
+  const name=input.value.trim();
+  if(!name)return toast("Enter a name first.");
+  if(playerList.length>=12)return toast("Maximum 12 players.");
+  if(playerList.some(p=>p.toLowerCase()===name.toLowerCase()))
+    return toast("That name is already in.");
+  playerList.push(name);
+  input.value="";
+  renderPlayers();
+}
+
+function removePlayer(index){
+  playerList.splice(index,1);
+  renderPlayers();
+}
+
+$("playerName").addEventListener("keydown",function(event){
+  if(event.key==="Enter")addPlayer();
+});
+
+document.querySelectorAll(".pill").forEach(button=>{
+  button.addEventListener("click",function(){
+    document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+    button.classList.add("active");
+    selectedCategory=button.dataset.cat;
+  });
+});
+
+function startGame(){
+  if(playerList.length<2){
+    $("setup").scrollIntoView({behavior:"smooth",block:"start"});
+    return toast("Add at least two players first.");
   }
-  localStorage.setItem("ufDailyDone",String(day));
-  $("dailyStatus").textContent="✅ Today's challenge completed!";
-  toast("Challenge completed! 🔥");
+  const list=roasts[selectedCategory];
+  currentTarget=playerList[Math.floor(Math.random()*playerList.length)];
+  currentRoast=list[Math.floor(Math.random()*list.length)];
+  $("resultCategory").textContent="🔥 "+selectedCategory.toUpperCase();
+  $("roastText").textContent=currentRoast;
+  $("roastTarget").textContent="🎯 The target: "+currentTarget;
+  $("resultPanel").classList.remove("hidden");
+  $("resultPanel").scrollIntoView({behavior:"smooth",block:"start"});
 }
-async function inviteFriends(){
-  const message="🔥 You're invited to UNFILTERED!\nNo filter. No mercy. All fun.\nPlay here: "+location.href;
+
+function copyText(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text)
+      .then(()=>toast("Copied! Ready to share."))
+      .catch(()=>fallbackCopy(text));
+  }else{
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text){
+  const field=document.createElement("textarea");
+  field.value=text;
+  field.style.position="fixed";
+  field.style.opacity="0";
+  document.body.appendChild(field);
+  field.select();
+  try{
+    const ok=document.execCommand("copy");
+    toast(ok?"Copied!":"Copy failed. Try the Share button.");
+  }catch(e){
+    toast("Copy unavailable. Try the Share button.");
+  }
+  field.remove();
+}
+
+function roastMessage(){
+  return "🔥 UNFILTERED\n"+selectedCategory+
+    "\n"+currentTarget+": "+currentRoast+
+    "\nPlay with your crew: "+location.href;
+}
+
+function copyRoast(){
+  if(!currentRoast)return toast("Generate a roast first.");
+  copyText(roastMessage());
+}
+
+async function shareRoast(){
+  if(!currentRoast)return toast("Generate a roast first.");
+  const text=roastMessage();
   if(navigator.share){
-    try{await navigator.share({title:"UNFILTERED",text:message,url:location.href});}
+    try{await navigator.share({title:"UNFILTERED Roast",text});}
     catch(e){}
   }else{
-    fallbackCopy(message);
+    copyText(text);
   }
 }
-$("year").textContent=new Date().getFullYear();
+
+function voteRoast(){
+  if(!currentRoast)return toast("Generate a roast first.");
+  const key=currentTarget+"|"+currentRoast;
+  if(votes[key])return toast("You've already voted for this roast.");
+  votes[key]=true;
+  scores[currentTarget]=(scores[currentTarget]||0)+1;
+  saveScores();
+  renderLeaderboard();
+  toast("Vote counted! 🏆");
+}
+
+function renderLeaderboard(){
+  const entries=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  $("leaderboard").innerHTML=entries.length
+    ? entries.map(([name,score],i)=>
+      '<div class="list-item"><strong>'+
+      (["🥇","🥈","🥉"][i]||"🔥")+" "+escapeHtml(name)+
+      '</strong><span>'+score+' vote'+(score===1?"":"s")+'</span></div>'
+    ).join("")
+    : '<p class="small">No champions yet. Let the roasting begin.</p>';
+}
+
+function resetScores(){
+  if(!confirm("Reset all scores and votes on this device?"))return;
+  scores={};
+  votes={};
+  saveScores();
+  renderLeaderboard();
+  toast("Scores reset.");
+}
+
+function revealDaily(){
+  const day=Math.floor(Date.now()/86400000);
+  $("dailyText").textContent=challenges[day%challenges.length];
+  $("dailyStatus").textContent=
+    localStorage.getItem("ufDailyDone")===String(day)
+    ? "✅ Completed today!"
+    : "Your daily mission awaits.";
+}
+
+function completeDaily(){
+  const day=Math.floor(Date.now()/86400000);
+  if(localStorage.getItem("ufDailyDone")===String(day))
+    return toast("Today's challenge is already complete!");
+  localStorage.setItem("ufDailyDone",String(day));
+  $("dailyStatus").textContent="✅ Completed today!";
+  toast("Challenge complete! 🔥");
+}
+
+async function inviteFriends(){
+  const message="🔥 You're invited to UNFILTERED!\nNo filter. No mercy. All fun.";
+  if(navigator.share){
+    try{
+      await navigator.share({
+        title:"UNFILTERED",
+        text:message,
+        url:location.href
+      });
+    }catch(e){}
+  }else{
+    copyText(message+"\n"+location.href);
+  }
+}
+
 renderPlayers();
 renderLeaderboard();
-renderscores();
-dailyChallenge();
+revealDaily();
 </script>
 </body>
 </html>
+
+
+
+
+m
