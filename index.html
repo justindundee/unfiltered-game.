@@ -556,8 +556,49 @@ function getDailyChallenge() {
   return dailyChallenges[hash % dailyChallenges.length];
 }
 
+fun
 function setupDailyChallenge() {
-  $("dailyText").textContent = getDailyChallenge();
+  const challengeText = document.getElementById("dailyText");
+  const challengeButton = document.getElementById("dailyButton");
+
+  if (!challengeText || !challengeButton) {
+    console.error("Daily Challenge HTML elements are missing.");
+    return;
+  }
+
+  const today = new Date();
+  const dateKey = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0")
+  ].join("-");
+
+  let hash = 0;
+  for (const char of dateKey) {
+    hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
+  }
+
+  challengeText.textContent =
+    dailyChallenges[hash % dailyChallenges.length];
+
+  challengeButton.onclick = function () {
+    dailyAccepted = true;
+
+    if (players.length < 2) {
+      showToast("Add at least two players first!");
+      document.getElementById("playerInput").focus();
+      document.getElementById("playerForm").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+      return;
+    }
+
+    showToast("Daily Challenge accepted! 🔥");
+    startGame();
+  };
+}
+
 
   $("dailyButton").addEventListener("click", () => {
     dailyAccepted = true;
