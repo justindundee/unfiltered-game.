@@ -378,15 +378,6 @@ try {
   recentRoasts = {};
 }
 
-function shuffle(items) {
-  const result = [...items];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
-
 function play(forceNew = false) {
   const error = document.getElementById("error");
   const status = document.getElementById("status");
@@ -432,13 +423,6 @@ function play(forceNew = false) {
 
   const roasts = shuffle(available).slice(0, players.length);
 recentRoasts[key].push(...roasts);
-try {
-  localStorage.setItem(
-    "unfilteredRecentRoasts",
-    JSON.stringify(recentRoasts)
-  );
-} catch (error) {
-  console.warn("Could not save roast history.", error);
 }
 
   const list = document.getElementById("list");
