@@ -1,409 +1,132 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unfiltered</title>
-    <style>
-      :root {
-        --bg: #0b1020;
-        --bg-2: #111827;
-        --panel: rgba(17, 24, 39, 0.92);
-        --text: #edf3ff;
-        --muted: #a9b8d1;
-        --accent: #7ef0d0;
-        --accent-2: #8bb8ff;
-        --glow: rgba(126, 240, 208, 0.18);
-        --shadow: rgba(0, 0, 0, 0.28);
-      }
-
-      * { box-sizing: border-box; }
-
-      html { scroll-behavior: smooth; }
-
-      body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background:
-          radial-gradient(circle at top, var(--glow), transparent 28%),
-          linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 40%, var(--bg) 100%);
-        color: var(--text);
-        line-height: 1.6;
-      }
-
-      .container {
-        width: min(1120px, calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      header {
-        padding: 26px 0 8px;
-      }
-
-      .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-      }
-
-      .brand {
-        font-size: 1.5rem;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-
-      .brand span {
-        color: var(--accent);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 24px;
-        flex-wrap: wrap;
-      }
-
-      .nav-links a {
-        color: var(--muted);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      .nav-links a:hover {
-        color: var(--text);
-      }
-
-      .hero {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        align-items: center;
-        gap: 42px;
-        padding: 40px 0 70px;
-      }
-
-      .eyebrow {
-        font-size: 0.74rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--accent);
-        font-weight: 700;
-        margin-bottom: 16px;
-      }
-
-      h1 {
-        margin: 0 0 18px;
-        font-size: clamp(2.9rem, 5vw, 5.2rem);
-        line-height: 0.94;
-      }
-
-      .accent {
-        color: var(--accent);
-      }
-
-      .lead {
-        color: var(--muted);
-        font-size: 1.08rem;
-        max-width: 640px;
-        margin-bottom: 28px;
-      }
-
-      .cta-row {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-bottom: 28px;
-      }
-
-      .button {
-        display: inline-block;
-        text-decoration: none;
-        padding: 14px 22px;
-        border-radius: 999px;
-        font-weight: 700;
-        transition: transform 0.2s ease;
-      }
-
-      .button:hover {
-        transform: translateY(-1px);
-      }
-
-      .button.primary {
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: #07111d;
-      }
-
-      .button.secondary {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255,255,255,0.08);
-        color: var(--text);
-      }
-
-      .stats {
-        display: flex;
-        gap: 28px;
-        flex-wrap: wrap;
-      }
-
-      .stat {
-        min-width: 110px;
-      }
-
-      .stat strong {
-        display: block;
-        font-size: 1.7rem;
-        line-height: 1.1;
-      }
-
-      .stat span {
-        color: var(--muted);
-        font-size: 0.88rem;
-      }
-
-      .game-panel {
-        background: linear-gradient(180deg, rgba(26,35,56,0.9), rgba(10,14,22,0.96));
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 24px;
-        padding: 18px;
-        box-shadow: 0 22px 48px var(--shadow);
-      }
-
-      .console {
-        position: relative;
-        background: linear-gradient(180deg, #121d33 0%, #0d1422 100%);
-        border-radius: 18px;
-        min-height: 330px;
-        border: 1px solid rgba(255,255,255,0.05);
-        overflow: hidden;
-      }
-
-      .console::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(126,240,208,0.15), transparent 35%, rgba(255,141,122,0.17));
-      }
-
-      .console-inner {
-        position: relative;
-        z-index: 1;
-        padding: 18px;
-      }
-
-      .hud {
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        margin-bottom: 18px;
-      }
-
-      .big-label {
-        font-size: 2.5rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin-bottom: 18px;
-      }
-
-      .mini-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .mini-card {
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 12px;
-        padding: 12px 14px;
-      }
-
-      .mini-card strong {
-        display: block;
-        margin-bottom: 6px;
-        color: var(--accent);
-      }
-
-      section {
-        padding: 26px 0 32px;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 26px;
-      }
-
-      .section-header h2 {
-        margin: 0 0 10px;
-        font-size: clamp(2rem, 3vw, 3rem);
-      }
-
-      .section-header p {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 20px;
-      }
-
-      .card {
-        background: rgba(17, 24, 39, 0.84);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 18px;
-        padding: 24px 18px;
-        box-shadow: 0 10px 28px var(--shadow);
-      }
-
-      .feature-icon {
-        width: 48px;
-        height: 48px;
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(126,240,208,0.16), rgba(139,184,255,0.16));
-        margin-bottom: 14px;
-        font-size: 1.4rem;
-      }
-
-      .card h3 {
-        margin-top: 0;
-        margin-bottom: 8px;
-      }
-
-      .card p {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      footer {
-        padding: 26px 0 64px;
-        text-align: center;
-        color: var(--muted);
-      }
-
-      @media (max-width: 840px) {
-        .hero, .cards {
-          grid-template-columns: 1fr;
-        }
-
-        .nav {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div class="container nav">
-        <div class="brand"><span>Un</span>filtered</div>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#features">Features</a>
-          <a href="#world">World</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="container">
-      <section class="hero">
-        <div>
-          <div class="eyebrow">A raw new experience</div>
-          <h1>Break the rules.<br /><span class="accent">Shape the story.</span></h1>
-          <p class="lead">
-            Unfiltered is a bold, immersive game concept centered on freedom, consequence,
-            and the tension of choosing your own path in a world that refuses to stay stable.
-          </p>
-
-          <div class="cta-row">
-            <a class="button primary" href="#about">Play the vision</a>
-            <a class="button secondary" href="#features">Explore the features</a>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>3</strong>
-              <span>Core modes</span>
-            </div>
-            <div class="stat">
-              <strong>∞</strong>
-              <span>Possible outcomes</span>
-            </div>
-            <div class="stat">
-              <strong>1</strong>
-              <span>Unfiltered world</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="game-panel" aria-label="Game preview panel">
-          <div class="console">
-            <div class="console-inner">
-              <div class="hud">
-                <span>Zone: Neon ruins</span>
-                <span>Threat: 72%</span>
-              </div>
-
-              <div class="big-label">Unfiltered</div>
-
-              <div class="mini-grid">
-                <div class="mini-card">
-                  <strong>Objective</strong>
-                  Survive the system and rewrite destiny.
-                </div>
-                <div class="mini-card">
-                  <strong>Style</strong>
-                  Action, story, tension, and shifting choices.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="features">
-        <div class="section-header">
-          <h2>Why Unfiltered stands out</h2>
-          <p>A game built for players who crave unpredictability, authenticity, and consequence.</p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <div class="feature-icon">⚡</div>
-            <h3>High-stakes decisions</h3>
-            <p>Every move changes the world, your allies, and the price of survival.</p>
-          </article>
-
-          <article class="card">
-            <div class="feature-icon">🌌</div>
-            <h3>Unstable worldbuilding</h3>
-            <p>Explore shifting environments, fractured lore, and a reality that resists control.</p>
-          </article>
-
-          <article class="card">
-            <div class="feature-icon">🎮</div>
-            <h3>Player-led chaos</h3>
-            <p>Improvise, experiment, and create your own path in a world that rewards boldness.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="about">
-        <div class="section-header">
-          <h2>About the game</h2>
-          <p>Unfiltered is a fictional game concept designed around instinct, rebellion, and choice.</p>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      Unfiltered © 2026
-    </footer>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNFILTERED 🔥</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100b18;color:#fff;font-family:Arial,sans-serif;padding:20px}
+main{max-width:650px;margin:auto}
+h1{font-size:46px;letter-spacing:2px;color:#e6a3ff;margin-bottom:4px}
+p{color:#d2c4dc;line-height:1.5}
+.card{background:#21182b;border:1px solid #594168;border-radius:16px;padding:20px;margin:18px 0}
+textarea,button{font:inherit;width:100%;border-radius:10px;padding:14px;margin:7px 0}
+textarea{background:#120d19;color:white;border:1px solid #594168;min-height:110px}
+button{background:linear-gradient(100deg,#e6a3ff,#f6d87b);color:#211629;font-weight:bold;border:0;cursor:pointer}
+.secondary{background:#392744;color:white}
+label{display:block;padding:9px 0}
+.result{background:#392744;padding:14px;margin:10px 0;border-radius:10px;white-space:pre-line}
+small{color:#bdaac9}
+#error{color:#ffaaaa}
+</style>
+</head>
+<body>
+<main>
+<h1>UNFILTERED.</h1>
+<p>🔥 THE GROUP CHAT HAS ENTERED THE GAME.</p>
+<div class="card">
+<h2>Who's getting exposed?</h2>
+<p>Add your crew. Friendship is optional. Honesty is brutal.</p>
+<textarea id="names" placeholder="Enter one name per line"></textarea>
+<small>Enter 2 to 12 names.</small>
+</div>
+<div class="card">
+<h2>Choose your challenge</h2>
+<label><input type="radio" name="game" value="famous" checked> Most likely to become famous</label>
+<label><input type="radio" name="game" value="redflag"> Biggest walking red flag</label>
+<label><input type="radio" name="game" value="drama"> Most likely to start drama</label>
+<label><input type="radio" name="game" value="mastermind"> Secretly the mastermind</label>
+<label><input type="radio" name="game" value="arrested"> First arrested in a comedy movie</label>
+<label><input type="radio" name="game" value="disappear"> Most likely to disappear and start a new life</label>
+<button onclick="play()">🔥 REVEAL THE DAMAGE</button>
+<p id="error"></p>
+</div>
+<div class="card" id="results" hidden>
+<h2 id="title"></h2>
+<div id="list"></div>
+<button onclick="share()">↗ SHARE RESULTS</button>
+<button class="secondary" onclick="play()">PLAY AGAIN</button>
+</div>
+<p><small>UNFILTERED. Rankings are random. Don't sue your friends.</small></p>
+</main>
+<script>
+const games={
+famous:["Most likely to become famous",[
+"Famous for all the wrong reasons.",
+"Practicing their acceptance speech in the mirror.",
+"One viral clip away from needing a PR team."
+]],
+redflag:["Biggest walking red flag",[
+"The warning label needs a warning label.",
+"Their dating history needs a documentary.",
+"Somehow both the problem and the plot twist."
+]],
+drama:["Most likely to start drama",[
+"Could turn a grocery run into a season finale.",
+"Would start a group chat just to leak it.",
+"Brings popcorn to a problem they created."
+]],
+mastermind:["Secretly the mastermind",[
+"Has everyone's secrets in a spreadsheet.",
+"Three steps ahead and somehow still late.",
+"Quietly running this group like a tiny corporation."
+]],
+arrested:["First arrested in a comedy movie",[
+"Would say 'I can explain' while holding the evidence.",
+"The plot starts with them saying 'watch this.'",
+"Would livestream the escape plan."
+]],
+disappear:["Most likely to disappear and start a new life",[
+"New name, new haircut, new country by Thursday.",
+"Could vanish for six months and return with a llama.",
+"One inconvenience away from moving to a cabin."
+]]
+};
+let output="";
+function play(){
+const names=document.getElementById("names").value
+.split("\n").map(n=>n.trim()).filter(Boolean);
+const error=document.getElementById("error");
+if(names.length<2||names.length>12){
+error.textContent="Please enter between 2 and 12 names.";
+return;
+}
+error.textContent="";
+const key=document.querySelector('input[name="game"]:checked').value;
+const game=games[key];
+const shuffled=[...names].sort(()=>Math.random()-.5);
+document.getElementById("title").textContent=game[0];
+const list=document.getElementById("list");
+list.replaceChildren();
+output="UNFILTERED 🔥\n"+game[0]+"\n\n";
+shuffled.forEach((name,i)=>{
+const roast=game[1][Math.floor(Math.random()*game[1].length)];
+output+=(i+1)+". "+name+" - "+roast+"\n";
+const item=document.createElement("div");
+item.className="result";
+item.textContent="#"+(i+1)+" "+name+
+(i===0?" 👑":"")+"\n"+roast;
+list.appendChild(item);
+});
+document.getElementById("results").hidden=false;
+document.getElementById("results").scrollIntoView({behavior:"smooth"});
+}
+async function share(){
+try{
+if(navigator.share){
+await navigator.share({title:"UNFILTERED",text:output});
+}else{
+await navigator.clipboard.writeText(output);
+alert("Results copied! Paste them into your group chat.");
+}
+}catch(e){
+if(e.name!=="AbortError"){
+prompt("Copy your results below:",output);
+}
+}
+}
+</script>
+</body>
 </html>
