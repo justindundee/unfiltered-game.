@@ -630,6 +630,9 @@ function getDailyChallenge() {
 
 function setupDailyChallenge() {
   $("dailyText").textContent = getDailyChallenge();
+  <button onclick="loadDailyChallenge()">
+  Daily Challenge
+</button>
 
   $("dailyButton").addEventListener("click", () => {
     dailyAccepted = true;
