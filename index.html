@@ -6,560 +6,389 @@
 <meta name="theme-color" content="#100d19">
 <title>UNFILTERED 🔥 | The Roast Game</title>
 <style>
-:root{--bg:#100d19;--panel:#1b1528;--panel2:#241b34;--gold:#ffd166;--pink:#ff4f91;--text:#f8f5ff;--muted:#b8afc9;--line:#3b2c50}
+:root{--bg:#100d19;--panel:#1b1528;--gold:#ffd166;--pink:#ff4f91;--text:#f8f5ff;--muted:#b8afc9;--line:#3b2c50}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#302044 0%,var(--bg) 55%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-main{width:min(760px,100%);margin:0 auto;padding:24px 16px 48px}
+body{margin:0;background:radial-gradient(ellipse at top,#302044,var(--bg) 60%);color:var(--text);font-family:system-ui,sans-serif;min-height:100vh}
+main{width:min(760px,100%);margin:auto;padding:24px 16px 48px}
 header{text-align:center;padding:14px 0 20px}
-.logo{font-size:clamp(2.8rem,12vw,5.2rem);font-weight:1000;letter-spacing:.07em;line-height:1;color:var(--gold);text-shadow:3px 3px 0 #8c376d,0 0 30px #ff4f9140}
-.tag{color:var(--muted);font-size:.95rem;margin-top:12px}
-.panel{background:#1b1528ed;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 12px 40px #0003}
+.logo{font-size:clamp(2.8rem,12vw,5.2rem);font-weight:1000;letter-spacing:.07em;color:var(--gold);text-shadow:3px 3px 0 #8c376d}
+.tag,.small{color:var(--muted)}
+.tag{margin-top:12px}
+.panel{background:#1b1528ed;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0}
 h2{font-size:1.08rem;margin:0 0 14px;color:var(--gold)}
 label{display:block;font-weight:750;margin:14px 0 8px}
-textarea,input{width:100%;font:inherit;color:var(--text);background:#100d19;border:1px solid #514064;border-radius:12px;padding:13px;outline:none}
-textarea:focus,input:focus{border-color:var(--gold)}
-textarea{min-height:130px;resize:vertical}
-.small{color:var(--muted);font-size:.88rem;margin-top:7px}
+textarea,select{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1px solid #514064;border-radius:12px;padding:13px}
+textarea{min-height:110px;resize:vertical}
+.small{font-size:.88rem;margin-top:7px}
 .categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.category{display:flex;align-items:center;gap:9px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}
-.category input{width:auto;accent-color:var(--pink)}
-button{border:0;border-radius:13px;padding:14px 16px;font:inherit;font-weight:850;cursor:pointer;transition:transform .12s,filter .12s}
-button:active{transform:scale(.98)}
+.category{display:flex;align-items:center;gap:9px;background:#241b34;border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer}
+.category input{accent-color:var(--pink)}
+button{border:0;border-radius:13px;padding:14px 16px;font:inherit;font-weight:850;cursor:pointer}
 .primary{width:100%;background:linear-gradient(100deg,var(--gold),#ffad73);color:#211328;font-size:1.05rem;margin-top:16px}
+.invite{background:linear-gradient(100deg,var(--pink),#bd73ff);color:white;margin-top:18px;width:100%;max-width:420px}
 .secondary{background:#30233f;color:var(--text);border:1px solid #514064}
-.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.actions,.card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
 #error{color:#ff8db4;font-weight:700;margin-top:10px}
 #results{display:none}
-.result{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
-.result:last-child{border-bottom:0}
+.result{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
 .rank{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#38233e;color:var(--gold);font-weight:950}
-.name{font-weight:900;color:#fff}
+.name{font-weight:900}
 .roast{color:#e6dff1;margin-top:3px;line-height:1.45}
-#resultTitle{font-size:1.5rem;font-weight:950;color:var(--gold);margin:0 0 5px}
+#resultTitle{font-size:1.5rem;font-weight:950;color:var(--gold)}
 #roundInfo{color:var(--muted);font-size:.9rem}
-#cardMaker{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
-#cardPlayer{width:100%;font:inherit;color:var(--text);background:#100d19;border:1px solid #514064;border-radius:12px;padding:13px;margin:8px 0 10px}
-#cardPreview{display:none;width:100%;max-width:520px;height:auto;margin:14px auto 0;border-radius:14px;border:1px solid #514064;background:#100d19}
-.card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}
+#cardPreview{display:none;width:100%;max-width:520px;height:auto;margin:14px auto 0;border-radius:14px}
 footer{text-align:center;color:#827790;font-size:.8rem;padding-top:16px}
-@media(max-width:420px){.panel{padding:16px}.categories{grid-template-columns:1fr}.actions{grid-template-columns:1fr}}
+@media(max-width:420px){.panel{padding:16px}.categories,.actions,.card-actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <main>
 <header>
-  <div class="logo">UNFILTERED</div>
-  <div class="tag">🔥 No filters. No mercy. Just friends.</div>
+<div class="logo">UNFILTERED</div>
+<div class="tag">🔥 No filters. No mercy. Just friends.</div>
+<button class="invite" id="invite">📲 INVITE YOUR FRIENDS</button>
+<div class="small" id="inviteStatus" aria-live="polite"></div>
 </header>
 
 <section class="panel">
-  <h2>01 / BUILD YOUR CHAOS</h2>
-  <label for="names">Player names</label>
-  <textarea id="names" placeholder="Juu&#10;Alex&#10;Sam"></textarea>
-  <div class="small">Enter 2–12 players, one name per line. Keep it friendly enough to keep the group chat alive.</div>
-  <label>Choose your flavor</label>
-  <div class="categories" id="categories">
-    <label class="category"><input type="radio" name="game" value="famous" checked> 🌟 Main Character</label>
-    <label class="category"><input type="radio" name="game" value="redflag"> 🚩 Red Flag Energy</label>
-    <label class="category"><input type="radio" name="game" value="drama"> 🎭 Certified Drama</label>
-    <label class="category"><input type="radio" name="game" value="mastermind"> 🧠 Tiny Evil Genius</label>
-    <label class="category"><input type="radio" name="game" value="arrested"> 🚔 Most Likely Arrested</label>
-    <label class="category"><input type="radio" name="game" value="disappear"> 🕵️ Would Vanish First</label>
-  </div>
-  <button class="primary" id="playButton" type="button">REVEAL THE DAMAGE 🔥</button>
-  <div id="error" role="alert" aria-live="polite"></div>
+<h2>01 / BUILD YOUR CHAOS</h2>
+<label for="names">Player names</label>
+<textarea id="names" placeholder="Juu&#10;Alex&#10;Sam"></textarea>
+<div class="small">Enter 2–12 players, one name per line.</div>
+<label>Choose your flavor</label>
+<div class="categories">
+<label class="category"><input type="radio" name="game" value="famous" checked> 🌟 Main Character</label>
+<label class="category"><input type="radio" name="game" value="redflag"> 🚩 Red Flag Energy</label>
+<label class="category"><input type="radio" name="game" value="drama"> 🎭 Certified Drama</label>
+<label class="category"><input type="radio" name="game" value="mastermind"> 🧠 Tiny Evil Genius</label>
+<label class="category"><input type="radio" name="game" value="arrested"> 🚔 Most Likely Arrested</label>
+<label class="category"><input type="radio" name="game" value="disappear"> 🕵️ Would Vanish First</label>
+</div>
+<button class="primary" id="play">REVEAL THE DAMAGE 🔥</button>
+<div id="error" role="alert"></div>
 </section>
 
 <section class="panel" id="results" aria-live="polite">
-  <div id="resultTitle">THE DAMAGE</div>
-  <div id="roundInfo"></div>
-  <div id="list"></div>
-  <div id="cardMaker">
-    <h2>MAKE IT SHAREABLE</h2>
-    <label for="cardPlayer">Choose whose roast goes on the card</label>
-    <select id="cardPlayer"><option value="">Reveal the damage first</option></select>
-    <button class="primary" id="makeCard" type="button">🎨 CREATE ROAST CARD</button>
-    <canvas id="cardPreview" width="1080" height="1350" aria-label="Preview of your UNFILTERED roast card"></canvas>
-    <div class="card-actions" id="cardActions" style="display:none">
-      <button class="secondary" id="saveCard" type="button">⬇️ Save Image</button>
-      <button class="secondary" id="shareCard" type="button">📲 Share Card</button>
-    </div>
-    <div class="small" id="cardStatus" aria-live="polite">Choose a player after revealing a round to make a branded roast card.</div>
-  </div>
-  <div class="actions">
-    <button class="secondary" id="newRound" type="button">🎲 New Round</button>
-    <button class="secondary" id="shareText" type="button">📲 Share Results</button>
-    <button class="secondary" id="copyText" type="button">📋 Copy Results</button>
-    <button class="secondary" id="resetGame" type="button">↻ Start Over</button>
-  </div>
-  <div class="small" id="shareStatus" aria-live="polite"></div>
+<div id="resultTitle"></div>
+<div id="roundInfo"></div>
+<div id="list"></div>
+<h2>MAKE IT SHAREABLE</h2>
+<label for="cardPlayer">Choose whose roast goes on the card</label>
+<select id="cardPlayer"></select>
+<button class="primary" id="makeCard">🎨 CREATE ROAST CARD</button>
+<canvas id="cardPreview" width="1080" height="1350"></canvas>
+<div class="card-actions" id="cardActions" style="display:none">
+<button class="secondary" id="saveCard">⬇️ Save Image</button>
+<button class="secondary" id="shareCard">📲 Share Card</button>
+</div>
+<div class="small" id="cardStatus"></div>
+<div class="actions">
+<button class="secondary" id="newRound">🎲 New Round</button>
+<button class="secondary" id="shareResults">📲 Share Results</button>
+<button class="secondary" id="copyResults">📋 Copy Results</button>
+<button class="secondary" id="reset">↻ Start Over</button>
+</div>
+<div class="small" id="shareStatus"></div>
 </section>
 <footer>UNFILTERED • Play hard, roast responsibly.</footer>
 </main>
 
 <script>
 "use strict";
-
-const games = {
-  famous: {
-    title: "🌟 MAIN CHARACTER ENERGY",
-    roasts: [
-      "Would wave to a crowd that was waving at someone else.",
-      "Has a personal soundtrack and expects everyone to hear it.",
-      "Turns a quick story into a three-part documentary.",
-      "Practices arguments in the shower and still loses.",
-      "Would autograph their own forehead if a pen was handy.",
-      "Treats every group photo like a campaign poster.",
-      "Could make a minor inconvenience about their personal journey.",
-      "Says 'long story short' then starts at childhood.",
-      "Has the confidence of someone who has never read the comments.",
-      "Would thank the Academy for surviving Monday.",
-      "Enters a room like the Wi-Fi just got stronger.",
-      "Thinks the group chat is their personal podcast.",
-      "Could turn ordering lunch into a season finale.",
-      "Has a dramatic pause professionally installed.",
-      "Would put 'iconic' in their own biography.",
-      "Thinks being five minutes late is a grand entrance.",
-      "Their camera roll is 80% pictures of themselves.",
-      "Would make a documentary about finding their keys.",
-      "Has main-character confidence and side-quest planning.",
-      "Could turn a sneeze into a press conference."
-    ]
-  },
-  redflag: {
-    title: "🚩 RED FLAG ENERGY",
-    roasts: [
-      "Says 'I'm brutally honest' right before being rude.",
-      "Texts 'we need to talk' then disappears for six hours.",
-      "Their apology comes with terms and conditions.",
-      "Calls every ex 'crazy' like they weren't in the relationship.",
-      "Says they're chill, then audits your punctuation.",
-      "Treats a read receipt like a federal investigation.",
-      "Would flirt with a traffic cone if it gave attention.",
-      "Has more mixed signals than a broken airport sign.",
-      "Says 'no drama' while carrying a full drama subscription.",
-      "Thinks jealousy is a love language.",
-      "Leaves people on read, then asks why they got distant.",
-      "Has a type, and apparently it's poor decisions.",
-      "Says 'trust me' with the energy of a suspicious email.",
-      "Would start an argument and ask for a calm conversation.",
-      "Their standards are high; their own behavior is buffering.",
-      "Uses 'I'm just like that' as a software update refusal.",
-      "Can spot everyone else's red flags through rose-colored glasses.",
-      "Sends 'k' and expects a peaceful evening.",
-      "Has commitment issues with plans made yesterday.",
-      "Calls it being mysterious; everyone else calls it bad communication."
-    ]
-  },
-  drama: {
-    title: "🎭 CERTIFIED DRAMA",
-    roasts: [
-      "Could start a feud in an empty room.",
-      "Says 'I'm not making a scene' while selecting the soundtrack.",
-      "Has never met a small problem they couldn't give a trilogy.",
-      "Their story has more plot twists than a crime series.",
-      "Would subtweet someone sitting directly beside them.",
-      "Can turn 'okay' into a five-alarm emotional event.",
-      "Brings receipts to conversations that haven't happened yet.",
-      "Their favorite hobby is saying 'interesting...' ominously.",
-      "Could make a delayed pizza delivery a betrayal arc.",
-      "Says 'I'm done' with enough sequels for a franchise.",
-      "Treats gossip like breaking international news.",
-      "Can detect a vibe shift from three zip codes away.",
-      "Their group chat has a writers' room.",
-      "Would call an emergency meeting over a weird emoji.",
-      "Says 'not to be dramatic' like a warning label.",
-      "Has a season finale every Thursday.",
-      "Can make a silent treatment louder than a concert.",
-      "Knows everyone's business and calls it community service.",
-      "Their life needs a recap before every episode.",
-      "Would turn a missed call into a conspiracy board."
-    ]
-  },
-  mastermind: {
-    title: "🧠 TINY EVIL GENIUS",
-    roasts: [
-      "Has a five-year plan and forgot what day it is.",
-      "Could outsmart a smart fridge, then lose to a jar lid.",
-      "Says 'I have a system' while everything is on fire.",
-      "Would scheme for three weeks to avoid one awkward text.",
-      "Has the confidence of a chess grandmaster and the strategy of a pigeon.",
-      "Can plan everyone else's life except their own.",
-      "Thinks three steps ahead, directly into a wall.",
-      "Would make a spreadsheet for a spontaneous decision.",
-      "Has backup plans for plans that never existed.",
-      "Could manipulate a vending machine into keeping the change.",
-      "Says 'watch this' before a preventable disaster.",
-      "Their master plan depends on everyone forgetting yesterday.",
-      "Can read a room but not the instructions.",
-      "Has suspiciously detailed answers to questions nobody asked.",
-      "Would schedule an unplanned accident.",
-      "Could run a heist but forget the getaway snacks.",
-      "Has genius ideas at 2 a.m. and zero evidence by breakfast.",
-      "Thinks they're playing 4D chess; it's a board game café.",
-      "Could turn a simple task into a six-stage operation.",
-      "Is somehow both the mastermind and the reason it failed."
-    ]
-  },
-  arrested: {
-    title: "🚔 MOST LIKELY ARRESTED",
-    roasts: [
-      "Would ask the officer if this can go on their record as a funny story.",
-      "Looks guilty while doing absolutely nothing.",
-      "Would try to talk their way out of a parking ticket and confess to three other things.",
-      "Would say 'technically...' at the worst possible moment.",
-      "Has the energy of someone who knows a guy who knows a guy.",
-      "Would ask for a lawyer, then immediately overshare.",
-      "Could get questioned for a crime they learned about five minutes ago.",
-      "Would bring snacks to their own interrogation.",
-      "Would mistake a serious warning for a customer-service survey.",
-      "Their alibi begins with 'okay, so, funny story.'",
-      "Would ask if the handcuffs come in different sizes.",
-      "Could get caught in a lie while telling the truth.",
-      "Would try to make the security camera laugh.",
-      "Has a face that says 'I can explain' before anyone asks.",
-      "Would ask the judge if they can appeal the vibe.",
-      "Would narrate the whole situation like a reality show.",
-      "Would accidentally incriminate themselves in a group text.",
-      "Would bring a loyalty card to the courthouse.",
-      "Would ask if community service includes a lunch break.",
-      "Would say 'for the record' and make the record much worse."
-    ]
-  },
-  disappear: {
-    title: "🕵️ WOULD VANISH FIRST",
-    roasts: [
-      "Leaves the party without saying goodbye and becomes a local legend.",
-      "Could disappear from a group chat while actively typing.",
-      "Has three social accounts and nobody knows which one is real.",
-      "Would move cities because someone waved at them twice.",
-      "Treats replying to a text like a long-term project.",
-      "Could go off-grid and still forget to cancel a subscription.",
-      "Says 'I'm on my way' from a location they won't disclose.",
-      "Would vanish for six months and return asking what's for dinner.",
-      "Their phone is always on 2% and somehow still unreachable.",
-      "Could hide in plain sight behind a vague Instagram story.",
-      "Has mastered the art of leaving before the bill arrives.",
-      "Would ghost a party they personally organized.",
-      "Can be online all day and unreachable by everyone.",
-      "Would change their name to avoid an awkward conversation.",
-      "Leaves messages on delivered like it's a lifestyle choice.",
-      "Could vanish from a photo while standing in the middle.",
-      "Their location is either 'five minutes away' or classified.",
-      "Would start a new life because their coffee order got remembered.",
-      "Says 'brb' and enters another timeline.",
-      "Could disappear during a headcount and still be holding the clipboard."
-    ]
-  }
+const games={
+famous:{title:"🌟 MAIN CHARACTER ENERGY",roasts:[
+"Would wave to a crowd waving at someone else.",
+"Has a personal soundtrack and expects everyone to hear it.",
+"Turns a quick story into a three-part documentary.",
+"Practices arguments in the shower and still loses.",
+"Would autograph their own forehead if a pen was handy.",
+"Treats every group photo like a campaign poster.",
+"Could make a minor inconvenience about their personal journey.",
+"Says 'long story short' then starts at childhood.",
+"Has the confidence of someone who never reads comments.",
+"Would thank the Academy for surviving Monday.",
+"Enters a room like the Wi-Fi just got stronger.",
+"Thinks the group chat is their personal podcast.",
+"Could turn ordering lunch into a season finale.",
+"Has a dramatic pause professionally installed.",
+"Would put 'iconic' in their own biography.",
+"Thinks being five minutes late is a grand entrance.",
+"Their camera roll is 80% pictures of themselves.",
+"Would make a documentary about finding their keys.",
+"Has main-character confidence and side-quest planning.",
+"Could turn a sneeze into a press conference."
+]},
+redflag:{title:"🚩 RED FLAG ENERGY",roasts:[
+"Says 'I'm brutally honest' right before being rude.",
+"Texts 'we need to talk' then disappears for six hours.",
+"Their apology comes with terms and conditions.",
+"Calls every ex 'crazy' like they weren't in the relationship.",
+"Says they're chill, then audits your punctuation.",
+"Treats a read receipt like a federal investigation.",
+"Would flirt with a traffic cone if it gave attention.",
+"Has more mixed signals than a broken airport sign.",
+"Says 'no drama' while carrying a drama subscription.",
+"Thinks jealousy is a love language.",
+"Leaves people on read, then asks why they got distant.",
+"Has a type, and apparently it's poor decisions.",
+"Says 'trust me' with the energy of a suspicious email.",
+"Would start an argument and ask for a calm conversation.",
+"Their standards are high; their own behavior is buffering.",
+"Uses 'I'm just like that' as a software update refusal.",
+"Can spot everyone else's red flags through rose-colored glasses.",
+"Sends 'k' and expects a peaceful evening.",
+"Has commitment issues with plans made yesterday.",
+"Calls it being mysterious; everyone else calls it bad communication."
+]},
+drama:{title:"🎭 CERTIFIED DRAMA",roasts:[
+"Could start a feud in an empty room.",
+"Says 'I'm not making a scene' while selecting the soundtrack.",
+"Has never met a small problem they couldn't give a trilogy.",
+"Their story has more plot twists than a crime series.",
+"Would subtweet someone sitting directly beside them.",
+"Can turn 'okay' into a five-alarm emotional event.",
+"Brings receipts to conversations that haven't happened yet.",
+"Their favorite hobby is saying 'interesting...' ominously.",
+"Could make a delayed pizza delivery a betrayal arc.",
+"Says 'I'm done' with enough sequels for a franchise.",
+"Treats gossip like breaking news and themselves like the anchor.",
+"Could turn a typo into evidence of disrespect.",
+"Has a private investigator living in their imagination.",
+"Would announce a personal crisis during someone else's birthday.",
+"Says 'it's fine' in a tone that closes restaurants.",
+"Their life needs a narrator and a legal disclaimer.",
+"Can detect a vibe shift from three zip codes away.",
+"Makes a group chat feel like a courtroom drama.",
+"Has enough screenshots to launch a streaming service.",
+"Could start a rumor and then be shocked by the plot."
+]},
+mastermind:{title:"🧠 TINY EVIL GENIUS",roasts:[
+"Has a five-year plan and forgot what day it is.",
+"Could outsmart a smart fridge, then lose to a jar lid.",
+"Says 'I have a system' while everything is on fire.",
+"Would scheme for three weeks to avoid one awkward text.",
+"Has chess-grandmaster confidence and pigeon strategy.",
+"Can plan everyone else's life except their own.",
+"Thinks three steps ahead, directly into a wall.",
+"Would make a spreadsheet for a spontaneous decision.",
+"Has backup plans for plans that never existed.",
+"Could manipulate a vending machine into keeping the change.",
+"Says 'watch this' before a preventable disaster.",
+"Their master plan depends on everyone forgetting yesterday.",
+"Can read a room but not the instructions.",
+"Has suspiciously detailed answers to questions nobody asked.",
+"Would schedule an unplanned accident.",
+"Could run a heist but forget the getaway snacks.",
+"Has genius ideas at 2 a.m. and zero evidence by breakfast.",
+"Thinks they're playing 4D chess; it's a board game café.",
+"Could turn a simple task into a six-stage operation.",
+"Is somehow both the mastermind and the reason it failed."
+]},
+arrested:{title:"🚔 MOST LIKELY ARRESTED",roasts:[
+"Would ask the officer if this can go on their record as a funny story.",
+"Looks guilty while doing absolutely nothing.",
+"Would talk their way out of a parking ticket and confess to three other things.",
+"Would say 'technically...' at the worst possible moment.",
+"Has the energy of someone who knows a guy who knows a guy.",
+"Would ask for a lawyer, then immediately overshare.",
+"Could get questioned for a crime they learned about five minutes ago.",
+"Would bring snacks to their own interrogation.",
+"Would mistake a serious warning for a customer-service survey.",
+"Their alibi begins with 'okay, so, funny story.'",
+"Would ask if the handcuffs come in different sizes.",
+"Could get caught in a lie while telling the truth.",
+"Would try to make the security camera laugh.",
+"Has a face that says 'I can explain' before anyone asks.",
+"Would ask the judge if they can appeal the vibe.",
+"Would narrate the whole situation like a reality show.",
+"Would accidentally incriminate themselves in a group text.",
+"Would bring a loyalty card to the courthouse.",
+"Would ask if community service includes a lunch break.",
+"Would say 'for the record' and make the record much worse."
+]},
+disappear:{title:"🕵️ WOULD VANISH FIRST",roasts:[
+"Leaves the party without saying goodbye and becomes a local legend.",
+"Could disappear from a group chat while actively typing.",
+"Has three social accounts and nobody knows which one is real.",
+"Would move cities because someone waved at them twice.",
+"Treats replying to a text like a long-term project.",
+"Could go off-grid and still forget to cancel a subscription.",
+"Says 'I'm on my way' from a location they won't disclose.",
+"Would vanish for six months and return asking what's for dinner.",
+"Their phone is always on 2% and somehow still unreachable.",
+"Could hide in plain sight behind a vague Instagram story.",
+"Has mastered the art of leaving before the bill arrives.",
+"Would ghost a party they personally organized.",
+"Can be online all day and unreachable by everyone.",
+"Would change their name to avoid an awkward conversation.",
+"Leaves messages on delivered like it's a lifestyle choice.",
+"Could vanish from a photo while standing in the middle.",
+"Their location is either 'five minutes away' or classified.",
+"Would start a new life because their coffee order got remembered.",
+"Says 'brb' and enters another timeline.",
+"Could disappear during a headcount and still be holding the clipboard."
+]}
 };
 
-let recentRoasts = {};
-let lastGameKey = "";
-let output = "";
-let currentResults = [];
-let cardBlob = null;
+let currentResults=[],lastKey="",roundCount=0,roastHistory={};
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 
-function shuffle(items) {
-  const result = [...items];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
+function play(){
+$("error").textContent="";
+let names=$("names").value.split(/\n/).map(n=>n.trim()).filter(Boolean);
+if(names.length<2||names.length>12){$("error").textContent="Enter 2–12 player names.";return}
+if(new Set(names.map(n=>n.toLowerCase())).size!==names.length){$("error").textContent="Use a unique name for every player.";return}
+let selected=document.querySelector('input[name="game"]:checked').value;
+if(roundCount&&selected===lastKey){
+let keys=Object.keys(games).filter(k=>k!==lastKey);
+selected=keys[Math.floor(Math.random()*keys.length)];
+document.querySelector('input[name="game"][value="'+selected+'"]').checked=true;
+}
+let game=games[selected];
+let pool=game.roasts.filter(r=>!(roastHistory[selected]||[]).includes(r));
+if(pool.length<names.length){roastHistory[selected]=[];pool=[...game.roasts]}
+let roasts=shuffle(pool).slice(0,names.length);
+roastHistory[selected]=[...(roastHistory[selected]||[]),...roasts].slice(-16);
+currentResults=shuffle(names).map((name,i)=>({name,roast:roasts[i]}));
+lastKey=selected;roundCount++;
+$("resultTitle").textContent=game.title;
+$("roundInfo").textContent=names.length+" players • "+names.length+" roasts";
+$("list").replaceChildren();
+$("cardPlayer").replaceChildren();
+let output="UNFILTERED 🔥\n"+game.title+"\n\n";
+currentResults.forEach((p,i)=>{
+let row=document.createElement("div");row.className="result";
+let rank=document.createElement("div");rank.className="rank";rank.textContent="#"+(i+1);
+let body=document.createElement("div");
+let name=document.createElement("div");name.className="name";name.textContent=p.name;
+let roast=document.createElement("div");roast.className="roast";roast.textContent=p.roast;
+body.append(name,roast);row.append(rank,body);$("list").append(row);
+let option=document.createElement("option");option.value=i;option.textContent=p.name;$("cardPlayer").append(option);
+output+=(i+1)+". "+p.name+": "+p.roast+"\n";
+});
+window.lastOutput=output;
+$("cardPreview").style.display="none";
+$("cardActions").style.display="none";
+$("cardStatus").textContent="Choose a player to make a roast card.";
+$("results").style.display="block";
+$("results").scrollIntoView({behavior:"smooth"});
 }
 
-function play(forceNew = false) {
-  const error = document.getElementById("error");
-  const status = document.getElementById("shareStatus");
-  error.textContent = "";
-  status.textContent = "";
-
-  const names = document.getElementById("names").value
-    .split(/\n/)
-    .map(name => name.trim())
-    .filter(Boolean);
-
-  if (names.length < 2 || names.length > 12) {
-    error.textContent = "Enter between 2 and 12 player names.";
-    return;
-  }
-
-  const normalized = names.map(name => name.toLowerCase());
-  if (new Set(normalized).size !== normalized.length) {
-    error.textContent = "Each player needs a unique name or nickname.";
-    return;
-  }
-
-  const selected = document.querySelector('input[name="game"]:checked');
-  if (!selected || !games[selected.value]) {
-    error.textContent = "Choose a game category.";
-    return;
-  }
-
-  let key = selected.value;
-  if (forceNew && key === lastGameKey) {
-    const keys = Object.keys(games).filter(item => item !== lastGameKey);
-    key = keys[Math.floor(Math.random() * keys.length)];
-    const alternate = document.querySelector('input[name="game"][value="' + key + '"]');
-    if (alternate) alternate.checked = true;
-  }
-
-  const game = games[key];
-  const players = shuffle(names);
-  if (!recentRoasts[key]) recentRoasts[key] = [];
-
-  let available = game.roasts.filter(roast => !recentRoasts[key].includes(roast));
-  if (available.length < players.length) {
-    recentRoasts[key] = [];
-    available = [...game.roasts];
-  }
-
-  const roasts = shuffle(available).slice(0, players.length);
-  recentRoasts[key].push(...roasts);
-  recentRoasts[key] = recentRoasts[key].slice(-16);
-
-  currentResults = players.map((name, index) => ({ name, roast: roasts[index] }));
-  const picker = document.getElementById("cardPlayer");
-  picker.replaceChildren();
-  currentResults.forEach((entry, index) => {
-    const option = document.createElement("option");
-    option.value = String(index);
-    option.textContent = entry.name;
-    picker.append(option);
-  });
-  document.getElementById("cardPreview").style.display = "none";
-  document.getElementById("cardActions").style.display = "none";
-  document.getElementById("cardStatus").textContent = "Choose a player and create their roast card.";
-  cardBlob = null;
-
-  const list = document.getElementById("list");
-  list.replaceChildren();
-  document.getElementById("resultTitle").textContent = game.title;
-  document.getElementById("roundInfo").textContent =
-    players.length + " players • " + players.length + " different roasts";
-
-  output = "UNFILTERED 🔥\n" + game.title + "\n\n";
-  players.forEach((name, index) => {
-    output += (index + 1) + ". " + name + ": " + roasts[index] + "\n";
-    const item = document.createElement("div");
-    item.className = "result";
-
-    const rank = document.createElement("div");
-    rank.className = "rank";
-    rank.textContent = "#" + (index + 1);
-
-    const body = document.createElement("div");
-    const player = document.createElement("div");
-    player.className = "name";
-    player.textContent = name;
-    const roast = document.createElement("div");
-    roast.className = "roast";
-    roast.textContent = roasts[index];
-    body.append(player, roast);
-    item.append(rank, body);
-    list.append(item);
-  });
-
-  lastGameKey = key;
-  document.getElementById("results").style.display = "block";
-  document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+async function inviteFriends(){
+const url="https://justindundee.github.io/unfiltered-game./";
+const message="🔥 Let's play UNFILTERED! Roast your friends: "+url;
+try{
+if(navigator.share){
+await navigator.share({title:"UNFILTERED 🔥",text:message,url});
+}else{
+await navigator.clipboard.writeText(message);
+$("inviteStatus").textContent="Invite copied! Send it to your friends.";
+}
+}catch(e){
+if(e.name!=="AbortError"){
+prompt("Copy and send this invite:",message);
+}
+}
 }
 
-async function copyOutput() {
-  const status = document.getElementById("shareStatus");
-  if (!output) {
-    status.textContent = "Reveal the damage first.";
-    return;
-  }
-  try {
-    await navigator.clipboard.writeText(output);
-    status.textContent = "Copied. Drop it in the group chat. 🔥";
-  } catch (e) {
-    const field = document.createElement("textarea");
-    field.value = output;
-    field.style.position = "fixed";
-    field.style.opacity = "0";
-    document.body.append(field);
-    field.select();
-    const ok = document.execCommand("copy");
-    field.remove();
-    status.textContent = ok ? "Copied. Drop it in the group chat. 🔥" : "Copy didn't work here. Select the results text and copy it.";
-  }
+async function copyResults(){
+if(!window.lastOutput){$("shareStatus").textContent="Play a round first!";return}
+try{
+await navigator.clipboard.writeText(window.lastOutput);
+$("shareStatus").textContent="Results copied! Share the roast. 🔥";
+}catch(e){
+prompt("Copy your results:",window.lastOutput);
+}
 }
 
-async function shareOutput() {
-  const status = document.getElementById("shareStatus");
-  if (!output) {
-    status.textContent = "Reveal the damage first.";
-    return;
-  }
-  if (navigator.share) {
-    try {
-      await navigator.share({ title: "UNFILTERED 🔥", text: output, url: location.href });
-      status.textContent = "Ready to share. 🔥";
-    } catch (e) {
-      if (e && e.name !== "AbortError") status.textContent = "Sharing isn't available here. Try Copy Results.";
-    }
-  } else {
-    await copyOutput();
-  }
+async function shareResults(){
+if(!window.lastOutput){$("shareStatus").textContent="Play a round first!";return}
+try{
+if(navigator.share){
+await navigator.share({title:"UNFILTERED 🔥",text:window.lastOutput});
+}else{
+await copyResults();
+}
+}catch(e){
+if(e.name!=="AbortError")$("shareStatus").textContent="Sharing failed. Try Copy Results.";
+}
 }
 
-function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 7) {
-  const words = text.split(/\s+/);
-  let line = "";
-  let lines = [];
-  for (const word of words) {
-    const test = line ? line + " " + word : word;
-    if (ctx.measureText(test).width > maxWidth && line) {
-      lines.push(line);
-      line = word;
-    } else line = test;
-  }
-  if (line) lines.push(line);
-  if (lines.length > maxLines) {
-    lines = lines.slice(0, maxLines);
-    lines[maxLines - 1] = lines[maxLines - 1].replace(/[.,;:]?$/, "…");
-  }
-  lines.forEach((item, i) => ctx.fillText(item, x, y + i * lineHeight));
-  return lines.length * lineHeight;
+function createCard(){
+const p=currentResults[Number($("cardPlayer").value)];
+if(!p){$("cardStatus").textContent="Play a round first.";return}
+const c=$("cardPreview"),ctx=c.getContext("2d");
+const g=ctx.createLinearGradient(0,0,1080,1350);
+g.addColorStop(0,"#100d19");g.addColorStop(.5,"#302044");g.addColorStop(1,"#100d19");
+ctx.fillStyle=g;ctx.fillRect(0,0,1080,1350);
+ctx.strokeStyle="#ffd166";ctx.lineWidth=8;ctx.strokeRect(35,35,1010,1280);
+ctx.textAlign="center";
+ctx.fillStyle="#ffd166";ctx.font="900 84px system-ui";ctx.fillText("UNFILTERED",540,180);
+ctx.fillStyle="#ff4f91";ctx.font="800 32px system-ui";ctx.fillText("🔥 NO FILTERS. NO MERCY. 🔥",540,245);
+ctx.fillStyle="#b8afc9";ctx.font="700 30px system-ui";ctx.fillText("THE ROAST GOES TO",540,400);
+let size=78;
+ctx.font="900 "+size+"px system-ui";
+while(ctx.measureText(p.name).width>850&&size>38){size-=4;ctx.font="900 "+size+"px system-ui"}
+ctx.fillStyle="#fff";ctx.fillText(p.name,540,520);
+ctx.fillStyle="#ffd166";ctx.font="900 40px system-ui";ctx.fillText("YOUR OFFICIAL ROAST:",540,650);
+ctx.fillStyle="#f8f5ff";ctx.font="700 48px system-ui";
+const words=p.roast.split(" ");let lines=[],line="";
+words.forEach(w=>{
+let test=line?line+" "+w:w;
+if(ctx.measureText(test).width>820&&line){lines.push(line);line=w}else line=test;
+});
+if(line)lines.push(line);
+lines.slice(0,7).forEach((l,i)=>ctx.fillText(l,540,760+i*68));
+ctx.fillStyle="#ff4f91";ctx.font="800 28px system-ui";ctx.fillText("TAG YOUR FRIENDS. ACCEPT YOUR FATE.",540,1190);
+ctx.fillStyle="#ffd166";ctx.font="900 32px system-ui";ctx.fillText("UNFILTERED GAME",540,1250);
+c.style.display="block";
+$("cardActions").style.display="grid";
+$("cardStatus").textContent="Your roast card is ready!";
 }
 
-async function createRoastCard() {
-  const status = document.getElementById("cardStatus");
-  const index = Number(document.getElementById("cardPlayer").value);
-  const entry = currentResults[index];
-  if (!entry) {
-    status.textContent = "Reveal a round and choose a player first.";
-    return;
-  }
-
-  const canvas = document.getElementById("cardPreview");
-  const ctx = canvas.getContext("2d");
-  const gradient = ctx.createLinearGradient(0, 0, 1080, 1350);
-  gradient.addColorStop(0, "#171022");
-  gradient.addColorStop(.55, "#2d1c42");
-  gradient.addColorStop(1, "#100d19");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, 1080, 1350);
-  ctx.strokeStyle = "#ffd166";
-  ctx.lineWidth = 8;
-  ctx.strokeRect(34, 34, 1012, 1282);
-  ctx.strokeStyle = "#ff4f91";
-  ctx.lineWidth = 3;
-  ctx.strokeRect(54, 54, 972, 1242);
-
-  ctx.textAlign = "center";
-  ctx.textBaseline = "alphabetic";
-  ctx.fillStyle = "#ffd166";
-  ctx.font = "900 84px system-ui, sans-serif";
-  ctx.fillText("UNFILTERED", 540, 190);
-
-  ctx.fillStyle = "#ff4f91";
-  ctx.font = "800 30px system-ui, sans-serif";
-  ctx.fillText("🔥 NO FILTERS. NO MERCY. 🔥", 540, 250);
-
-  ctx.fillStyle = "#b8afc9";
-  ctx.font = "700 28px system-ui, sans-serif";
-  ctx.fillText("THE ROAST GOES TO", 540, 390);
-
-  let nameSize = 76;
-  while (nameSize > 42) {
-    ctx.font = `950 ${nameSize}px system-ui, sans-serif`;
-    if (ctx.measureText(entry.name).width <= 880) break;
-    nameSize -= 4;
-  }
-
-  ctx.fillStyle = "#ffffff";
-  ctx.font = `950 ${nameSize}px system-ui, sans-serif`;
-  ctx.fillText(entry.name, 540, 500);
-
-  ctx.fillStyle = "#ffd166";
-  ctx.font = "900 40px system-ui, sans-serif";
-  ctx.fillText("YOUR OFFICIAL ROAST:", 540, 640);
-
-  ctx.fillStyle = "#f8f5ff";
-  ctx.font = "700 48px system-ui, sans-serif";
-  const textHeight = drawWrappedText(ctx, entry.roast, 540, 740, 820, 68, 7);
-
-  ctx.fillStyle = "#ff4f91";
-  ctx.font = "800 30px system-ui, sans-serif";
-  ctx.fillText("TAG YOUR FRIENDS. ACCEPT YOUR FATE.", 540, Math.min(1160, 800 + textHeight + 80));
-
-  ctx.fillStyle = "#ffd166";
-  ctx.font = "900 32px system-ui, sans-serif";
-  ctx.fillText("UNFILTERED GAME", 540, 1240);
-
-  canvas.style.display = "block";
-  document.getElementById("cardActions").style.display = "grid";
-  cardBlob = await new Promise(resolve => canvas.toBlob(resolve, "image/png"));
-  status.textContent = cardBlob
-    ? "Your roast card is ready. Save it or share it. 🔥"
-    : "Card preview made, but image export failed in this browser.";
+function saveCard(){
+const c=$("cardPreview");
+if(c.style.display==="none"){$("cardStatus").textContent="Create a card first.";return}
+const a=document.createElement("a");
+a.download="unfiltered-roast-card.png";
+a.href=c.toDataURL("image/png");
+a.click();
 }
 
-async function saveRoastCard() {
-  const status = document.getElementById("cardStatus");
-  if (!cardBlob) {
-    status.textContent = "Create the card first.";
-    return;
-  }
-
-  const url = URL.createObjectURL(cardBlob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "unfiltered-roast-card.png";
-  document.body.append(link);
-  link.click();
-  link.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1500);
-  status.textContent = "If your phone opens a preview instead, use its Share button to save the image.";
+async function shareCard(){
+const c=$("cardPreview");
+if(c.style.display==="none"){$("cardStatus").textContent="Create a card first.";return}
+try{
+const blob=await new Promise(resolve=>c.toBlob(resolve,"image/png"));
+const file=new File([blob],"unfiltered-roast-card.png",{type:"image/png"});
+if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+await navigator.share({title:"UNFILTERED Roast Card",files:[file]});
+}else{
+saveCard();
+}
+}catch(e){
+$("cardStatus").textContent="Try Save Image to keep your roast card.";
+}
 }
 
-async function shareRoastCard() {
-  const status = document.getElementById("cardStatus");
-  if (!cardBlob) {
-    status.textContent = "Create the card first.";
-    return;
-  }
-
-  const file = new File([cardBlob], "unfiltered-roast-card.png", { type: "image/png" });
-
-  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-    try {
-      await navigator.share({
-        title: "UNFILTERED Roast Card 🔥",
-        text: "My UNFILTERED roast. Your turn.",
-        files: [file]
-      });
-      status.textContent = "Shared. Let the group chat recover. 🔥";
-    } catch (e) {
-      if (e && e.name !== "AbortError") {
-        status.textContent = "Sharing failed here. Try Save Image instead.";
-      }
-    }
-  } else {
-    await saveRoastCard();
-  }
+function resetGame(){
+$("names").value="";
+$("error").textContent="";
+$("shareStatus").textContent="";
+$("results").style.display="none";
+$("names").focus();
 }
 
-function resetGame() {
-  document.getElementById("names").value = "";
-  document.getElementById("error").textContent = "";
-  document.getElementById("shareStatus").textContent = "";
-  document.getElementById("results").style.display = "none";
-  document.getElementById("names").focus();
-}
-
-document.getElementById("playButton").addEventListener("click", () => play(false));
-document.getElementById("newRound").addEventListener("click", () => play(true));
-document.getElementById("shareText").addEventListener("click", shareOutput);
-document.getElementById("copyText").addEventListener("click", copyOutput);
-document.getElementById("resetGame").addEventListener("click", resetGame);
-document.getElementById("makeCard").addEventListener("click", createRoastCard);
-document.getElementById("saveCard").addEventListener("click", saveRoastCard);
-document.getElementById("shareCard").addEventListener("click", shareRoastCard);
+$("invite").addEventListener("click",inviteFriends);
+$("play").addEventListener("click",play);
+$("newRound").addEventListener("click",play);
+$("shareResults").addEventListener("click",shareResults);
+$("copyResults").addEventListener("click",copyResults);
+$("makeCard").addEventListener("click",createCard);
+$("saveCard").addEventListener("click",saveCard);
+$("shareCard").addEventListener("click",shareCard);
+$("reset").addEventListener("click",resetGame);
 </script>
-</body> 
+</body>
 </html>
