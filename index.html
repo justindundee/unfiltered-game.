@@ -40,7 +40,20 @@ small{color:#bdaac9}
 <label><input type="radio" name="game" value="mastermind"> Secretly the mastermind</label>
 <label><input type="radio" name="game" value="arrested"> First arrested in a comedy movie</label>
 <label><input type="radio" name="game" value="disappear"> Most likely to disappear and start a new life</label>
-<button onclick="play()">🔥 REVEAL THE DAMAGE</button>
+<button onclick="play()">// Shuffle the available answers
+const shuffledRoasts = [...game[1]];
+
+for (let i = shuffledRoasts.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [shuffledRoasts[i], shuffledRoasts[j]] =
+    [shuffledRoasts[j], shuffledRoasts[i]];
+}
+
+// Give each player a different answer when possible
+names.forEach((name, i) => {
+  const roast = shuffledRoasts[i % shuffledRoasts.length];
+  // Use roast in your existing results output
+});🔥 REVEAL THE DAMAGE</button>
 <p id="error"></p>
 </div>
 <div class="card" id="results" hidden>
