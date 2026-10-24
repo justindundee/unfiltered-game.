@@ -1,129 +1,230 @@
 
-<!DOCTYPE >
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0710">
 <title>UNFILTERED | Roast Your Friends</title>
 <style>
-:root{--bg:#0a0710;--panel:#171020;--pink:#ff2e93;--purple:#a855f7;--gold:#ffd166;--muted:#bbaac6}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#351344,var(--bg) 65%);color:#fff7ff;font:16px system-ui,sans-serif}
-main{max-width:760px;width:92%;margin:auto}
-header{text-align:center;padding:30px 0 20px}
-.crown{color:var(--gold);font-size:48px}
-.logo{font-size:clamp(42px,10vw,76px);font-weight:1000;font-style:italic;letter-spacing:-3px;background:linear-gradient(100deg,#fff,var(--pink),var(--purple));color:transparent;background-clip:text;margin:4px 0}
-.tag{font-size:11px;letter-spacing:3px;color:var(--muted)}
-section{background:linear-gradient(145deg,#1d1428,#100b16);border:1px solid #44264f;border-radius:17px;padding:20px;margin:16px 0}
-h2{font-size:20px;margin:0 0 12px}
-p{color:var(--muted);line-height:1.5;font-size:14px}
-button,input,select{font:inherit;border-radius:10px;padding:12px;border:1px solid #52365f}
-button{font-weight:850;cursor:pointer;color:white;background:#291b35}
-button:disabled{opacity:.45;cursor:not-allowed}
-button:active{transform:scale(.98)}
-.primary{background:linear-gradient(100deg,var(--pink),var(--purple));border:0}
-.gold{background:var(--gold);color:#201027;border:0}
-.full{width:100%;margin-top:12px}
-.row{display:flex;gap:8px}
-input,select{background:#0b0810;color:white;min-width:0}
-input{flex:1;width:100%}
-.chips,.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
-.chip{display:flex;justify-content:space-between;align-items:center;gap:5px}
-.chip button{padding:4px 8px}
-.categories button{text-align:left;min-height:60px}
-.categories .selected{border-color:var(--pink);background:#43183d}
-.challenge{border-color:#82602d;background:linear-gradient(130deg,#26152c,#21180c)}
-.challenge h2{color:var(--gold)}
-.challenge-text{font-size:18px;color:white;font-weight:800}
-.hidden{display:none!important}
-.center{text-align:center}
-.pill{display:inline-block;background:#40204d;color:#f1caff;border-radius:30px;padding:5px 10px;font-size:12px}
-.target{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2px;margin-top:20px}
-.roast{font-size:clamp(23px,5vw,34px);font-weight:900;line-height:1.3;margin:20px 0}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.actions button{flex:1}
-.vote{width:100%;display:flex;justify-content:space-between;margin:8px 0}
-.score{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #38243f}
-.score span:nth-child(2){flex:1;overflow-wrap:anywhere}
-.points{color:var(--gold)}
-footer{text-align:center;color:#95839f;font-size:11px;padding:20px}
-#toast{position:fixed;bottom:15px;left:5%;width:90%;background:#fff0fb;color:#24102b;text-align:center;padding:12px;border-radius:12px;font-weight:800;display:none;z-index:10}
-@media(max-width:480px){section{padding:15px}.row{flex-wrap:wrap}.row button{width:100%}}
+:root {
+  --bg: #0a0710;
+  --panel: #17101f;
+  --panel2: #21152c;
+  --pink: #ff3eb5;
+  --purple: #a855f7;
+  --gold: #f5c65d;
+  --text: #fff7ff;
+  --muted: #bbaac5;
+  --line: #392443;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at top, #261333 0, var(--bg) 48%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { width: min(100% - 24px, 720px); margin: auto; padding: 22px 0 35px; }
+header, section {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(23,16,31,.96);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 12px 32px #0003;
+}
+header { text-align: center; padding: 27px 20px; }
+.crown {
+  color: var(--gold);
+  font-size: 52px;
+  line-height: 1.1;
+  text-shadow: 0 0 22px #f5c65d55;
+}
+.logo {
+  color: var(--pink);
+  font-size: clamp(31px, 8vw, 54px);
+  line-height: 1.12;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+  text-shadow: 0 0 24px #ff3eb544;
+}
+.tag {
+  margin: 9px 0 20px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+h2 { font-size: 19px; margin: 0 0 12px; }
+p { color: var(--muted); line-height: 1.5; }
+button, input, select { font: inherit; }
+button {
+  border: 1px solid #52365f;
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
+  background: #291a34;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .12s, border-color .12s;
+}
+button:active { transform: scale(.98); }
+button:disabled { opacity: .42; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.primary {
+  color: white;
+  border-color: var(--pink);
+  background: linear-gradient(120deg, #b51c87, #7126a7);
+}
+.gold {
+  color: #241507;
+  border-color: var(--gold);
+  background: linear-gradient(120deg, #ffdf82, #e9ad3e);
+}
+.full { width: 100%; }
+.row { display: flex; gap: 8px; align-items: center; margin: 12px 0; }
+.row input { flex: 1; min-width: 0; }
+input, select {
+  width: 100%;
+  border: 1px solid #52365f;
+  border-radius: 12px;
+  padding: 12px;
+  background: #0e0a14;
+  color: var(--text);
+}
+#roundCount { width: auto; margin-left: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #30203b;
+  border: 1px solid #624271;
+  border-radius: 25px;
+  padding: 5px 6px 5px 12px;
+  overflow-wrap: anywhere;
+}
+.chip button { padding: 1px 8px; border: 0; background: transparent; color: var(--pink); font-size: 21px; }
+#playerCount { font-size: 12px; }
+.categories { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin: 12px 0 18px; }
+.categories button { text-align: left; min-height: 58px; }
+.categories .selected { border-color: var(--pink); background: #43183d; box-shadow: inset 0 0 0 1px var(--pink); }
+.challenge { border-color: #82602d; background: linear-gradient(130deg,#26152c,#21180c); }
+.challenge h2 { color: var(--gold); }
+.challenge-text { font-size: 18px; color: white; font-weight: 800; margin: 12px 0 18px; }
+.hidden { display: none !important; }
+.center { text-align: center; }
+.pill { display: inline-block; background: #40204d; color: #f1caff; border-radius: 30px; padding: 5px 10px; font-size: 12px; }
+.target { color: var(--gold); font-size: 12px; font-weight: 900; letter-spacing: 2px; margin-top: 20px; }
+.roast { font-size: clamp(23px,5vw,34px); font-weight: 900; line-height: 1.3; margin: 20px 0; overflow-wrap: anywhere; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.actions button { flex: 1; min-width: 120px; }
+.vote { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; text-align: left; }
+.vote span:first-child { overflow-wrap: anywhere; }
+.score { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #38243f; align-items: center; }
+.score span:nth-child(2) { flex: 1; overflow-wrap: anywhere; }
+.points { color: var(--gold); white-space: nowrap; }
+footer { text-align: center; color: #95839f; font-size: 11px; padding: 20px; }
+#toast {
+  position: fixed; bottom: 15px; left: 5%; width: 90%;
+  background: #fff0fb; color: #24102b; text-align: center;
+  padding: 12px; border-radius: 12px; font-weight: 800;
+  display: none; z-index: 10; box-shadow: 0 6px 25px #0008;
+}
+@media(max-width:480px) {
+  section { padding: 15px; }
+  .row { flex-wrap: wrap; }
+  .row button { white-space: nowrap; }
+  .categories { grid-template-columns: 1fr; }
+  .actions button { min-width: 100%; }
+}
 </style>
 </head>
 <body>
 <main>
-<header>
-<div class="crown">♛</div>
-<div class="suite">SUITE</div>
-<div class="logo">UNFILTERED</div>
-<div class="tag">NO FILTER. NO MERCY. ALL FUN.</div>
-<button id="invite" class="gold full" type="button">↗ INVITE FRIENDS</button>
-</header>
+  <header>
+    <div class="crown" aria-hidden="true">♛</div>
+    <div class="logo">UNFILTERED</div>
+    <div class="tag">NO FILTER. NO MERCY. ALL FUN.</div>
+    <button id="invite" class="gold full" type="button">↗ INVITE FRIENDS</button>
+  </header>
 
-<section>
-<h2>🔥 Assemble Your Arena</h2>
-<p>Add 2 to 12 players, choose a category, and let the roast battle begin.</p>
-<form id="playerForm" class="row">
-<input id="playerInput" maxlength="30" placeholder="Enter player name" aria-label="Player name">
-<button class="primary" type="submit">+ ADD</button>
-</form>
-<div id="players" class="chips"></div>
-<p id="playerCount">0 / 12 players</p>
-<h2>🎯 Choose Your Chaos</h2>
-<div id="categories" class="categories">
-<button class="selected" type="button" data-cat="Main Character">🎬 Main Character</button>
-<button type="button" data-cat="Red Flag">🚩 Red Flag</button>
-<button type="button" data-cat="Drama">🎭 Drama</button>
-<button type="button" data-cat="Tiny Evil Genius">😈 Tiny Evil Genius</button>
-<button type="button" data-cat="Most Likely Arrested">🚔 Most Likely Arrested</button>
-<button type="button" data-cat="Would Vanish First">👻 Would Vanish First</button>
-</div>
-<div class="row">
-<label for="roundCount">Rounds</label>
-<select id="roundCount">
-<option>3</option><option selected>5</option><option>7</option><option>10</option>
-</select>
-</div>
-<button id="play" class="primary full" type="button" disabled>👑 PLAY NOW</button>
-</section>
+  <section>
+    <h2>🔥 Assemble Your Arena</h2>
+    <p>Add 2 to 12 players, choose a category, and let the roast battle begin.</p>
+    <form id="playerForm" class="row">
+      <input id="playerInput" maxlength="30" placeholder="Enter player name" aria-label="Player name" autocomplete="off">
+      <button class="primary" type="submit">+ ADD</button>
+    </form>
+    <div id="players" class="chips"></div>
+    <p id="playerCount">0 / 12 players</p>
 
-<section class="challenge">
-<h2>⚡ DAILY CHALLENGE</h2>
-<p>Today's mission is waiting.</p>
-<div id="dailyText" class="challenge-text">Loading challenge...</div>
-<button id="dailyButton" class="gold full" type="button">ACCEPT CHALLENGE</button>
-</section>
+    <h2>🎯 Choose Your Chaos</h2>
+    <div id="categories" class="categories">
+      <button class="selected" type="button" data-cat="Main Character">🎬 Main Character</button>
+      <button type="button" data-cat="Red Flag">🚩 Red Flag</button>
+      <button type="button" data-cat="Drama">🎭 Drama</button>
+      <button type="button" data-cat="Tiny Evil Genius">😈 Tiny Evil Genius</button>
+      <button type="button" data-cat="Most Likely Arrested">🚔 Most Likely Arrested</button>
+      <button type="button" data-cat="Would Vanish First">👻 Would Vanish First</button>
+    </div>
 
-<section id="game" class="center hidden">
-<span id="categoryPill" class="pill">MAIN CHARACTER</span>
-<p id="roundLabel">Round 1</p>
-<div id="target" class="target"></div>
-<div id="roast" class="roast"></div>
-<div class="actions">
-<button id="reroll" type="button">🎲 REROLL</button>
-<button id="share" class="primary" type="button">↗ SHARE ROAST</button>
-<button id="next" class="gold" type="button">NEXT ROUND →</button>
-</div>
-</section>
+    <div class="row">
+      <label for="roundCount">Rounds</label>
+      <select id="roundCount">
+        <option>3</option>
+        <option selected>5</option>
+        <option>7</option>
+        <option>10</option>
+      </select>
+    </div>
+    <button id="play" class="primary full" type="button" disabled>👑 PLAY NOW</button>
+  </section>
 
-<section id="voting" class="hidden">
-<h2>🗳️ Who deserves the crown?</h2>
-<p id="voteNotice">Vote for the funniest player.</p>
-<div id="voteList"></div>
-</section>
+  <section class="challenge">
+    <h2>⚡ DAILY CHALLENGE</h2>
+    <p>Today's mission is waiting.</p>
+    <div id="dailyText" class="challenge-text">Loading challenge...</div>
+    <button id="dailyButton" class="gold full" type="button">ACCEPT CHALLENGE</button>
+  </section>
 
-<section>
-<h2>🏆 Hall of Roasted Fame</h2>
-<p>Scores are saved on this device only.</p>
-<div id="leaderboard"></div>
-<button id="reset" class="full" type="button">RESET LOCAL SCORES</button>
-</section>
-<footer>SUITE · UNFILTERED · NO FILTER. NO MERCY. ALL FUN.</footer>
+  <section id="game" class="center hidden">
+    <span id="categoryPill" class="pill">MAIN CHARACTER</span>
+    <p id="roundLabel">Round 1</p>
+    <div id="target" class="target"></div>
+    <div id="roast" class="roast" aria-live="polite"></div>
+    <div class="actions">
+      <button id="reroll" type="button">🎲 REROLL</button>
+      <button id="share" class="primary" type="button">↗ SHARE ROAST</button>
+      <button id="next" class="gold" type="button">NEXT ROUND →</button>
+    </div>
+  </section>
+
+  <section id="voting" class="hidden">
+    <h2>🗳️ Who deserves the crown?</h2>
+    <p id="voteNotice">Vote for the funniest player.</p>
+    <div id="voteList"></div>
+  </section>
+
+  <section>
+    <h2>🏆 Hall of Roasted Fame</h2>
+    <p>Scores are saved on this device only.</p>
+    <div id="leaderboard"></div>
+    <button id="reset" class="full" type="button">RESET LOCAL SCORES</button>
+  </section>
+
+  <footer>UNFILTERED · NO FILTER. NO MERCY. ALL FUN.</footer>
 </main>
-<div id="toast" role="status"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 <script>
+
+"use strict";
 
 const $ = id => document.getElementById(id);
 
@@ -135,7 +236,10 @@ const roastBank = {
     "You don't need a spotlight. You need a dimmer switch.",
     "Your confidence has a bigger budget than your achievements.",
     "You make group photos feel like your personal photoshoot.",
-    "Your unsolicited advice needs its own subscription service."
+    "Your unsolicited advice needs its own subscription service.",
+    "You act like the world has a customer service line just for you.",
+    "You could make a birthday party about yourself without being the birthday person.",
+    "Your ego needs its own zip code."
   ],
   "Red Flag": [
     "Your red flags have their own red flags.",
@@ -143,35 +247,59 @@ const roastBank = {
     "Dating you requires a waiver and an emergency contact.",
     "Your apology comes with commentary explaining why you're right.",
     "Your relationship status should be listed as under investigation.",
-    "You're emotionally available exclusively during business hours."
+    "You're emotionally available exclusively during business hours.",
+    "Your love language is making someone need a vacation.",
+    "You say 'I'm fine' like a threat from a movie villain.",
+    "Your green flags are currently missing and presumed fictional.",
+    "You could turn a healthy relationship into a group project."
   ],
   "Drama": [
     "You could turn a missing sock into a three-part documentary.",
     "You treat a delayed text like a federal investigation.",
     "Your calm era lasted exactly eleven minutes.",
     "Your group chat needs a legal department.",
-    "You bring emotional weather warnings wherever you go."
+    "You bring emotional weather warnings wherever you go.",
+    "You don't spill tea. You launch a beverage-based exposé.",
+    "Your life has more plot twists than a soap opera written at 3 a.m.",
+    "You hear one rumor and start producing the reunion episode.",
+    "You could make a paper cut into a season finale.",
+    "Your inner peace keeps filing missing-person reports."
   ],
   "Tiny Evil Genius": [
     "Your master plan has a snack break and no actual plan.",
     "You have cartoon villain energy with a low credit limit.",
     "You don't hold grudges. You maintain historical archives.",
     "You could organize a coup but forget the password.",
-    "You'd put a password on the fridge and forget it."
+    "You'd put a password on the fridge and forget it.",
+    "Your evil laugh sounds like your phone needs an update.",
+    "You plan world domination one minor inconvenience at a time.",
+    "Your secret lair would be a storage unit with Wi-Fi.",
+    "You have the ambition of a supervillain and the follow-through of a sleepy cat.",
+    "Your grand scheme has three steps and you forgot step one."
   ],
   "Most Likely Arrested": [
     "Your search history needs its own defense attorney.",
     "You'd get caught and still insist the plan was flawless.",
     "You argue with self-checkout machines.",
     "Your alibi would incriminate three innocent people.",
-    "You look like you ask the officer if this counts as a warning."
+    "You look like you ask the officer if this counts as a warning.",
+    "You'd accidentally confess while trying to sound mysterious.",
+    "Your getaway plan depends on somebody else's phone battery.",
+    "You look suspicious when you're just ordering a sandwich.",
+    "You'd ask for a lawyer and then explain the whole story anyway.",
+    "Your master criminal plan would fail at the parking meter."
   ],
   "Would Vanish First": [
     "You'd disappear for six months and return asking for Wi-Fi.",
     "Your social battery has a one-percent warranty.",
     "You'd leave a party without saying goodbye to the building.",
     "You treat plans like optional software updates.",
-    "Your idea of keeping in touch is liking a photo from 2019."
+    "Your idea of keeping in touch is liking a photo from 2019.",
+    "You go offline so often people think you're a limited edition.",
+    "Your voicemail is basically an archaeological site.",
+    "You'd miss your own surprise party because you forgot to check your phone.",
+    "You call it needing space. NASA calls it an unexplained disappearance.",
+    "You vanish faster than free food at a family gathering."
   ]
 };
 
@@ -188,13 +316,16 @@ const dailyChallenges = [
 let players = [];
 let category = "Main Character";
 let round = 1;
-usedRoasts.clear();
 let totalRounds = 5;
 let currentTarget = "";
 let currentRoast = "";
 let scores = {};
 let voted = false;
 let gameActive = false;
+
+/* Tracks insults already used during the current game.
+   Each exact insult can appear once before the category resets. */
+let usedRoasts = new Set();
 
 function loadData(key, fallback) {
   try {
@@ -207,10 +338,16 @@ function loadData(key, fallback) {
 
 players = loadData("unfiltered_players", []);
 if (!Array.isArray(players)) players = [];
-players = players.filter(p => typeof p === "string").slice(0, 12);
+players = players
+  .filter(p => typeof p === "string")
+  .map(p => p.trim())
+  .filter(Boolean)
+  .slice(0, 12);
 
 scores = loadData("unfiltered_scores", {});
-if (!scores || typeof scores !== "object" || Array.isArray(scores)) scores = {};
+if (!scores || typeof scores !== "object" || Array.isArray(scores)) {
+  scores = {};
+}
 
 function savePlayers() {
   try {
@@ -224,12 +361,14 @@ function saveScores() {
   } catch {}
 }
 
+let toastTimer;
+
 function toast(message) {
   const el = $("toast");
   el.textContent = message;
   el.style.display = "block";
-  clearTimeout(window.unfilteredToastTimer);
-  window.unfilteredToastTimer = setTimeout(() => {
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
     el.style.display = "none";
   }, 2600);
 }
@@ -241,6 +380,7 @@ function renderPlayers() {
   players.forEach((name, index) => {
     const chip = document.createElement("div");
     chip.className = "chip";
+
     const label = document.createElement("span");
     label.textContent = name;
 
@@ -248,15 +388,17 @@ function renderPlayers() {
     remove.type = "button";
     remove.textContent = "×";
     remove.setAttribute("aria-label", "Remove " + name);
-    remove.onclick = () => {
+
+    remove.addEventListener("click", () => {
       if (gameActive) {
         toast("Finish the game before changing players.");
         return;
       }
+
       players.splice(index, 1);
       savePlayers();
       renderPlayers();
-    };
+    });
 
     chip.append(label, remove);
     list.appendChild(chip);
@@ -281,10 +423,12 @@ $("playerForm").addEventListener("submit", event => {
     toast("Enter a player name first.");
     return;
   }
+
   if (players.length >= 12) {
     toast("Maximum 12 players.");
     return;
   }
+
   if (players.some(p => p.toLowerCase() === name.toLowerCase())) {
     toast("That player is already added.");
     return;
@@ -307,27 +451,31 @@ $("categories").addEventListener("click", event => {
   }
 
   category = button.dataset.cat;
+
   document.querySelectorAll("[data-cat]").forEach(el => {
     el.classList.toggle("selected", el === button);
   });
 });
-
-
-let usedRoasts = new Set();
 
 function chooseRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
 
 function generateRoast() {
-  let availableRoasts = roastBank[category].filter(
-    roast => !usedRoasts.has(roast)
-  );
+  const bank = roastBank[category];
 
-  // Reuse insults only after every insult in this category has been used.
+  if (!bank || bank.length === 0 || players.length === 0) {
+    toast("No insults or players available.");
+    return;
+  }
+
+  let availableRoasts = bank.filter(roast => !usedRoasts.has(roast));
+
+  // Only recycle insults once every insult in this category has been used.
   if (availableRoasts.length === 0) {
     usedRoasts.clear();
-    availableRoasts = [...roastBank[category]];
+    availableRoasts = bank.slice();
+    toast("Fresh batch! The roast cycle has reset. 🔥");
   }
 
   currentTarget = chooseRandom(players);
@@ -340,22 +488,13 @@ function generateRoast() {
   $("roast").textContent = currentRoast;
 }
 
-}
-
-function generateRoast() {
-  currentTarget = chooseRandom(players);
-  currentRoast = chooseRandom(roastBank[category]);
-
-  $("categoryPill").textContent = category;
-  $("roundLabel").textContent = "Round " + round + " of " + totalRounds;
-  $("target").textContent = "THE TARGET: " + currentTarget;
-  $("roast").textContent = currentRoast;
-}
-
 function startGame() {
   if (players.length < 2) {
     toast("Add at least two players first!");
-    $("playerForm").scrollIntoView({ behavior: "smooth", block: "center" });
+    $("playerForm").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
     $("playerInput").focus();
     return;
   }
@@ -364,6 +503,9 @@ function startGame() {
   round = 1;
   voted = false;
   gameActive = true;
+  usedRoasts.clear();
+  currentRoast = "";
+  currentTarget = "";
 
   $("game").classList.remove("hidden");
   $("voting").classList.remove("hidden");
@@ -372,7 +514,10 @@ function startGame() {
   generateRoast();
   renderVotes();
 
-  $("game").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("game").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
 function renderVotes() {
@@ -390,10 +535,10 @@ function renderVotes() {
 
     const count = document.createElement("span");
     count.className = "points";
-    count.textContent = (scores[name] || 0) + " pts";
+    count.textContent = (Number(scores[name]) || 0) + " pts";
 
     button.append(label, count);
-    button.onclick = () => castVote(name);
+    button.addEventListener("click", () => castVote(name));
     list.appendChild(button);
   });
 
@@ -404,6 +549,7 @@ function renderVotes() {
 
 function castVote(name) {
   if (!gameActive || voted) return;
+
   if (name === currentTarget) {
     toast("You cannot vote for the roast target!");
     return;
@@ -411,6 +557,7 @@ function castVote(name) {
 
   scores[name] = (Number(scores[name]) || 0) + 1;
   voted = true;
+
   saveScores();
   renderVotes();
   renderLeaderboard();
@@ -422,10 +569,13 @@ function renderLeaderboard() {
   board.replaceChildren();
 
   const entries = Object.entries(scores)
+    .filter(([name, score]) =>
+      typeof name === "string" && Number.isFinite(Number(score))
+    )
     .sort((a, b) => Number(b[1]) - Number(a[1]))
     .slice(0, 10);
 
-  if (!entries.length) {
+  if (entries.length === 0) {
     const message = document.createElement("p");
     message.textContent = "Play a round to start your leaderboard.";
     board.appendChild(message);
@@ -461,9 +611,11 @@ function nextRound() {
     gameActive = false;
     $("roundLabel").textContent = "Game complete!";
     $("target").textContent = "THE ARENA HAS SPOKEN";
-    $("roast").textContent = "The roast is over. The screenshots are forever.";
+    $("roast").textContent =
+      "The roast is over. The screenshots are forever.";
     $("voting").classList.add("hidden");
     $("next").textContent = "PLAY AGAIN ↻";
+    renderPlayers();
     toast("Game over! Check the leaderboard.");
     return;
   }
@@ -474,18 +626,20 @@ function nextRound() {
   renderVotes();
 }
 
-$("play").onclick = startGame;
-$("next").onclick = nextRound;
+$("play").addEventListener("click", startGame);
+$("next").addEventListener("click", nextRound);
 
-$("reroll").onclick = () => {
+$("reroll").addEventListener("click", () => {
   if (!gameActive) {
     toast("Start a game first!");
     return;
   }
+
+  // Keep usedRoasts intact so reroll cannot repeat a used insult.
   generateRoast();
   renderVotes();
   toast("Fresh roast served! 🔥");
-};
+});
 
 function getDailyChallenge() {
   const now = new Date();
@@ -503,11 +657,13 @@ function getDailyChallenge() {
 
 $("dailyText").textContent = getDailyChallenge();
 
-/* Direct click handler: the Daily Challenge button is connected here. */
 $("dailyButton").addEventListener("click", () => {
   if (players.length < 2) {
     toast("Add at least two players before accepting the challenge!");
-    $("playerForm").scrollIntoView({ behavior: "smooth", block: "center" });
+    $("playerForm").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
     $("playerInput").focus();
     return;
   }
@@ -528,7 +684,7 @@ async function shareMessage(title, message) {
       });
       return;
     } catch (error) {
-      if (error.name === "AbortError") return;
+      if (error && error.name === "AbortError") return;
     }
   }
 
@@ -540,7 +696,7 @@ async function shareMessage(title, message) {
   }
 }
 
-$("share").onclick = () => {
+$("share").addEventListener("click", () => {
   if (!currentRoast) {
     toast("Start a game first!");
     return;
@@ -548,32 +704,34 @@ $("share").onclick = () => {
 
   shareMessage(
     "UNFILTERED Roast",
-    "🔥 UNFILTERED ROAST 🔥\n" + currentTarget + ": " +
-    currentRoast + "\nNO FILTER. NO MERCY. ALL FUN."
+    "🔥 UNFILTERED ROAST 🔥\n" +
+    currentTarget + ": " + currentRoast +
+    "\nNO FILTER. NO MERCY. ALL FUN."
   );
-};
+});
 
-$("invite").onclick = () => {
+$("invite").addEventListener("click", () => {
   shareMessage(
     "Join UNFILTERED",
     "👑 Join me on UNFILTERED, the savage party roast game!"
   );
-};
+});
 
-$("reset").onclick = () => {
+$("reset").addEventListener("click", () => {
   if (!confirm("Reset the leaderboard saved on this device?")) return;
+
   scores = {};
   saveScores();
   renderLeaderboard();
+  renderVotes();
   toast("Local scores reset.");
-};
+});
 
 renderPlayers();
 renderLeaderboard();
 </script>
 </body>
 </html>
-
 
 
 
