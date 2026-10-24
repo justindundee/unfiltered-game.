@@ -226,8 +226,9 @@ roasts:[
 ]}
 };
 
-let lastGameKey="";
-let output="";
+let lastGameKey = "";
+let output = "";
+const recentRoasts = {};
 
 function shuffle(array){
 const result=[...array];
@@ -265,9 +266,33 @@ key=otherGames[Math.floor(Math.random()*otherGames.length)];
 document.querySelector('input[name="game"][value="'+key+'"]').checked=true;
 }
 
-const game=games[key];
-const players=shuffle(names);
-const roasts=shuffle(game.roasts);
+const game = games[key];
+const players = shuffle(names);
+
+// Avoid reusing roasts from recent rounds
+if (!recentRoasts[key]) {
+  recentRoasts[key] = [];
+}
+
+let availableRoasts = game.roasts.filter(
+  roast => !recentRoasts[key].includes(roast)
+);
+
+// Reset when too few fresh roasts remain for everyone
+if (availableRoasts.length < players.length) {
+  recentRoasts[key] = [];
+  availableRoasts = [...game.roasts];
+}
+
+const roasts = shuffle(availableRoasts);
+
+// Remember these roasts for future rounds
+recentRoasts[key].push(
+  ...roasts.slice(0, players.length)
+);
+
+// Keep the recent history from growing indefinitely
+recentRoasts[key] = recentRoasts[key].slice(-16);
 
 // Unique roast per player. No replacement during this round.
 const assignments=players.map((name,i)=>({name,roast:roasts[i]}));
