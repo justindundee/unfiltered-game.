@@ -368,7 +368,16 @@ roasts:[
 
 let lastGameKey = "";
 let output = "";
+
 let recentRoasts = {};
+
+try {
+  recentRoasts = JSON.parse(
+    localStorage.getItem("unfilteredRecentRoasts") || "{}"
+  );
+} catch (error) {
+  recentRoasts = {};
+}
 
 function shuffle(items) {
   const result = [...items];
