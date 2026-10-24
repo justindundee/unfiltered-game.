@@ -3,223 +3,124 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0a0710">
-<title>UNFILTERED | Roast Your Friends</title>
+<title>UNFILTERED: AFTER DARK</title>
 <style>
-:root {
-  --bg: #0a0710;
-  --panel: #17101f;
-  --panel2: #21152c;
-  --pink: #ff3eb5;
-  --purple: #a855f7;
-  --gold: #f5c65d;
-  --text: #fff7ff;
-  --muted: #bbaac5;
-  --line: #392443;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: radial-gradient(ellipse at top, #261333 0, var(--bg) 48%);
-  color: var(--text);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-main { width: min(100% - 24px, 720px); margin: auto; padding: 22px 0 35px; }
-header, section {
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  background: rgba(23,16,31,.96);
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 12px 32px #0003;
-}
-header { text-align: center; padding: 27px 20px; }
-.crown {
-  color: var(--gold);
-  font-size: 52px;
-  line-height: 1.1;
-  text-shadow: 0 0 22px #f5c65d55;
-}
-.logo {
-  color: var(--pink);
-  font-size: clamp(31px, 8vw, 54px);
-  line-height: 1.12;
-  font-weight: 1000;
-  letter-spacing: 2px;
-  overflow-wrap: anywhere;
-  text-shadow: 0 0 24px #ff3eb544;
-}
-.tag {
-  margin: 9px 0 20px;
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-h2 { font-size: 19px; margin: 0 0 12px; }
-p { color: var(--muted); line-height: 1.5; }
-button, input, select { font: inherit; }
-button {
-  border: 1px solid #52365f;
-  border-radius: 12px;
-  padding: 12px 14px;
-  color: var(--text);
-  background: #291a34;
-  font-weight: 800;
-  cursor: pointer;
-  transition: transform .12s, border-color .12s;
-}
-button:active { transform: scale(.98); }
-button:disabled { opacity: .42; cursor: not-allowed; }
-button:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-.primary {
-  color: white;
-  border-color: var(--pink);
-  background: linear-gradient(120deg, #b51c87, #7126a7);
-}
-.gold {
-  color: #241507;
-  border-color: var(--gold);
-  background: linear-gradient(120deg, #ffdf82, #e9ad3e);
-}
-.full { width: 100%; }
-.row { display: flex; gap: 8px; align-items: center; margin: 12px 0; }
-.row input { flex: 1; min-width: 0; }
-input, select {
-  width: 100%;
-  border: 1px solid #52365f;
-  border-radius: 12px;
-  padding: 12px;
-  background: #0e0a14;
-  color: var(--text);
-}
-#roundCount { width: auto; margin-left: auto; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-.chip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #30203b;
-  border: 1px solid #624271;
-  border-radius: 25px;
-  padding: 5px 6px 5px 12px;
-  overflow-wrap: anywhere;
-}
-.chip button { padding: 1px 8px; border: 0; background: transparent; color: var(--pink); font-size: 21px; }
-#playerCount { font-size: 12px; }
-.categories { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin: 12px 0 18px; }
-.categories button { text-align: left; min-height: 58px; }
-.categories .selected { border-color: var(--pink); background: #43183d; box-shadow: inset 0 0 0 1px var(--pink); }
-.challenge { border-color: #82602d; background: linear-gradient(130deg,#26152c,#21180c); }
-.challenge h2 { color: var(--gold); }
-.challenge-text { font-size: 18px; color: white; font-weight: 800; margin: 12px 0 18px; }
-.hidden { display: none !important; }
-.center { text-align: center; }
-.pill { display: inline-block; background: #40204d; color: #f1caff; border-radius: 30px; padding: 5px 10px; font-size: 12px; }
-.target { color: var(--gold); font-size: 12px; font-weight: 900; letter-spacing: 2px; margin-top: 20px; }
-.roast { font-size: clamp(23px,5vw,34px); font-weight: 900; line-height: 1.3; margin: 20px 0; overflow-wrap: anywhere; }
-.actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.actions button { flex: 1; min-width: 120px; }
-.vote { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; text-align: left; }
-.vote span:first-child { overflow-wrap: anywhere; }
-.score { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #38243f; align-items: center; }
-.score span:nth-child(2) { flex: 1; overflow-wrap: anywhere; }
-.points { color: var(--gold); white-space: nowrap; }
-footer { text-align: center; color: #95839f; font-size: 11px; padding: 20px; }
-#toast {
-  position: fixed; bottom: 15px; left: 5%; width: 90%;
-  background: #fff0fb; color: #24102b; text-align: center;
-  padding: 12px; border-radius: 12px; font-weight: 800;
-  display: none; z-index: 10; box-shadow: 0 6px 25px #0008;
-}
-@media(max-width:480px) {
-  section { padding: 15px; }
-  .row { flex-wrap: wrap; }
-  .row button { white-space: nowrap; }
-  .categories { grid-template-columns: 1fr; }
-  .actions button { min-width: 100%; }
-}
+:root{--bg:#0a0710;--panel:#17101f;--pink:#ff3eb5;--purple:#a855f7;--gold:#f5c65d;--text:#fff7ff;--muted:#bbaac5;--line:#392443}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#261333 0,var(--bg) 55%);color:var(--text);font-family:system-ui,sans-serif}
+main{width:min(100% - 24px,720px);margin:auto;padding:22px 0 35px}
+header,section{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:20px;margin-bottom:16px}
+header{text-align:center;padding:26px 20px}
+.crown{color:var(--gold);font-size:50px}
+.logo{font-size:clamp(32px,8vw,54px);font-weight:1000;letter-spacing:2px;color:var(--pink);overflow-wrap:anywhere;text-shadow:0 0 24px #ff3eb544}
+.tag{margin:9px 0 20px;color:var(--gold);font-size:11px;font-weight:900;letter-spacing:2px}
+h2{font-size:19px;margin:0 0 12px}p{color:var(--muted);line-height:1.5}
+button,input,select{font:inherit}
+button{border:1px solid #52365f;border-radius:12px;padding:12px 14px;color:var(--text);background:#291a34;font-weight:800;cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.primary{color:white;border-color:var(--pink);background:linear-gradient(120deg,#b51c87,#7126a7)}
+.gold{color:#241507;border-color:var(--gold);background:linear-gradient(120deg,#ffdf82,#e9ad3e)}
+.full{width:100%}.row{display:flex;gap:8px;align-items:center;margin:12px 0}
+.row input{flex:1;min-width:0}
+input,select{width:100%;border:1px solid #52365f;border-radius:12px;padding:12px;background:#0e0a14;color:var(--text)}
+#roundCount{width:auto;margin-left:auto}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{display:flex;align-items:center;gap:8px;background:#30203b;border:1px solid #624271;border-radius:25px;padding:5px 6px 5px 12px}
+.chip button{padding:1px 8px;border:0;background:transparent;color:var(--pink);font-size:21px}
+.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 18px}
+.categories button{text-align:left;min-height:58px}
+.categories .selected,.mode.selected{border-color:var(--pink);background:#43183d;box-shadow:inset 0 0 0 1px var(--pink)}
+.mode-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.mode{min-height:58px}
+.challenge{border-color:#82602d;background:linear-gradient(130deg,#26152c,#21180c)}
+.challenge h2{color:var(--gold)}.challenge-text{font-size:18px;color:white;font-weight:800;margin:12px 0 18px}
+.hidden{display:none!important}.center{text-align:center}
+.pill{display:inline-block;background:#40204d;color:#f1caff;border-radius:30px;padding:5px 10px;font-size:12px}
+.target{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2px;margin-top:20px}
+.roast{font-size:clamp(23px,5vw,34px);font-weight:900;line-height:1.3;margin:20px 0;overflow-wrap:anywhere}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1;min-width:120px}
+.vote{width:100%;display:flex;justify-content:space-between;gap:10px;margin:8px 0;text-align:left}
+.score{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #38243f}
+.score span:nth-child(2){flex:1;overflow-wrap:anywhere}
+.points{color:var(--gold);white-space:nowrap}
+footer{text-align:center;color:#95839f;font-size:11px;padding:20px}
+#toast{position:fixed;bottom:15px;left:5%;width:90%;background:#fff0fb;color:#24102b;text-align:center;padding:12px;border-radius:12px;font-weight:800;display:none;z-index:10}
+@media(max-width:480px){section{padding:15px}.categories{grid-template-columns:1fr}.actions button{min-width:100%}}
 </style>
 </head>
 <body>
 <main>
-  <header>
-    <div class="crown" aria-hidden="true">♛</div>
-    <div class="logo">UNFILTERED</div>
-    <div class="tag">NO FILTER. NO MERCY. ALL FUN.</div>
-    <button id="invite" class="gold full" type="button">↗ INVITE FRIENDS</button>
-  </header>
+<header>
+<div class="crown" aria-hidden="true">♛</div>
+<div class="logo">UNFILTERED</div>
+<div class="tag">NO FILTER. NO MERCY. ALL FUN.</div>
+<button id="invite" class="gold full" type="button">↗ INVITE FRIENDS</button>
+</header>
 
-  <section>
-    <h2>🔥 Assemble Your Arena</h2>
-    <p>Add 2 to 12 players, choose a category, and let the roast battle begin.</p>
-    <form id="playerForm" class="row">
-      <input id="playerInput" maxlength="30" placeholder="Enter player name" aria-label="Player name" autocomplete="off">
-      <button class="primary" type="submit">+ ADD</button>
-    </form>
-    <div id="players" class="chips"></div>
-    <p id="playerCount">0 / 12 players</p>
+<section>
+<h2>🔥 Choose Your Mode</h2>
+<div class="mode-row">
+<button id="classicMode" class="mode selected" type="button">😇 CLASSIC</button>
+<button id="adultMode" class="mode" type="button">🔞 AFTER DARK</button>
+</div>
+<p id="modeDescription">Classic roasts for your regular game night.</p>
+<h2>Assemble Your Arena</h2>
+<p>Add 2 to 12 players, choose a category, and start roasting.</p>
+<form id="playerForm" class="row">
+<input id="playerInput" maxlength="30" placeholder="Enter player name" aria-label="Player name" autocomplete="off">
+<button class="primary" type="submit">+ ADD</button>
+</form>
+<div id="players" class="chips"></div>
+<p id="playerCount">0 / 12 players</p>
+<h2>🎯 Choose Your Chaos</h2>
+<div id="categories" class="categories">
+<button class="selected" type="button" data-cat="Main Character">🎬 Main Character</button>
+<button type="button" data-cat="Red Flag">🚩 Red Flag</button>
+<button type="button" data-cat="Drama">🎭 Drama</button>
+<button type="button" data-cat="Tiny Evil Genius">😈 Tiny Evil Genius</button>
+<button type="button" data-cat="Most Likely Arrested">🚔 Most Likely Arrested</button>
+<button type="button" data-cat="Would Vanish First">👻 Would Vanish First</button>
+</div>
+<div class="row"><label for="roundCount">Rounds</label>
+<select id="roundCount"><option>3</option><option selected>5</option><option>7</option><option>10</option></select></div>
+<button id="play" class="primary full" type="button" disabled>👑 PLAY NOW</button>
+</section>
 
-    <h2>🎯 Choose Your Chaos</h2>
-    <div id="categories" class="categories">
-      <button class="selected" type="button" data-cat="Main Character">🎬 Main Character</button>
-      <button type="button" data-cat="Red Flag">🚩 Red Flag</button>
-      <button type="button" data-cat="Drama">🎭 Drama</button>
-      <button type="button" data-cat="Tiny Evil Genius">😈 Tiny Evil Genius</button>
-      <button type="button" data-cat="Most Likely Arrested">🚔 Most Likely Arrested</button>
-      <button type="button" data-cat="Would Vanish First">👻 Would Vanish First</button>
-    </div>
+<section class="challenge">
+<h2>⚡ DAILY CHALLENGE</h2>
+<p>Today's mission is waiting.</p>
+<div id="dailyText" class="challenge-text">Loading challenge...</div>
+<button id="dailyButton" class="gold full" type="button">ACCEPT CHALLENGE</button>
+</section>
 
-    <div class="row">
-      <label for="roundCount">Rounds</label>
-      <select id="roundCount">
-        <option>3</option>
-        <option selected>5</option>
-        <option>7</option>
-        <option>10</option>
-      </select>
-    </div>
-    <button id="play" class="primary full" type="button" disabled>👑 PLAY NOW</button>
-  </section>
+<section id="game" class="center hidden">
+<span id="categoryPill" class="pill">MAIN CHARACTER</span>
+<p id="roundLabel">Round 1</p>
+<div id="target" class="target"></div>
+<div id="roast" class="roast" aria-live="polite"></div>
+<div class="actions">
+<button id="reroll" type="button">🎲 REROLL</button>
+<button id="share" class="primary" type="button">↗ SHARE ROAST</button>
+<button id="next" class="gold" type="button">NEXT ROUND →</button>
+</div>
+</section>
 
-  <section class="challenge">
-    <h2>⚡ DAILY CHALLENGE</h2>
-    <p>Today's mission is waiting.</p>
-    <div id="dailyText" class="challenge-text">Loading challenge...</div>
-    <button id="dailyButton" class="gold full" type="button">ACCEPT CHALLENGE</button>
-  </section>
+<section id="voting" class="hidden">
+<h2>🗳️ Who deserves the crown?</h2>
+<p id="voteNotice">Vote for the funniest player.</p>
+<div id="voteList"></div>
+</section>
 
-  <section id="game" class="center hidden">
-    <span id="categoryPill" class="pill">MAIN CHARACTER</span>
-    <p id="roundLabel">Round 1</p>
-    <div id="target" class="target"></div>
-    <div id="roast" class="roast" aria-live="polite"></div>
-    <div class="actions">
-      <button id="reroll" type="button">🎲 REROLL</button>
-      <button id="share" class="primary" type="button">↗ SHARE ROAST</button>
-      <button id="next" class="gold" type="button">NEXT ROUND →</button>
-    </div>
-  </section>
-
-  <section id="voting" class="hidden">
-    <h2>🗳️ Who deserves the crown?</h2>
-    <p id="voteNotice">Vote for the funniest player.</p>
-    <div id="voteList"></div>
-  </section>
-
-  <section>
-    <h2>🏆 Hall of Roasted Fame</h2>
-    <p>Scores are saved on this device only.</p>
-    <div id="leaderboard"></div>
-    <button id="reset" class="full" type="button">RESET LOCAL SCORES</button>
-  </section>
-
-  <footer>UNFILTERED · NO FILTER. NO MERCY. ALL FUN.</footer>
+<section>
+<h2>🏆 Hall of Roasted Fame</h2>
+<p>Scores are saved on this device only.</p>
+<div id="leaderboard"></div>
+<button id="reset" class="full" type="button">RESET LOCAL SCORES</button>
+</section>
+<footer>UNFILTERED · NO FILTER. NO MERCY. ALL FUN.</footer>
 </main>
 <div id="toast" role="status" aria-live="polite"></div>
 <script>
@@ -228,79 +129,156 @@ footer { text-align: center; color: #95839f; font-size: 11px; padding: 20px; }
 
 const $ = id => document.getElementById(id);
 
-const roastBank = {
-  "Main Character": [
-    "You enter a room like the Wi-Fi is named after you.",
-    "Your autobiography would be 400 pages of acknowledgments to yourself.",
-    "You treat every minor inconvenience like a season finale.",
-    "You don't need a spotlight. You need a dimmer switch.",
-    "Your confidence has a bigger budget than your achievements.",
-    "You make group photos feel like your personal photoshoot.",
-    "Your unsolicited advice needs its own subscription service.",
-    "You act like the world has a customer service line just for you.",
-    "You could make a birthday party about yourself without being the birthday person.",
-    "Your ego needs its own zip code."
-  ],
-  "Red Flag": [
-    "Your red flags have their own red flags.",
-    "You're the reason terms and conditions exist.",
-    "Dating you requires a waiver and an emergency contact.",
-    "Your apology comes with commentary explaining why you're right.",
-    "Your relationship status should be listed as under investigation.",
-    "You're emotionally available exclusively during business hours.",
-    "Your love language is making someone need a vacation.",
-    "You say 'I'm fine' like a threat from a movie villain.",
-    "Your green flags are currently missing and presumed fictional.",
-    "You could turn a healthy relationship into a group project."
-  ],
-  "Drama": [
-    "You could turn a missing sock into a three-part documentary.",
-    "You treat a delayed text like a federal investigation.",
-    "Your calm era lasted exactly eleven minutes.",
-    "Your group chat needs a legal department.",
-    "You bring emotional weather warnings wherever you go.",
-    "You don't spill tea. You launch a beverage-based exposé.",
-    "Your life has more plot twists than a soap opera written at 3 a.m.",
-    "You hear one rumor and start producing the reunion episode.",
-    "You could make a paper cut into a season finale.",
-    "Your inner peace keeps filing missing-person reports."
-  ],
-  "Tiny Evil Genius": [
-    "Your master plan has a snack break and no actual plan.",
-    "You have cartoon villain energy with a low credit limit.",
-    "You don't hold grudges. You maintain historical archives.",
-    "You could organize a coup but forget the password.",
-    "You'd put a password on the fridge and forget it.",
-    "Your evil laugh sounds like your phone needs an update.",
-    "You plan world domination one minor inconvenience at a time.",
-    "Your secret lair would be a storage unit with Wi-Fi.",
-    "You have the ambition of a supervillain and the follow-through of a sleepy cat.",
-    "Your grand scheme has three steps and you forgot step one."
-  ],
-  "Most Likely Arrested": [
-    "Your search history needs its own defense attorney.",
-    "You'd get caught and still insist the plan was flawless.",
-    "You argue with self-checkout machines.",
-    "Your alibi would incriminate three innocent people.",
-    "You look like you ask the officer if this counts as a warning.",
-    "You'd accidentally confess while trying to sound mysterious.",
-    "Your getaway plan depends on somebody else's phone battery.",
-    "You look suspicious when you're just ordering a sandwich.",
-    "You'd ask for a lawyer and then explain the whole story anyway.",
-    "Your master criminal plan would fail at the parking meter."
-  ],
-  "Would Vanish First": [
-    "You'd disappear for six months and return asking for Wi-Fi.",
-    "Your social battery has a one-percent warranty.",
-    "You'd leave a party without saying goodbye to the building.",
-    "You treat plans like optional software updates.",
-    "Your idea of keeping in touch is liking a photo from 2019.",
-    "You go offline so often people think you're a limited edition.",
-    "Your voicemail is basically an archaeological site.",
-    "You'd miss your own surprise party because you forgot to check your phone.",
-    "You call it needing space. NASA calls it an unexplained disappearance.",
-    "You vanish faster than free food at a family gathering."
-  ]
+const roastBanks = {
+  classic: {
+    "Main Character": [
+      "You enter a room like the Wi-Fi is named after you.",
+      "Your autobiography would be 400 pages of acknowledgments to yourself.",
+      "You treat every minor inconvenience like a season finale.",
+      "You don't need a spotlight. You need a dimmer switch.",
+      "Your confidence has a bigger budget than your achievements.",
+      "You make group photos feel like your personal photoshoot.",
+      "Your unsolicited advice needs its own subscription service.",
+      "Your ego needs its own zip code.",
+      "You could make a birthday party about yourself without being the birthday person.",
+      "You act like the world has a customer service line just for you."
+    ],
+    "Red Flag": [
+      "Your red flags have their own red flags.",
+      "You're the reason terms and conditions exist.",
+      "Dating you requires a waiver and an emergency contact.",
+      "Your apology comes with commentary explaining why you're right.",
+      "Your relationship status should be listed as under investigation.",
+      "You're emotionally available exclusively during business hours.",
+      "Your love language is making someone need a vacation.",
+      "You say 'I'm fine' like a threat from a movie villain.",
+      "Your green flags are missing and presumed fictional.",
+      "You could turn a healthy relationship into a group project."
+    ],
+    "Drama": [
+      "You could turn a missing sock into a three-part documentary.",
+      "You treat a delayed text like a federal investigation.",
+      "Your calm era lasted exactly eleven minutes.",
+      "Your group chat needs a legal department.",
+      "You bring emotional weather warnings wherever you go.",
+      "You don't spill tea. You launch a beverage-based exposé.",
+      "Your life has more plot twists than a soap opera.",
+      "You hear one rumor and start producing the reunion episode.",
+      "You could make a paper cut into a season finale.",
+      "Your inner peace keeps filing missing-person reports."
+    ],
+    "Tiny Evil Genius": [
+      "Your master plan has a snack break and no actual plan.",
+      "You have cartoon villain energy with a low credit limit.",
+      "You don't hold grudges. You maintain historical archives.",
+      "You could organize a coup but forget the password.",
+      "You'd put a password on the fridge and forget it.",
+      "Your evil laugh sounds like your phone needs an update.",
+      "You plan world domination one minor inconvenience at a time.",
+      "Your secret lair would be a storage unit with Wi-Fi.",
+      "You have supervillain ambition and sleepy-cat follow-through.",
+      "Your grand scheme has three steps and you forgot step one."
+    ],
+    "Most Likely Arrested": [
+      "Your search history needs its own defense attorney.",
+      "You'd get caught and still insist the plan was flawless.",
+      "You argue with self-checkout machines.",
+      "Your alibi would incriminate three innocent people.",
+      "You look like you ask the officer if this counts as a warning.",
+      "You'd accidentally confess while trying to sound mysterious.",
+      "Your getaway plan depends on somebody else's phone battery.",
+      "You look suspicious when you're just ordering a sandwich.",
+      "You'd explain the entire case before asking for a lawyer.",
+      "Your criminal master plan would fail at the parking meter."
+    ],
+    "Would Vanish First": [
+      "You'd disappear for six months and return asking for Wi-Fi.",
+      "Your social battery has a one-percent warranty.",
+      "You'd leave a party without saying goodbye to the building.",
+      "You treat plans like optional software updates.",
+      "Your idea of keeping in touch is liking a photo from 2019.",
+      "You go offline so often people think you're a limited edition.",
+      "Your voicemail is an archaeological site.",
+      "You'd miss your own surprise party because you forgot your phone.",
+      "NASA has a better record of keeping track of you than your friends.",
+      "You vanish faster than free food at a family gathering."
+    ]
+  },
+
+  adult: {
+    "Main Character": [
+      "Your ego is so fucking big, your personality has to rent space in the basement.",
+      "You walk into a room like everyone owes you money and an apology.",
+      "You're the human version of a podcast nobody asked to hear.",
+      "Your personality has all the depth of a puddle in a parking lot.",
+      "You bring main-character energy with background-character results.",
+      "You talk so much shit, even your toilet wants a restraining order.",
+      "Your confidence is absolutely fucking historic for someone who brings so little to the table.",
+      "If self-awareness paid rent, you'd be homeless.",
+      "You have the charisma of a wet sock and the ego of a billionaire.",
+      "You think you're the whole damn show. You're the ad everyone skips."
+    ],
+    "Red Flag": [
+      "Dating you is like getting food poisoning at a restaurant you already knew was shady.",
+      "You're a walking red flag with a fucking ring light.",
+      "Your love life needs a therapist, a lawyer, and a hazmat team.",
+      "You're emotionally available about as often as a broken vending machine.",
+      "Your apologies are just excuses wearing a cheap fucking disguise.",
+      "Being with you is a full-time job with shit benefits.",
+      "You don't need a dating profile. You need a fucking disclaimer.",
+      "Your exes don't talk shit about you. They hold annual survivor meetings.",
+      "You're proof that chemistry can exist without a single fucking good decision.",
+      "You bring commitment issues to a one-night stand."
+    ],
+    "Drama": [
+      "You don't start drama. You kick the fucking door in, spill the drinks, and ask why everyone's being weird.",
+      "You could turn a typo into a three-day fucking emotional investigation.",
+      "Your group chat has more plot twists than your actual sex life.",
+      "You stir the pot so much, Gordon Ramsay wants you to sit the fuck down.",
+      "Your emotional stability has the structural integrity of wet toilet paper.",
+      "You turn a minor inconvenience into a fucking season finale.",
+      "You don't throw shade. You launch a goddamn solar eclipse.",
+      "You could start an argument in an empty room and still demand an apology.",
+      "Your peace era lasted shorter than a cheap condom.",
+      "Every time you say 'I'm not being dramatic,' a fucking theater gets built."
+    ],
+    "Tiny Evil Genius": [
+      "You have the brain of a criminal mastermind and the execution skills of a drunk raccoon.",
+      "Your evil plan has a fucking flowchart and still ends in disaster.",
+      "You scheme like a supervillain but budget like a broke-ass intern.",
+      "Your master plan is held together with spite and a fucking phone charger.",
+      "You'd sell your soul for world domination and spend the money on snacks.",
+      "You're not playing chess. You're chewing on the fucking pieces.",
+      "Your villain origin story is probably just someone changing the Wi-Fi password.",
+      "You have a PhD in bullshit and a minor in terrible decisions.",
+      "You could manipulate a whole room and still forget why you walked in.",
+      "Your brain runs on 2% battery and unearned confidence."
+    ],
+    "Most Likely Arrested": [
+      "You look like your lawyer has your number saved as 'For fuck's sake, not again.'",
+      "Your search history could make a police officer take a fucking vacation.",
+      "You'd confess to a crime you didn't commit just to win an argument.",
+      "Your alibi has more holes than your financial situation.",
+      "You have the survival instincts of a moth at a fucking bonfire.",
+      "You'd ask the cop if the handcuffs come with a loyalty program.",
+      "Your criminal mastermind era would end at the fucking self-checkout.",
+      "You couldn't lie your way out of a paper bag with a fucking instruction manual.",
+      "You look like you say 'watch this' right before the insurance claim.",
+      "Your getaway driver would abandon you just to protect their credit score."
+    ],
+    "Would Vanish First": [
+      "You ghost people so fucking hard, even your unpaid bills think you've moved abroad.",
+      "Your social battery dies faster than a cheap vibrator with discount batteries.",
+      "You disappear for months and return like you didn't leave a whole fucking search party.",
+      "You treat text messages like legally binding contracts you refuse to sign.",
+      "Your commitment level is lower than your phone battery at 2 a.m.",
+      "You vanish faster than your dignity after three tequila shots.",
+      "Your friends don't worry when you go missing. They assume you're being a fucking flake again.",
+      "You have the communication skills of a brick with airplane mode on.",
+      "You leave people on read like it's your fucking full-time career.",
+      "You'd ghost your own funeral if someone asked you to RSVP."
+    ]
+  }
 };
 
 const dailyChallenges = [
@@ -315,6 +293,7 @@ const dailyChallenges = [
 
 let players = [];
 let category = "Main Character";
+let mode = "classic";
 let round = 1;
 let totalRounds = 5;
 let currentTarget = "";
@@ -322,9 +301,6 @@ let currentRoast = "";
 let scores = {};
 let voted = false;
 let gameActive = false;
-
-/* Tracks insults already used during the current game.
-   Each exact insult can appear once before the category resets. */
 let usedRoasts = new Set();
 
 function loadData(key, fallback) {
@@ -338,39 +314,25 @@ function loadData(key, fallback) {
 
 players = loadData("unfiltered_players", []);
 if (!Array.isArray(players)) players = [];
-players = players
-  .filter(p => typeof p === "string")
-  .map(p => p.trim())
-  .filter(Boolean)
-  .slice(0, 12);
+players = players.filter(p => typeof p === "string" && p.trim())
+  .map(p => p.trim()).slice(0, 12);
 
 scores = loadData("unfiltered_scores", {});
-if (!scores || typeof scores !== "object" || Array.isArray(scores)) {
-  scores = {};
-}
+if (!scores || typeof scores !== "object" || Array.isArray(scores)) scores = {};
 
 function savePlayers() {
-  try {
-    localStorage.setItem("unfiltered_players", JSON.stringify(players));
-  } catch {}
+  try { localStorage.setItem("unfiltered_players", JSON.stringify(players)); } catch {}
 }
-
 function saveScores() {
-  try {
-    localStorage.setItem("unfiltered_scores", JSON.stringify(scores));
-  } catch {}
+  try { localStorage.setItem("unfiltered_scores", JSON.stringify(scores)); } catch {}
 }
 
 let toastTimer;
-
 function toast(message) {
-  const el = $("toast");
-  el.textContent = message;
-  el.style.display = "block";
+  $("toast").textContent = message;
+  $("toast").style.display = "block";
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    el.style.display = "none";
-  }, 2600);
+  toastTimer = setTimeout(() => $("toast").style.display = "none", 2600);
 }
 
 function renderPlayers() {
@@ -388,13 +350,8 @@ function renderPlayers() {
     remove.type = "button";
     remove.textContent = "×";
     remove.setAttribute("aria-label", "Remove " + name);
-
     remove.addEventListener("click", () => {
-      if (gameActive) {
-        toast("Finish the game before changing players.");
-        return;
-      }
-
+      if (gameActive) return toast("Finish the game before changing players.");
       players.splice(index, 1);
       savePlayers();
       renderPlayers();
@@ -410,28 +367,15 @@ function renderPlayers() {
 
 $("playerForm").addEventListener("submit", event => {
   event.preventDefault();
-
-  if (gameActive) {
-    toast("Finish the current game first.");
-    return;
-  }
+  if (gameActive) return toast("Finish the current game first.");
 
   const input = $("playerInput");
   const name = input.value.trim();
 
-  if (!name) {
-    toast("Enter a player name first.");
-    return;
-  }
-
-  if (players.length >= 12) {
-    toast("Maximum 12 players.");
-    return;
-  }
-
+  if (!name) return toast("Enter a player name first.");
+  if (players.length >= 12) return toast("Maximum 12 players.");
   if (players.some(p => p.toLowerCase() === name.toLowerCase())) {
-    toast("That player is already added.");
-    return;
+    return toast("That player is already added.");
   }
 
   players.push(name);
@@ -441,20 +385,33 @@ $("playerForm").addEventListener("submit", event => {
   input.focus();
 });
 
+function setMode(nextMode) {
+  if (gameActive) return toast("Finish the game before changing modes.");
+
+  mode = nextMode;
+  $("classicMode").classList.toggle("selected", mode === "classic");
+  $("adultMode").classList.toggle("selected", mode === "adult");
+  $("modeDescription").textContent = mode === "adult"
+    ? "AFTER DARK: profanity, adult relationship humor, and savage roasts."
+    : "Classic roasts for your regular game night.";
+
+  usedRoasts.clear();
+  toast(mode === "adult" ? "AFTER DARK activated. 🔞🔥" : "Classic mode activated.");
+}
+
+$("classicMode").addEventListener("click", () => setMode("classic"));
+$("adultMode").addEventListener("click", () => setMode("adult"));
+
 $("categories").addEventListener("click", event => {
   const button = event.target.closest("[data-cat]");
   if (!button) return;
-
-  if (gameActive) {
-    toast("Finish the game before changing categories.");
-    return;
-  }
+  if (gameActive) return toast("Finish the game before changing categories.");
 
   category = button.dataset.cat;
-
-  document.querySelectorAll("[data-cat]").forEach(el => {
-    el.classList.toggle("selected", el === button);
-  });
+  document.querySelectorAll("[data-cat]").forEach(el =>
+    el.classList.toggle("selected", el === button)
+  );
+  usedRoasts.clear();
 });
 
 function chooseRandom(items) {
@@ -462,27 +419,23 @@ function chooseRandom(items) {
 }
 
 function generateRoast() {
-  const bank = roastBank[category];
+  const bank = roastBanks[mode][category];
+  if (!bank || bank.length === 0) return;
 
-  if (!bank || bank.length === 0 || players.length === 0) {
-    toast("No insults or players available.");
-    return;
-  }
+  let available = bank.filter(roast => !usedRoasts.has(roast));
 
-  let availableRoasts = bank.filter(roast => !usedRoasts.has(roast));
-
-  // Only recycle insults once every insult in this category has been used.
-  if (availableRoasts.length === 0) {
+  if (available.length === 0) {
     usedRoasts.clear();
-    availableRoasts = bank.slice();
-    toast("Fresh batch! The roast cycle has reset. 🔥");
+    available = bank.slice();
+    toast("Every roast used! Fresh cycle unlocked. 🔥");
   }
 
   currentTarget = chooseRandom(players);
-  currentRoast = chooseRandom(availableRoasts);
+  currentRoast = chooseRandom(available);
   usedRoasts.add(currentRoast);
 
-  $("categoryPill").textContent = category;
+  $("categoryPill").textContent =
+    (mode === "adult" ? "🔞 AFTER DARK · " : "CLASSIC · ") + category;
   $("roundLabel").textContent = "Round " + round + " of " + totalRounds;
   $("target").textContent = "THE TARGET: " + currentTarget;
   $("roast").textContent = currentRoast;
@@ -491,10 +444,7 @@ function generateRoast() {
 function startGame() {
   if (players.length < 2) {
     toast("Add at least two players first!");
-    $("playerForm").scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
+    $("playerForm").scrollIntoView({ behavior: "smooth", block: "center" });
     $("playerInput").focus();
     return;
   }
@@ -510,14 +460,9 @@ function startGame() {
   $("game").classList.remove("hidden");
   $("voting").classList.remove("hidden");
   $("next").textContent = "NEXT ROUND →";
-
   generateRoast();
   renderVotes();
-
-  $("game").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+  $("game").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderVotes() {
@@ -533,11 +478,11 @@ function renderVotes() {
     const label = document.createElement("span");
     label.textContent = name;
 
-    const count = document.createElement("span");
-    count.className = "points";
-    count.textContent = (Number(scores[name]) || 0) + " pts";
+    const points = document.createElement("span");
+    points.className = "points";
+    points.textContent = (Number(scores[name]) || 0) + " pts";
 
-    button.append(label, count);
+    button.append(label, points);
     button.addEventListener("click", () => castVote(name));
     list.appendChild(button);
   });
@@ -549,15 +494,10 @@ function renderVotes() {
 
 function castVote(name) {
   if (!gameActive || voted) return;
-
-  if (name === currentTarget) {
-    toast("You cannot vote for the roast target!");
-    return;
-  }
+  if (name === currentTarget) return toast("You cannot vote for the roast target!");
 
   scores[name] = (Number(scores[name]) || 0) + 1;
   voted = true;
-
   saveScores();
   renderVotes();
   renderLeaderboard();
@@ -569,13 +509,11 @@ function renderLeaderboard() {
   board.replaceChildren();
 
   const entries = Object.entries(scores)
-    .filter(([name, score]) =>
-      typeof name === "string" && Number.isFinite(Number(score))
-    )
+    .filter(([name, score]) => typeof name === "string" && Number.isFinite(Number(score)))
     .sort((a, b) => Number(b[1]) - Number(a[1]))
     .slice(0, 10);
 
-  if (entries.length === 0) {
+  if (!entries.length) {
     const message = document.createElement("p");
     message.textContent = "Play a round to start your leaderboard.";
     board.appendChild(message);
@@ -602,20 +540,15 @@ function renderLeaderboard() {
 }
 
 function nextRound() {
-  if (!gameActive) {
-    startGame();
-    return;
-  }
+  if (!gameActive) return startGame();
 
   if (round >= totalRounds) {
     gameActive = false;
     $("roundLabel").textContent = "Game complete!";
     $("target").textContent = "THE ARENA HAS SPOKEN";
-    $("roast").textContent =
-      "The roast is over. The screenshots are forever.";
+    $("roast").textContent = "The roast is over. The screenshots are forever.";
     $("voting").classList.add("hidden");
     $("next").textContent = "PLAY AGAIN ↻";
-    renderPlayers();
     toast("Game over! Check the leaderboard.");
     return;
   }
@@ -630,12 +563,7 @@ $("play").addEventListener("click", startGame);
 $("next").addEventListener("click", nextRound);
 
 $("reroll").addEventListener("click", () => {
-  if (!gameActive) {
-    toast("Start a game first!");
-    return;
-  }
-
-  // Keep usedRoasts intact so reroll cannot repeat a used insult.
+  if (!gameActive) return toast("Start a game first!");
   generateRoast();
   renderVotes();
   toast("Fresh roast served! 🔥");
@@ -648,40 +576,29 @@ function getDailyChallenge() {
     String(now.getDate()).padStart(2, "0");
 
   let hash = 0;
-  for (const char of key) {
-    hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
-  }
-
+  for (const char of key) hash = (hash * 31 + char.charCodeAt(0)) >>> 0;
   return dailyChallenges[hash % dailyChallenges.length];
 }
 
 $("dailyText").textContent = getDailyChallenge();
-
 $("dailyButton").addEventListener("click", () => {
   if (players.length < 2) {
     toast("Add at least two players before accepting the challenge!");
-    $("playerForm").scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
+    $("playerForm").scrollIntoView({ behavior: "smooth", block: "center" });
     $("playerInput").focus();
     return;
   }
-
   toast("Daily Challenge accepted! 🔥");
   startGame();
 });
 
 async function shareMessage(title, message) {
-  const fullMessage = message + "\n\nPlay UNFILTERED: " + location.href;
+  const url = location.href;
+  const fullMessage = message + "\n\nPlay UNFILTERED: " + url;
 
   if (navigator.share) {
     try {
-      await navigator.share({
-        title,
-        text: message,
-        url: location.href
-      });
+      await navigator.share({ title, text: message, url });
       return;
     } catch (error) {
       if (error && error.name === "AbortError") return;
@@ -697,29 +614,19 @@ async function shareMessage(title, message) {
 }
 
 $("share").addEventListener("click", () => {
-  if (!currentRoast) {
-    toast("Start a game first!");
-    return;
-  }
-
-  shareMessage(
-    "UNFILTERED Roast",
-    "🔥 UNFILTERED ROAST 🔥\n" +
-    currentTarget + ": " + currentRoast +
-    "\nNO FILTER. NO MERCY. ALL FUN."
-  );
+  if (!currentRoast) return toast("Start a game first!");
+  shareMessage("UNFILTERED Roast",
+    "🔥 UNFILTERED ROAST 🔥\n" + currentTarget + ": " +
+    currentRoast + "\nNO FILTER. NO MERCY. ALL FUN.");
 });
 
-$("invite").addEventListener("click", () => {
-  shareMessage(
-    "Join UNFILTERED",
-    "👑 Join me on UNFILTERED, the savage party roast game!"
-  );
-});
+$("invite").addEventListener("click", () =>
+  shareMessage("Join UNFILTERED",
+    "👑 Join me on UNFILTERED, the savage party roast game!")
+);
 
 $("reset").addEventListener("click", () => {
   if (!confirm("Reset the leaderboard saved on this device?")) return;
-
   scores = {};
   saveScores();
   renderLeaderboard();
@@ -732,8 +639,3 @@ renderLeaderboard();
 </script>
 </body>
 </html>
-
-
-
-
-
